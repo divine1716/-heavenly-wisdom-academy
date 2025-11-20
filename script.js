@@ -94,3 +94,23 @@ document.addEventListener("DOMContentLoaded", () => {
     const msg = document.getElementById('chat-message');
     if (msg) msg.style.display = 'none';
     }, 5000);
+
+// Mobile menu toggle
+function toggleMobileMenu() {
+  const navLinks = document.getElementById('navLinks');
+  if (navLinks.classList.contains('mobile-hidden')) {
+    navLinks.classList.remove('mobile-hidden');
+    navLinks.classList.add('mobile-visible');
+  } else {
+    navLinks.classList.add('mobile-hidden');
+    navLinks.classList.remove('mobile-visible');
+  }
+}
+
+// Auto-hide mobile menu on larger screens
+window.addEventListener('resize', () => {
+  const navLinks = document.getElementById('navLinks');
+  if (window.innerWidth > 768) {
+    navLinks.classList.remove('mobile-hidden', 'mobile-visible');
+  }
+});
