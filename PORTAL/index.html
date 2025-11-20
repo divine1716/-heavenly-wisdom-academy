@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portal - Sign In</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="notifications.css">
+  <!-- Correct FontAwesome CDN -->
+  <script src="https://kit.fontawesome.com/c4254e24a8.js" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div class="container">
+    <div class="form-box">
+      <h1>SIGN IN</h1>
+      <form id="loginForm">
+        <!-- Username / Email -->
+        <div class="input-box"> 
+          <input type="text" id="username" placeholder="Email" required>
+        </div>
+
+        <!-- Password -->
+        <div class="input-box password-box">
+          <input type="password" id="password" placeholder="Password" required>
+          <span class="toggle-password" onclick="togglePassword('password')">
+            <i class="fa fa-eye" id="password-eye"></i>
+          </span>
+        </div>
+
+        <!-- Role selection -->
+        <div class="input-box">
+          <select id="role" required>
+            <option value="">Select Role</option>
+            <option value="student">Student</option>
+            <option value="parent">Parent</option>
+            <option value="teacher">Teacher</option>
+            <option value="admin">Admin</option>
+          </select>
+        </div>
+
+        <p class="forgot"><a href="#" onclick="forgotPassword(event)">Lost password? Click Here!</a></p>
+
+        <div class="button-group">
+          <!-- Use anchor for Sign Up link -->
+          <a href="sign up/index.html" class="btn secondary">Sign Up</a>
+          <button type="submit" class="btn primary">Sign In</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  
+  <script src="notifications.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

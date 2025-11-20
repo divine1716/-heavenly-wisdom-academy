@@ -1,0 +1,26 @@
+# Environment variables (contains passwords and secrets)
+.env
+PORTAL/backend/.env
+
+# Node modules
+node_modules/
+PORTAL/backend/node_modules/
+
+# Logs
+*.log
+npm-debug.log*
+logs/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Build files
+dist/
+build/

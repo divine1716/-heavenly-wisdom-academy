@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Debug Token</title>
+</head>
+<body>
+    <h1>Token Debug</h1>
+    <button onclick="checkToken()">Check Token</button>
+    <div id="result"></div>
+
+    <script>
+        function checkToken() {
+            const token = localStorage.getItem("token");
+            const userInfo = localStorage.getItem("userInfo");
+            
+            document.getElementById("result").innerHTML = `
+                <h3>Token Info:</h3>
+                <p><strong>Token exists:</strong> ${token ? 'Yes' : 'No'}</p>
+                <p><strong>Token length:</strong> ${token ? token.length : 'N/A'}</p>
+                <p><strong>Token preview:</strong> ${token ? token.substring(0, 50) + '...' : 'N/A'}</p>
+                <p><strong>User Info:</strong> ${userInfo || 'None'}</p>
+                
+                <h3>Test API Call:</h3>
+                <button onclick="testAPI()">Test /api/user/me</button>
+                <div id="apiResult"></div>
+            `;
+        }
+
+        async function testAPI() {
+            const token = localStorage.getItem("token");
+            const resultDiv = document.getElementById("apiResult");
+            
+            try {
+                const response = await fetch('http://localhost:5000/api/user/me', {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json'
+                    }
+                });
+
+                const data = await response.json();
+                
+                resultDiv.innerHTML = `
+                    <p><strong>Status:</strong> ${response.status}</p>
+                    <p><strong>Response:</strong> ${JSON.stringify(data, null, 2)}</p>
+                `;
+            } catch (error) {
+                resultDiv.innerHTML = `<p><strong>Error:</strong> ${error.message}</p>`;
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Panel - School Portal</title>
+  <link rel="stylesheet" href="dashboard.css">
+  <link rel="stylesheet" href="admin-panel.css">
+  <link rel="stylesheet" href="notifications.css">
+</head>
+<body>
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <h2>Admin Panel</h2>
+    <ul>
+      <li><a href="dashboard.html">🏠 Dashboard</a></li>
+      <li><a href="admin-panel.html">⚙️ Admin Panel</a></li>
+      <li><a href="profile.html">👤 My Profile</a></li>
+      <li><a href="../student result/index.html">📊 Results</a></li>
+    </ul>
+    <button class="logout" onclick="logout()">Logout</button>
+  </div>
+ 
+  <!-- Content -->
+  <div class="content">
+    <h1>Admin Panel</h1>
+
+    <!-- Tab Navigation -->
+    <div class="tab-navigation">
+      <button class="tab-btn active" onclick="showTab('users')">👥 Manage Users</button>
+      <button class="tab-btn" onclick="showTab('students')">🎓 Manage Students</button>
+      <button class="tab-btn" onclick="showTab('results')">📊 Manage Results</button>
+    </div>
+
+    <!-- Users Tab -->
+    <div id="usersTab" class="tab-content active">
+      <h2>Manage Portal Users</h2>
+      
+      <div class="admin-card">
+        <h3>All Registered Users</h3>
+        <button class="card-btn" onclick="loadUsers()">Refresh List</button>
+        <div id="usersTableContainer">
+          <p>Click "Refresh List" to load users</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Students Tab -->
+    <div id="studentsTab" class="tab-content">
+      <h2>Manage Students</h2>
+      
+      <div class="admin-card">
+        <h3>Add New Student</h3>
+        <form id="addStudentForm">
+          <div class="form-row">
+            <div class="form-group">
+              <label>Student Name:</label>
+              <input type="text" id="studentName" required>
+            </div>
+            <div class="form-group">
+              <label>Class:</label>
+              <select id="studentClass" required>
+                <option value="">Select Class</option>
+                <option value="creche">Creche</option>
+                <option value="pre-nursery">Pre-Nursery</option>
+                <option value="nursery1">Nursery 1</option>
+                <option value="nursery2">Nursery 2</option>
+                <option value="nursery3">Nursery 3</option>
+                <option value="primary1">Primary 1</option>
+                <option value="primary2">Primary 2</option>
+                <option value="primary3">Primary 3</option>
+                <option value="primary4">Primary 4</option>
+                <option value="primary5">Primary 5</option>
+                <option value="jss1">JSS 1</option>
+                <option value="jss2">JSS 2</option>
+                <option value="jss3">JSS 3</option>
+                <option value="ss1">SS 1</option>
+                <option value="ss2">SS 2</option>
+                <option value="ss3">SS 3</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Password (for result access):</label>
+            <input type="text" id="studentPassword" required placeholder="e.g., student2025">
+          </div>
+          <button type="submit" class="card-btn">Add Student</button>
+        </form>
+      </div>
+
+      <div class="admin-card">
+        <h3>Current Students by Class</h3>
+        <div id="studentsListContainer">
+          <p>Loading students...</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Results Tab -->
+    <div id="resultsTab" class="tab-content">
+      <h2>Manage Student Results</h2>
+      
+      <div class="admin-card">
+        <h3>Add/Edit Student Result</h3>
+        <form id="addResultForm">
+          <div class="form-group">
+            <label>Select Student:</label>
+            <select id="resultStudentName" required>
+              <option value="">Select Student</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Term:</label>
+            <select id="resultTerm" required>
+              <option value="First Term">First Term</option>
+              <option value="Second Term">Second Term</option>
+              <option value="Third Term">Third Term</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Year:</label>
+            <input type="text" id="resultYear" value="2025/2026" required>
+          </div>
+
+          <h4>Subject Scores (Test1 + Test2 + Exam = Total)</h4>
+          <div id="subjectsContainer">
+            <!-- Subjects will be dynamically added here -->
+          </div>
+
+          <div class="form-group">
+            <label>Form Teacher's Remark:</label>
+            <textarea id="teacherRemark" rows="2" required></textarea>
+          </div>
+
+          <div class="form-group">
+            <label>Principal's Remark:</label>
+            <textarea id="principalRemark" rows="2" required></textarea>
+          </div>
+
+          <div class="form-group">
+            <label>Next Term Begins:</label>
+            <input type="text" id="nextTermBegins" placeholder="e.g., January 15, 2026" required>
+          </div>
+
+          <button type="submit" class="card-btn">Save Result</button>
+        </form>
+      </div>
+
+      <div class="admin-card">
+        <h3>Quick Actions</h3>
+        <button class="card-btn" onclick="generateSampleResults()">Generate Sample Results for All Students</button>
+        <p style="margin-top: 10px; color: #666; font-size: 14px;">
+          This will create sample results for students who don't have results yet.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <script src="notifications.js"></script>
+  <script src="admin-panel.js"></script>
+  <script src="dashboard.js"></script>
+</body>
+</html>

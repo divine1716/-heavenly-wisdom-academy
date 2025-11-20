@@ -1,0 +1,41 @@
+[
+  {
+    "id": "1759995837255",
+    "firstName": "DIVINE",
+    "lastName": "DIVINE",
+    "email": "jokpara318@gmail.com",
+    "password": "$2b$12$ZBTaODSu5X6eNmBrYJYNcu7mf8za26PZvixd9yuuUUnQ2tiNt2E/W",
+    "role": "admin",
+    "phone": null,
+    "isActive": true,
+    "isVerified": false,
+    "createdAt": "2025-10-09T07:43:57.255Z",
+    "lastLogin": null
+  },
+  {
+    "id": "1759996006697",
+    "firstName": "Mary",
+    "lastName": "Sijuwade",
+    "email": "adorableheavenlywisdom@gmail.com",
+    "password": "$2b$12$D0GhiZnSOX93Ln.gx3OteOK5QCPPyUTFyzTiXMgnwR5hpUbvwwQSy",
+    "role": "admin",
+    "phone": null,
+    "isActive": true,
+    "isVerified": false,
+    "createdAt": "2025-10-09T07:46:46.697Z",
+    "lastLogin": null
+  },
+  {
+    "id": "1759998765260",
+    "firstName": "Emmanuel",
+    "lastName": "Emmanuel",
+    "email": "sijuwademary6@gmail.com",
+    "password": "$2b$12$BWl/revt6UZXSbC7M74tred3hCuRlFhDe.Mz0ThZAgS9Muovi0RZ6",
+    "role": "admin",
+    "phone": null,
+    "isActive": true,
+    "isVerified": false,
+    "createdAt": "2025-10-09T08:32:45.260Z",
+    "lastLogin": null
+  }
+]

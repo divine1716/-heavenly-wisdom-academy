@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>  
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Student Result</title>
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Font Awesome CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+  <!-- Top Info Bar -->
+  <div class="top-bar">
+    <div class="contact">
+      <span>Adorableheavenlywisdom@gmail.com</span> |
+      <span>Call Us (Full time)</span> |
+      <button>
+        <i class="fa fa-user"></i>
+        <a href="#" class="dashboard-btn">Go to School Dashboard</a>
+      </button>
+    </div>
+
+    <!-- Top Social Icons -->
+    <div class="top-social-icons">
+      <a href="https://www.facebook.com/profile.php?id=61582386687704" target="_blank"><i class="fab fa-facebook-f"></i></a>
+      <a href="https://x.com/AdorableWi40474" target="_blank"><i class="fab fa-twitter"></i></a>
+      <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+      <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+    </div>
+  </div>
+
+  <!-- Header Section -->
+  <header>
+    <nav>
+      <div class="logo">
+        <img src="../images/HEAVENLY.jpg" alt="School Logo" />
+        <h1>HEAVENLY WISDOM INTERNATIONAL ACADEMY</h1>
+      </div>
+
+      <ul class="nav-links">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../ADMISSION/public/index.html">Admission</a></li>
+        <li><a href="../PORTAL/index.html">Portal</a></li>
+        <li><a href="../ABOUT US/index.html">About</a></li>
+        <li><a href="../GALLERY/index.html">Gallery</a></li>
+      </ul>
+      <button onclick="toggledarkmode()">Toggle Dark Mode</button>
+    </nav>
+  </header>
+
+  <div class="container">
+    <h1>Student Results</h1>
+
+    <!-- Class Dropdown -->
+    <div class="dropdown">
+      <button class="dropbtn">Select Class</button>
+      <div class="dropdown-content">
+        <a href="#" data-class="creche">creche</a>
+        <a href="#" data-class="pre-nursery">Pre-nursery</a>
+        <a href="#" data-class="nursery1">Nursery 1</a>
+        <a href="#" data-class="nursery2">Nursery 2</a>
+        <a href="#" data-class="nursery3">Nursery 3</a>
+        <a href="#" data-class="primary1">Primary 1</a>
+        <a href="#" data-class="primary2">Primary 2</a>
+        <a href="#" data-class="primary3">Primary 3</a>
+        <a href="#" data-class="primary4">Primary 4</a>
+        <a href="#" data-class="primary5">Primary 5</a>
+        <a href="#" data-class="jss1">Jss 1</a>
+        <a href="#" data-class="jss2">Jss 2</a>
+        <a href="#" data-class="jss3">Jss 3</a>
+        <a href="#" data-class="ss1">ss 1</a>
+        <a href="#" data-class="ss2">ss 2</a>
+        <a href="#" data-class="ss3">ss 3</a>
+      </div>
+    </div>
+
+
+    <!-- Student list area -->
+    <div id="studentList" class="student-list">
+      <p class="info">Select a class to view students.</p>
+    </div>
+  </div>
+
+    <div id="resultDisplay" class="result-display">
+      <h2>Select a student to view result</h2>
+    </div>
+  </div>
+<script type="module" src="student.js"></script>
+<script type="module" src="script.js"></script>
+</body>
+</html>
