@@ -1,19 +1,28 @@
-// Unified School Website Backend Server
+// Simple School Website Backend Server (No bcrypt dependency)
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
-const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const nodemailer = require('nodemailer');
 const multer = require('multer');
 const fs = require('fs');
 const path = require('path');
+const crypto = require('crypto');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 
 // In-memory user storage (for demo - use database in production)
 const users = [];
+
+// Simple password hashing using Node.js built-in crypto
+function hashPassword(password) {
+  return crypto.createHash('sha256').update(password + 'heavenly_salt').digest('hex');
+}
+
+function verifyPassword(password, hash) {
+  return hashPassword(password) === hash;
+}
 
 // Middleware
 app.use(express.json());
@@ -41,17 +50,24 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage });
 
-// Configure nodemailer
-const transporter = nodemailer.createTransporter({
-  service: 'gmail',
-  auth: {
-    user: process.env.EMAIL_USER || process.env.SMTP_USER,
-    pass: process.env.EMAIL_PASS || process.env.SMTP_PASS
-  },
-  tls: {
-    rejectUnauthorized: false
+// Configure nodemailer (optional)
+let transporter = null;
+try {
+  if (process.env.EMAIL_USER && process.env.EMAIL_PASS) {
+    transporter = nodemailer.createTransporter({
+      service: 'gmail',
+      auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS
+      },
+      tls: {
+        rejectUnauthorized: false
+      }
+    });
   }
-});
+} catch (error) {
+  console.log('⚠️ Email not configured - forms will still work');
+}
 
 // Test route
 app.get('/', (req, res) => {
@@ -76,7 +92,7 @@ app.post('/api/auth/signup', async (req, res) => {
     }
 
     // Hash password
-    const passwordHash = await bcrypt.hash(password, 10);
+    const passwordHash = hashPassword(password);
     
     // Create user
     const user = {
@@ -131,7 +147,7 @@ app.post('/api/auth/login', async (req, res) => {
     }
 
     // Check password
-    const ok = await bcrypt.compare(password, user.passwordHash);
+    const ok = verifyPassword(password, user.passwordHash);
     if (!ok) {
       return res.status(401).json({ success: false, message: 'Invalid email or password' });
     }
@@ -216,8 +232,10 @@ app.post('/submit-admission', upload.single('passport'), async (req, res) => {
     submissions.push(dataToSave);
     fs.writeFileSync(SUBMISSION_FILE, JSON.stringify(submissions, null, 2));
 
-    // Create email content
-    const emailContent = `
+    // Try to send email if configured
+    if (transporter) {
+      try {
+        const emailContent = `
 New Admission Form Submission
 =============================
 
@@ -252,27 +270,24 @@ Christian training: ${formData.christianTraining}
 Attestation: ${formData.attestation}
 
 Submitted at: ${dataToSave.submittedAt}
-    `;
+        `;
 
-    // Email options
-    const mailOptions = {
-      from: process.env.EMAIL_USER || process.env.SMTP_USER,
-      to: process.env.ADMIN_EMAIL || 'adorableheavenlywisdom@gmail.com',
-      subject: `New Admission Application - ${formData.fullName}`,
-      text: emailContent,
-      attachments: passportFile ? [{
-        filename: passportFile.originalname,
-        path: passportFile.path
-      }] : [],
-    };
+        const mailOptions = {
+          from: process.env.EMAIL_USER,
+          to: process.env.ADMIN_EMAIL || 'adorableheavenlywisdom@gmail.com',
+          subject: `New Admission Application - ${formData.fullName}`,
+          text: emailContent,
+          attachments: passportFile ? [{
+            filename: passportFile.originalname,
+            path: passportFile.path
+          }] : [],
+        };
 
-    // Try to send email (don't fail if email fails)
-    try {
-      await transporter.sendMail(mailOptions);
-      console.log('✅ Admission email sent successfully');
-    } catch (emailError) {
-      console.error('⚠️ Email sending failed:', emailError.message);
-      // Continue anyway - form is still saved
+        await transporter.sendMail(mailOptions);
+        console.log('✅ Admission email sent successfully');
+      } catch (emailError) {
+        console.error('⚠️ Email sending failed:', emailError.message);
+      }
     }
     
     res.status(200).json({ 
@@ -293,9 +308,15 @@ Submitted at: ${dataToSave.submittedAt}
 app.listen(PORT, () => {
   console.log(`🚀 Heavenly Wisdom Academy Server running on http://localhost:${PORT}`);
   console.log('📝 Features available:');
-  console.log('   - User Authentication (Login/Signup)');
-  console.log('   - Admission Form Processing');
-  console.log('   - File Upload Support');
-  console.log('   - Email Notifications');
+  console.log('   ✅ User Authentication (Login/Signup)');
+  console.log('   ✅ Admission Form Processing');
+  console.log('   ✅ File Upload Support');
+  console.log('   ✅ Student Results System');
+  if (transporter) {
+    console.log('   ✅ Email Notifications');
+  } else {
+    console.log('   ⚠️ Email not configured (forms still work)');
+  }
   console.log('💡 Note: Using in-memory storage for demo (data resets on restart)');
+  console.log('🌐 Open your website at: http://localhost:5000');
 });
