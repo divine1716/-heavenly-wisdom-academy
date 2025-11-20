@@ -470,6 +470,211 @@ h1 {
 }
 
 
+/* ===== MOBILE NAVIGATION STYLES ===== */
+.desktop-nav {
+  display: flex;
+}
+
+.mobile-nav {
+  display: none;
+  align-items: center;
+  gap: 10px;
+}
+
+.mobile-menu-toggle,
+.dark-mode-toggle {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+}
+
+.mobile-menu-toggle:hover,
+.dark-mode-toggle:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.mobile-menu-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 998;
+}
+
+.mobile-menu {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #dc143c;
+  z-index: 999;
+  overflow-y: auto;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.mobile-menu-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.mobile-menu-header h3 {
+  color: white;
+  margin: 0;
+  font-size: 24px;
+}
+
+.close-mobile-menu {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 30px;
+  cursor: pointer;
+  padding: 5px;
+  line-height: 1;
+}
+
+.mobile-nav-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 15px;
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+.mobile-nav-card {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  border-radius: 15px;
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  transition: transform 0.3s, box-shadow 0.3s;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.mobile-nav-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+.mobile-nav-card.active {
+  transform: scale(1.05);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+}
+
+.nav-icon {
+  font-size: 28px;
+  margin-right: 15px;
+  min-width: 40px;
+}
+
+.nav-text {
+  flex: 1;
+}
+
+/* Card Colors */
+.home-card {
+  background: linear-gradient(135deg, #007bff, #0056b3);
+}
+
+.admission-card {
+  background: linear-gradient(135deg, #28a745, #1e7e34);
+}
+
+.portal-card {
+  background: linear-gradient(135deg, #17a2b8, #117a8b);
+}
+
+.about-card {
+  background: linear-gradient(135deg, #ffc107, #e0a800);
+}
+
+.gallery-card {
+  background: linear-gradient(135deg, #6f42c1, #5a32a3);
+}
+
+.result-card {
+  background: linear-gradient(135deg, #fd7e14, #e55a00);
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .desktop-nav {
+    display: none;
+  }
+
+  .mobile-nav {
+    display: flex;
+  }
+
+  .mobile-menu-overlay.active {
+    display: block;
+  }
+
+  .mobile-menu.active {
+    display: block;
+  }
+
+  .logo h1 {
+    font-size: 16px;
+  }
+
+  .logo img {
+    height: 40px;
+  }
+
+  header nav {
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .mobile-nav-grid {
+    gap: 12px;
+  }
+
+  .mobile-nav-card {
+    padding: 15px;
+    font-size: 16px;
+  }
+
+  .nav-icon {
+    font-size: 24px;
+    margin-right: 12px;
+    min-width: 35px;
+  }
+
+  .mobile-menu {
+    padding: 15px;
+  }
+
+  .logo h1 {
+    font-size: 14px;
+  }
+
+  .logo img {
+    height: 35px;
+  }
+}
+
 /* Dark Mode Styles */
 body.darkmode {
   background-color: #1a1a1a;

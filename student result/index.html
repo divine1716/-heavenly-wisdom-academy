@@ -39,17 +39,64 @@
         <h1>HEAVENLY WISDOM INTERNATIONAL ACADEMY</h1>
       </div>
 
-      <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">☰</button>
-      
-      <ul class="nav-links" id="navLinks">
+      <!-- Desktop Navigation -->
+      <ul class="nav-links desktop-nav">
         <li><a href="../index.html">🏠 Home</a></li>
         <li><a href="../ADMISSION/public/index.html">📝 Admission</a></li>
         <li><a href="../PORTAL/index.html">🔐 Portal</a></li>
         <li><a href="../ABOUT US/index.html">ℹ️ About</a></li>
         <li><a href="../GALLERY/index.html">📷 Gallery</a></li>
       </ul>
-      <button onclick="toggledarkmode()">🌙 Toggle Dark Mode</button>
+
+      <!-- Mobile Navigation -->
+      <div class="mobile-nav">
+        <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">☰</button>
+        <button class="dark-mode-toggle" onclick="toggledarkmode()">🌙</button>
+      </div>
     </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay" onclick="toggleMobileMenu()"></div>
+    
+    <!-- Mobile Navigation Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+      <div class="mobile-menu-header">
+        <h3>Navigation</h3>
+        <button class="close-mobile-menu" onclick="toggleMobileMenu()">×</button>
+      </div>
+      
+      <div class="mobile-nav-grid">
+        <a href="../index.html" class="mobile-nav-card home-card">
+          <div class="nav-icon">🏠</div>
+          <div class="nav-text">Home</div>
+        </a>
+        
+        <a href="../ADMISSION/public/index.html" class="mobile-nav-card admission-card">
+          <div class="nav-icon">📝</div>
+          <div class="nav-text">Admission</div>
+        </a>
+        
+        <a href="../PORTAL/index.html" class="mobile-nav-card portal-card">
+          <div class="nav-icon">🔐</div>
+          <div class="nav-text">Portal</div>
+        </a>
+        
+        <a href="../ABOUT US/index.html" class="mobile-nav-card about-card">
+          <div class="nav-icon">ℹ️</div>
+          <div class="nav-text">About</div>
+        </a>
+        
+        <a href="../GALLERY/index.html" class="mobile-nav-card gallery-card">
+          <div class="nav-icon">📷</div>
+          <div class="nav-text">Gallery</div>
+        </a>
+        
+        <a href="index.html" class="mobile-nav-card result-card active">
+          <div class="nav-icon">📊</div>
+          <div class="nav-text">Results</div>
+        </a>
+      </div>
+    </div>
   </header>
 
   <div class="container">

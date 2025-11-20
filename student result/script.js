@@ -80,20 +80,36 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // Mobile menu toggle
 function toggleMobileMenu() {
-  const navLinks = document.getElementById('navLinks');
-  if (navLinks.classList.contains('mobile-hidden')) {
-    navLinks.classList.remove('mobile-hidden');
-    navLinks.classList.add('mobile-visible');
-  } else {
-    navLinks.classList.add('mobile-hidden');
-    navLinks.classList.remove('mobile-visible');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+  
+  if (mobileMenu && mobileMenuOverlay) {
+    mobileMenu.classList.toggle('active');
+    mobileMenuOverlay.classList.toggle('active');
+    
+    // Prevent body scroll when menu is open
+    if (mobileMenu.classList.contains('active')) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
   }
 }
 
 // Auto-hide mobile menu on larger screens
 window.addEventListener('resize', () => {
-  const navLinks = document.getElementById('navLinks');
   if (window.innerWidth > 768) {
-    navLinks.classList.remove('mobile-hidden', 'mobile-visible');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+    
+    if (mobileMenu && mobileMenuOverlay) {
+      mobileMenu.classList.remove('active');
+      mobileMenuOverlay.classList.remove('active');
+      document.body.style.overflow = '';
+    }
   }
 });
+
+// Make functions globally available
+window.toggleMobileMenu = toggleMobileMenu;
+window.toggledarkmode = toggledarkmode;
