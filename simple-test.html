@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Auth Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; max-width: 600px; margin: 0 auto; }
+        .form-group { margin: 15px 0; }
+        input, select, button { padding: 10px; width: 100%; box-sizing: border-box; }
+        button { background: #007bff; color: white; border: none; cursor: pointer; }
+        button:hover { background: #0056b3; }
+        .result { margin: 15px 0; padding: 10px; border-radius: 5px; }
+        .success { background: #d4edda; color: #155724; }
+        .error { background: #f8d7da; color: #721c24; }
+    </style>
+</head>
+<body>
+    <h1>🚀 Simple Authentication Test</h1>
+    
+    <div id="signupSection">
+        <h2>📝 Create Account</h2>
+        <div class="form-group">
+            <input type="text" id="signupName" placeholder="Full Name" value="Test User">
+        </div>
+        <div class="form-group">
+            <input type="email" id="signupEmail" placeholder="Email" value="test@example.com">
+        </div>
+        <div class="form-group">
+            <input type="password" id="signupPassword" placeholder="Password" value="Test123">
+        </div>
+        <div class="form-group">
+            <select id="signupRole">
+                <option value="student">Student</option>
+                <option value="teacher">Teacher</option>
+                <option value="admin">Admin</option>
+            </select>
+        </div>
+        <button onclick="doSignup()">Create Account</button>
+        <div id="signupResult"></div>
+    </div>
+    
+    <hr>
+    
+    <div id="loginSection">
+        <h2>🔐 Login</h2>
+        <div class="form-group">
+            <input type="email" id="loginEmail" placeholder="Email" value="test@example.com">
+        </div>
+        <div class="form-group">
+            <input type="password" id="loginPassword" placeholder="Password" value="Test123">
+        </div>
+        <button onclick="doLogin()">Login</button>
+        <div id="loginResult"></div>
+    </div>
+    
+    <hr>
+    
+    <div>
+        <h2>📊 Status</h2>
+        <button onclick="checkStatus()">Check Status</button>
+        <div id="statusResult"></div>
+    </div>
+
+    <script>
+        // Simple authentication system (inline)
+        class SimpleAuth {
+            constructor() {
+                this.users = JSON.parse(localStorage.getItem('simple_users') || '[]');
+            }
+            
+            hashPassword(password) {
+                // Simple hash
+                let hash = 0;
+                for (let i = 0; i < password.length; i++) {
+                    const char = password.charCodeAt(i);
+                    hash = ((hash << 5) - hash) + char;
+                    hash = hash & hash;
+                }
+                return Math.abs(hash).toString(16);
+            }
+            
+            signup(name, email, password, role) {
+                try {
+                    // Check if user exists
+                    if (this.users.find(u => u.email === email)) {
+                        return { success: false, message: 'Email already registered' };
+                    }
+                    
+                    // Create user
+                    const user = {
+                        id: Date.now().toString(),
+                        name,
+                        email,
+                        passwordHash: this.hashPassword(password),
+                        role,
+                        createdAt: new Date().toISOString()
+                    };
+                    
+                    this.users.push(user);
+                    localStorage.setItem('simple_users', JSON.stringify(this.users));
+                    
+                    return { 
+                        success: true, 
+                        message: 'Account created successfully!',
+                        user: { id: user.id, name: user.name, email: user.email, role: user.role }
+                    };
+                } catch (error) {
+                    return { success: false, message: error.message };
+                }
+            }
+            
+            login(email, password) {
+                try {
+                    const user = this.users.find(u => u.email === email);
+                    if (!user) {
+                        return { success: false, message: 'Invalid email or password' };
+                    }
+                    
+                    if (this.hashPassword(password) !== user.passwordHash) {
+                        return { success: false, message: 'Invalid email or password' };
+                    }
+                    
+                    const userInfo = { id: user.id, name: user.name, email: user.email, role: user.role };
+                    localStorage.setItem('simple_current_user', JSON.stringify(userInfo));
+                    
+                    return { 
+                        success: true, 
+                        message: 'Login successful!',
+                        user: userInfo
+                    };
+                } catch (error) {
+                    return { success: false, message: error.message };
+                }
+            }
+            
+            getCurrentUser() {
+                return JSON.parse(localStorage.getItem('simple_current_user') || 'null');
+            }
+            
+            logout() {
+                localStorage.removeItem('simple_current_user');
+            }
+        }
+        
+        const auth = new SimpleAuth();
+        
+        function showResult(elementId, result) {
+            const element = document.getElementById(elementId);
+            element.innerHTML = result.message;
+            element.className = 'result ' + (result.success ? 'success' : 'error');
+        }
+        
+        function doSignup() {
+            const name = document.getElementById('signupName').value;
+            const email = document.getElementById('signupEmail').value;
+            const password = document.getElementById('signupPassword').value;
+            const role = document.getElementById('signupRole').value;
+            
+            const result = auth.signup(name, email, password, role);
+            showResult('signupResult', result);
+        }
+        
+        function doLogin() {
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            
+            const result = auth.login(email, password);
+            showResult('loginResult', result);
+        }
+        
+        function checkStatus() {
+            const currentUser = auth.getCurrentUser();
+            const totalUsers = auth.users.length;
+            
+            const statusElement = document.getElementById('statusResult');
+            statusElement.innerHTML = `
+                <strong>Current User:</strong> ${currentUser ? currentUser.name + ' (' + currentUser.email + ')' : 'None'}<br>
+                <strong>Total Users:</strong> ${totalUsers}<br>
+                <strong>All Users:</strong> ${auth.users.map(u => u.name + ' (' + u.email + ')').join(', ') || 'None'}
+            `;
+            statusElement.className = 'result';
+        }
+        
+        console.log('✅ Simple auth test loaded');
+    </script>
+</body>
+</html>
