@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simple Login - Heavenly Wisdom Academy</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://kit.fontawesome.com/c4254e24a8.js" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div class="container">
+    <div class="form-box">
+      <h1>SIGN IN</h1>
+      <form id="loginForm">
+        <div class="input-box"> 
+          <input type="text" id="username" placeholder="Email" required>
+        </div>
+
+        <div class="input-box">
+          <input type="password" id="password" placeholder="Password" required>
+          <i class="fas fa-eye" id="password-eye" onclick="togglePassword('password')"></i>
+        </div>
+
+        <div class="input-box">
+          <select id="role" required>
+            <option value="">Select Role</option>
+            <option value="student">Student</option>
+            <option value="teacher">Teacher</option>
+            <option value="admin">Admin</option>
+          </select>
+        </div>
+
+        <button type="submit">Sign In</button>
+      </form>
+
+      <div class="links">
+        <a href="#" onclick="forgotPassword(event)">Forgot Password?</a>
+        <a href="sign up/index.html">Don't have an account? Sign Up</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Inline Authentication System (No external dependencies)
+    class SimpleAuth {
+      constructor() {
+        this.users = JSON.parse(localStorage.getItem('heavenly_users') || '[]');
+      }
+      
+      hashPassword(password) {
+        let hash = 0;
+        for (let i = 0; i < password.length; i++) {
+          const char = password.charCodeAt(i);
+          hash = ((hash << 5) - hash) + char;
+          hash = hash & hash;
+        }
+        return Math.abs(hash).toString(16);
+      }
+      
+      login(email, password) {
+        try {
+          if (!email || !password) {
+            return { success: false, message: 'Email and password are required' };
+          }
+
+          const user = this.users.find(u => u.email === email);
+          if (!user) {
+            return { success: false, message: 'Invalid email or password' };
+          }
+
+          const passwordHash = this.hashPassword(password);
+          if (passwordHash !== user.passwordHash) {
+            return { success: false, message: 'Invalid email or password' };
+          }
+
+          const userInfo = {
+            id: user.id,
+            name: user.name,
+            fullName: user.name,
+            email: user.email,
+            role: user.role
+          };
+          
+          localStorage.setItem('heavenly_current_user', JSON.stringify(userInfo));
+          localStorage.setItem('heavenly_token', 'simple_token_' + Date.now());
+
+          return {
+            success: true,
+            message: 'Login successful!',
+            user: userInfo
+          };
+        } catch (error) {
+          return { success: false, message: error.message };
+        }
+      }
+    }
+
+    const auth = new SimpleAuth();
+
+    // Toggle password visibility
+    function togglePassword(inputId) {
+      const input = document.getElementById(inputId);
+      const eye = document.getElementById(inputId + '-eye');
+      
+      if (input.type === 'password') {
+        input.type = 'text';
+        eye.classList.remove('fa-eye');
+        eye.classList.add('fa-eye-slash');
+      } else {
+        input.type = 'password';
+        eye.classList.remove('fa-eye-slash');
+        eye.classList.add('fa-eye');
+      }
+    }
+
+    // Forgot password
+    function forgotPassword(event) {
+      event.preventDefault();
+      const email = prompt("Enter your email address to reset password:");
+      
+      if (email && email.trim()) {
+        alert("Password reset link has been sent to " + email + "\n\n(Note: Email functionality not yet implemented. Please contact administrator.)");
+      }
+    }
+
+    // Handle login form
+    document.addEventListener("DOMContentLoaded", () => {
+      const loginForm = document.getElementById("loginForm");
+
+      if (loginForm) {
+        loginForm.addEventListener("submit", async (e) => {
+          e.preventDefault();
+
+          const email = document.getElementById("username").value.trim();
+          const password = document.getElementById("password").value.trim();
+          const role = document.getElementById("role").value;
+
+          if (!email || !password || !role) {
+            alert("Please fill in all fields.");
+            return;
+          }
+
+          try {
+            const result = auth.login(email, password);
+            
+            if (result.success) {
+              alert('Login successful! Welcome back, ' + result.user.name);
+              
+              // Redirect based on role
+              setTimeout(() => {
+                if (role === 'admin') {
+                  window.location.href = 'admin-panel.html';
+                } else {
+                  window.location.href = 'dashboard.html';
+                }
+              }, 1000);
+            } else {
+              alert('Login failed: ' + result.message);
+            }
+
+          } catch (error) {
+            console.error('Login error:', error);
+            alert('Login failed: ' + error.message);
+          }
+        });
+      }
+    });
+
+    console.log('✅ Simple login system loaded');
+    console.log('👥 Available users:', auth.users.length);
+    if (auth.users.length === 0) {
+      console.log('💡 No users found. Please create an account first at: sign up/signup-simple.html');
+    }
+  </script>
+</body>
+</html>
