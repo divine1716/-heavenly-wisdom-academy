@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Request Portal Access - Heavenly Wisdom Academy</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://kit.fontawesome.com/c4254e24a8.js" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div class="container">
+    <div class="form-box">
+      <div style="text-align: center; margin-bottom: 30px;">
+        <div style="width: 80px; height: 80px; margin: 0 auto 15px; background: linear-gradient(135deg, #28a745, #20c997); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 35px; color: white;">🔑</div>
+        <h1>Request Portal Access</h1>
+        <p style="color: #666;">Get your access code for the student portal</p>
+      </div>
+
+      <form action="https://formspree.io/f/xdkogqpz" method="POST">
+        <!-- Hidden fields for Formspree -->
+        <input type="hidden" name="_subject" value="Portal Access Request - Heavenly Wisdom Academy">
+        <input type="hidden" name="_next" value="https://heavenly-wisdom-academy-t283y67vh-divine-emmanuels-projects.vercel.app/PORTAL/access-requested.html">
+        <input type="hidden" name="form_type" value="portal_access_request">
+
+        <div class="input-box">
+          <input type="text" name="fullName" placeholder="Full Name" required>
+        </div>
+
+        <div class="input-box">
+          <input type="email" name="email" placeholder="Email Address" required>
+        </div>
+
+        <div class="input-box">
+          <input type="tel" name="phone" placeholder="Phone Number" required>
+        </div>
+
+        <div class="input-box">
+          <select name="requestedRole" required>
+            <option value="">Select Your Role</option>
+            <option value="student">👨‍🎓 Student</option>
+            <option value="teacher">👩‍🏫 Teacher</option>
+            <option value="parent">👨‍👩‍👧‍👦 Parent</option>
+          </select>
+        </div>
+
+        <div class="input-box">
+          <textarea name="additionalInfo" placeholder="Additional Information (Optional - e.g., class, student name for parents, etc.)" rows="3" style="width: 100%; padding: 15px; border: 1px solid #ddd; border-radius: 8px; font-family: inherit; resize: vertical;"></textarea>
+        </div>
+
+        <button type="submit">📤 Request Access Code</button>
+      </form>
+
+      <div style="background: #f8f9fa; padding: 15px; border-radius: 8px; margin-top: 20px; text-align: center;">
+        <h4 style="margin: 0 0 10px 0; color: #495057;">📋 What Happens Next?</h4>
+        <ul style="text-align: left; margin: 10px 0; color: #666;">
+          <li>We'll review your request within 24 hours</li>
+          <li>You'll receive your access code via email</li>
+          <li>Use the code to access your personalized dashboard</li>
+        </ul>
+        <a href="index.html" style="color: #007bff; text-decoration: none;">← Back to Portal Login</a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.querySelector('form').addEventListener('submit', function() {
+      const button = this.querySelector('button[type="submit"]');
+      button.disabled = true;
+      button.innerHTML = '📤 Sending Request...';
+    });
+  </script>
+</body>
+</html>

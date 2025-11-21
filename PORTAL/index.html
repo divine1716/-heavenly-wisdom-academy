@@ -3,219 +3,293 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Portal - Sign In</title>
+  <title>Student Portal - Heavenly Wisdom Academy</title>
   <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="notifications.css">
-  <!-- Correct FontAwesome CDN -->
   <script src="https://kit.fontawesome.com/c4254e24a8.js" crossorigin="anonymous"></script>
+  <style>
+    .portal-header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .school-logo {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 15px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 35px;
+      color: white;
+    }
+    .portal-title {
+      font-size: 28px;
+      color: #333;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+    .portal-subtitle {
+      color: #666;
+      font-size: 16px;
+      margin-bottom: 20px;
+    }
+    .access-info {
+      background: linear-gradient(135deg, #e3f2fd, #f3e5f5);
+      padding: 20px;
+      border-radius: 10px;
+      margin-bottom: 25px;
+      border-left: 4px solid #2196f3;
+    }
+    .access-info h3 {
+      margin: 0 0 10px 0;
+      color: #1976d2;
+      font-size: 18px;
+    }
+    .access-info ul {
+      margin: 10px 0;
+      padding-left: 20px;
+    }
+    .access-info li {
+      margin: 5px 0;
+      color: #555;
+    }
+    .contact-support {
+      background: #f8f9fa;
+      padding: 15px;
+      border-radius: 8px;
+      margin-top: 20px;
+      text-align: center;
+      border: 1px solid #e9ecef;
+    }
+    .contact-support h4 {
+      margin: 0 0 10px 0;
+      color: #495057;
+    }
+    .contact-links {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .contact-links a {
+      color: #007bff;
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .contact-links a:hover {
+      text-decoration: underline;
+    }
+    .loading {
+      display: none;
+      text-align: center;
+      color: #666;
+      margin: 10px 0;
+    }
+  </style>
 </head>
 <body>
   <div class="container">
     <div class="form-box">
-      <h1>SIGN IN</h1>
-      <form id="loginForm">
-        <!-- Username / Email -->
-        <div class="input-box"> 
-          <input type="text" id="username" placeholder="Email" required>
-        </div>
+      <div class="portal-header">
+        <div class="school-logo">🏫</div>
+        <h1 class="portal-title">HEAVENLY WISDOM ACADEMY</h1>
+        <p class="portal-subtitle">Student Portal Access</p>
+      </div>
 
-        <!-- Password -->
-        <div class="input-box password-box">
-          <input type="password" id="password" placeholder="Password" required>
-          <span class="toggle-password" onclick="togglePassword('password')">
-            <i class="fa fa-eye" id="password-eye"></i>
-          </span>
-        </div>
+      <div class="access-info">
+        <h3>🔐 Portal Access Information</h3>
+        <ul>
+          <li><strong>Students:</strong> Use the access code provided during enrollment</li>
+          <li><strong>Teachers:</strong> Use the code from your welcome email</li>
+          <li><strong>Parents:</strong> Check your enrollment documents</li>
+          <li><strong>Admin:</strong> Use your administrative access code</li>
+        </ul>
+      </div>
 
-        <!-- Role selection -->
+      <form id="portalForm">
         <div class="input-box">
-          <select id="role" required>
-            <option value="">Select Role</option>
-            <option value="student">Student</option>
-            <option value="parent">Parent</option>
-            <option value="teacher">Teacher</option>
-            <option value="admin">Admin</option>
+          <input type="password" id="accessCode" placeholder="Enter Your Access Code" required>
+          <i class="fas fa-key" style="position: absolute; right: 15px; top: 50%; transform: translateY(-50%); color: #666;"></i>
+        </div>
+
+        <div class="input-box">
+          <select id="userRole" required>
+            <option value="">Select Your Role</option>
+            <option value="student">👨‍🎓 Student</option>
+            <option value="teacher">👩‍🏫 Teacher</option>
+            <option value="parent">👨‍👩‍👧‍👦 Parent</option>
+            <option value="admin">⚙️ Administrator</option>
           </select>
         </div>
 
-        <p class="forgot"><a href="#" onclick="forgotPassword(event)">Lost password? Click Here!</a></p>
-
-        <div class="button-group">
-          <!-- Use anchor for Sign Up link -->
-          <a href="sign up/index.html" class="btn secondary">Sign Up</a>
-          <button type="submit" class="btn primary">Sign In</button>
+        <div class="loading" id="loadingMsg">
+          <i class="fas fa-spinner fa-spin"></i> Verifying access...
         </div>
+
+        <button type="submit">🚀 Enter Portal</button>
       </form>
+
+      <div class="contact-support">
+        <h4>📞 Need Help Accessing the Portal?</h4>
+        <div class="contact-links">
+          <a href="mailto:adorableheavenlywisdom@gmail.com">✉️ Email Support</a>
+          <a href="tel:+2348162297002">📱 Call Us</a>
+          <a href="#" onclick="requestAccess()">🔑 Request Access</a>
+        </div>
+      </div>
     </div>
   </div>
-  
+
   <script>
-    // Inline Authentication System (No external dependencies)
-    class SimpleAuth {
-      constructor() {
-        this.users = JSON.parse(localStorage.getItem('heavenly_users') || '[]');
-      }
+    // Professional Portal Access System
+    const ACCESS_CODES = {
+      // Student Access Codes
+      'student2025': 'student',
+      'heavenly-student': 'student',
+      'hwia-student': 'student',
       
-      hashPassword(password) {
-        let hash = 0;
-        for (let i = 0; i < password.length; i++) {
-          const char = password.charCodeAt(i);
-          hash = ((hash << 5) - hash) + char;
-          hash = hash & hash;
-        }
-        return Math.abs(hash).toString(16);
-      }
+      // Teacher Access Codes  
+      'teacher2025': 'teacher',
+      'heavenly-teacher': 'teacher',
+      'hwia-staff': 'teacher',
       
-      login(email, password) {
-        try {
-          if (!email || !password) {
-            return { success: false, message: 'Email and password are required' };
-          }
+      // Parent Access Codes
+      'parent2025': 'parent',
+      'heavenly-parent': 'parent',
+      
+      // Admin Access Codes
+      'admin2025': 'admin',
+      'heavenly-admin': 'admin',
+      'hwia-admin': 'admin'
+    };
 
-          const user = this.users.find(u => u.email === email);
-          if (!user) {
-            return { success: false, message: 'Invalid email or password' };
-          }
+    document.getElementById('portalForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const accessCode = document.getElementById('accessCode').value.trim();
+      const userRole = document.getElementById('userRole').value;
+      const loadingMsg = document.getElementById('loadingMsg');
+      const submitBtn = this.querySelector('button[type="submit"]');
+      
+      if (!accessCode || !userRole) {
+        alert('⚠️ Please enter your access code and select your role');
+        return;
+      }
 
-          const passwordHash = this.hashPassword(password);
-          if (passwordHash !== user.passwordHash) {
-            return { success: false, message: 'Invalid email or password' };
-          }
+      // Show loading
+      loadingMsg.style.display = 'block';
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Verifying...';
 
-          const userInfo = {
-            id: user.id,
-            name: user.name,
-            fullName: user.name,
-            email: user.email,
-            role: user.role
-          };
+      // Simulate verification delay for professional feel
+      setTimeout(() => {
+        const codeRole = ACCESS_CODES[accessCode.toLowerCase()];
+        
+        if (codeRole && codeRole === userRole) {
+          // Store user session
+          sessionStorage.setItem('portal_user', JSON.stringify({
+            role: userRole,
+            accessTime: new Date().toISOString(),
+            code: accessCode
+          }));
           
-          localStorage.setItem('heavenly_current_user', JSON.stringify(userInfo));
-          localStorage.setItem('heavenly_token', 'simple_token_' + Date.now());
-
-          return {
-            success: true,
-            message: 'Login successful!',
-            user: userInfo
-          };
-        } catch (error) {
-          return { success: false, message: error.message };
-        }
-      }
-    }
-
-    // Create global auth instance
-    window.localAuth = new SimpleAuth();
-
-    // Toggle password visibility
-    function togglePassword(inputId) {
-      const input = document.getElementById(inputId);
-      const eye = document.getElementById(inputId + '-eye');
-      
-      if (input.type === 'password') {
-        input.type = 'text';
-        eye.classList.remove('fa-eye');
-        eye.classList.add('fa-eye-slash');
-      } else {
-        input.type = 'password';
-        eye.classList.remove('fa-eye-slash');
-        eye.classList.add('fa-eye');
-      }
-    }
-
-    // Forgot password functionality
-    function forgotPassword(event) {
-      event.preventDefault();
-      const email = prompt("Enter your email address to reset password:");
-      
-      if (email && email.trim()) {
-        alert("Password reset link has been sent to " + email + "\n\n(Note: Email functionality not yet implemented. Please contact administrator.)");
-      }
-    }
-
-    // Simple notification functions
-    function showSuccess(message) {
-      alert('✅ ' + message);
-    }
-
-    function showError(message) {
-      alert('❌ ' + message);
-    }
-
-    function showLoading(message) {
-      console.log('Loading:', message);
-    }
-
-    function hideLoading() {
-      console.log('Loading complete');
-    }
-
-    function setButtonLoading(button, loading) {
-      if (loading) {
-        button.disabled = true;
-        button.textContent = 'Signing In...';
-      } else {
-        button.disabled = false;
-        button.textContent = 'Sign In';
-      }
-    }
-
-    // Handle login form
-    document.addEventListener("DOMContentLoaded", () => {
-      const loginForm = document.getElementById("loginForm");
-
-      if (loginForm) {
-        loginForm.addEventListener("submit", async (e) => {
-          e.preventDefault();
-
-          const email = document.getElementById("username").value.trim();
-          const password = document.getElementById("password").value.trim();
-          const role = document.getElementById("role").value;
-
-          if (!email || !password || !role) {
-            showError("Please fill in all fields.");
-            return;
-          }
-
-          try {
-            const submitBtn = loginForm.querySelector('button[type="submit"]');
-            setButtonLoading(submitBtn, true);
-            showLoading('Signing in...');
-
-            const result = window.localAuth.login(email, password);
-            
-            if (result.success) {
-              showSuccess('Welcome back, ' + result.user.name + '!');
-              
-              // Redirect based on role
-              setTimeout(() => {
-                if (role === 'admin') {
-                  window.location.href = 'admin-panel.html';
-                } else {
-                  window.location.href = 'dashboard.html';
-                }
-              }, 1500);
-            } else {
-              showError(result.message);
-              setButtonLoading(submitBtn, false);
+          // Success message
+          loadingMsg.innerHTML = '<i class="fas fa-check-circle" style="color: green;"></i> Access granted! Redirecting...';
+          
+          // Redirect based on role
+          setTimeout(() => {
+            switch(userRole) {
+              case 'admin':
+                window.location.href = 'admin-panel.html';
+                break;
+              case 'teacher':
+                window.location.href = 'dashboard.html?role=teacher';
+                break;
+              case 'student':
+                window.location.href = 'dashboard.html?role=student';
+                break;
+              case 'parent':
+                window.location.href = 'dashboard.html?role=parent';
+                break;
+              default:
+                window.location.href = 'dashboard.html';
             }
-
-          } catch (error) {
-            console.error('Login error:', error);
-            showError('Login failed: ' + error.message);
-            setButtonLoading(submitBtn, false);
-          } finally {
-            hideLoading();
+          }, 1500);
+          
+        } else {
+          // Access denied
+          loadingMsg.style.display = 'none';
+          submitBtn.disabled = false;
+          submitBtn.textContent = '🚀 Enter Portal';
+          
+          if (codeRole && codeRole !== userRole) {
+            alert('❌ Access code is valid but doesn\'t match your selected role.\n\nPlease check your role selection.');
+          } else {
+            alert('❌ Invalid access code.\n\nPlease check your code or contact support for assistance.');
           }
-        });
+        }
+      }, 1000);
+    });
+
+    function requestAccess() {
+      const message = `Hello! I need access to the Heavenly Wisdom Academy portal.
+
+Please provide me with the appropriate access code for my role.
+
+My details:
+- Name: [Your Name]
+- Role: [Student/Teacher/Parent]
+- Contact: [Your Phone/Email]
+
+Thank you!`;
+
+      const mailtoLink = `mailto:adorableheavenlywisdom@gmail.com?subject=Portal Access Request&body=${encodeURIComponent(message)}`;
+      window.location.href = mailtoLink;
+    }
+
+    // Check if user is already logged in
+    window.addEventListener('load', () => {
+      const user = sessionStorage.getItem('portal_user');
+      if (user) {
+        const userData = JSON.parse(user);
+        const accessTime = new Date(userData.accessTime);
+        const now = new Date();
+        const hoursSinceAccess = (now - accessTime) / (1000 * 60 * 60);
+        
+        // Auto-login if accessed within last 8 hours
+        if (hoursSinceAccess < 8) {
+          document.querySelector('.access-info').innerHTML = `
+            <h3>✅ Welcome Back!</h3>
+            <p>You're already logged in as <strong>${userData.role}</strong>.</p>
+            <button onclick="continueToDashboard()" style="background: #28a745; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; margin: 10px 5px;">Continue to Dashboard</button>
+            <button onclick="logout()" style="background: #dc3545; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; margin: 10px 5px;">Logout</button>
+          `;
+        }
       }
     });
 
-    console.log('✅ Login system loaded successfully');
-    console.log('👥 Available users:', window.localAuth.users.length);
-    if (window.localAuth.users.length === 0) {
-      console.log('💡 No users found. Please create an account first.');
+    function continueToDashboard() {
+      const user = JSON.parse(sessionStorage.getItem('portal_user'));
+      switch(user.role) {
+        case 'admin':
+          window.location.href = 'admin-panel.html';
+          break;
+        default:
+          window.location.href = 'dashboard.html';
+      }
     }
+
+    function logout() {
+      sessionStorage.removeItem('portal_user');
+      location.reload();
+    }
+
+    console.log('🏫 Heavenly Wisdom Academy Portal System Loaded');
+    console.log('📋 Available Access Codes for Testing:');
+    console.log('   Students: student2025, heavenly-student');
+    console.log('   Teachers: teacher2025, heavenly-teacher');
+    console.log('   Admin: admin2025, heavenly-admin');
   </script>
 </body>
 </html>

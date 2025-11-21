@@ -226,3 +226,30 @@
   </script>
 </body>
 </html>
+  <script>
+    // Redirect to new access request system
+    document.addEventListener('DOMContentLoaded', function() {
+      const notice = document.createElement('div');
+      notice.style.cssText = `
+        position: fixed;
+        top: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: linear-gradient(135deg, #007bff, #0056b3);
+        color: white;
+        padding: 15px 25px;
+        border-radius: 10px;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+        z-index: 10000;
+        text-align: center;
+        max-width: 90%;
+      `;
+      notice.innerHTML = `
+        <strong>🔄 Portal System Updated!</strong><br>
+        <small>We now use access codes for better reliability</small><br>
+        <button onclick="window.location.href='../request-access.html'" style="background: white; color: #007bff; border: none; padding: 8px 15px; border-radius: 5px; margin-top: 10px; cursor: pointer; font-weight: bold;">Request Access Code</button>
+        <button onclick="this.parentElement.remove()" style="background: transparent; color: white; border: 1px solid white; padding: 8px 15px; border-radius: 5px; margin: 10px 0 0 10px; cursor: pointer;">Close</button>
+      `;
+      document.body.appendChild(notice);
+    });
+  </script>
