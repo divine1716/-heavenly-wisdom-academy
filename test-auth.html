@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Authentication</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .test-section { margin: 20px 0; padding: 15px; border: 1px solid #ccc; }
+        button { padding: 10px 15px; margin: 5px; }
+        .result { margin: 10px 0; padding: 10px; background: #f0f0f0; }
+    </style>
+</head>
+<body>
+    <h1>🧪 Authentication System Test</h1>
+    
+    <div class="test-section">
+        <h3>1. Test Signup</h3>
+        <button onclick="testSignup()">Create Test Account</button>
+        <div id="signupResult" class="result"></div>
+    </div>
+    
+    <div class="test-section">
+        <h3>2. Test Login</h3>
+        <button onclick="testLogin()">Login with Test Account</button>
+        <div id="loginResult" class="result"></div>
+    </div>
+    
+    <div class="test-section">
+        <h3>3. Test Current User</h3>
+        <button onclick="testCurrentUser()">Check Current User</button>
+        <div id="currentUserResult" class="result"></div>
+    </div>
+    
+    <div class="test-section">
+        <h3>4. Test Admission Form</h3>
+        <button onclick="testAdmission()">Submit Test Admission</button>
+        <div id="admissionResult" class="result"></div>
+    </div>
+    
+    <div class="test-section">
+        <h3>5. View Stored Data</h3>
+        <button onclick="viewStoredData()">View All Stored Data</button>
+        <div id="storedDataResult" class="result"></div>
+    </div>
+
+    <script src="PORTAL/auth-local.js"></script>
+    <script>
+        async function testSignup() {
+            const result = document.getElementById('signupResult');
+            try {
+                const response = await window.localAuth.signup(
+                    'Test User',
+                    'test@heavenlywisdom.com',
+                    'TestPass123',
+                    'student'
+                );
+                result.innerHTML = `<strong>Signup Result:</strong><br><pre>${JSON.stringify(response, null, 2)}</pre>`;
+                result.style.background = response.success ? '#d4edda' : '#f8d7da';
+            } catch (error) {
+                result.innerHTML = `<strong>Error:</strong> ${error.message}`;
+                result.style.background = '#f8d7da';
+            }
+        }
+
+        async function testLogin() {
+            const result = document.getElementById('loginResult');
+            try {
+                const response = await window.localAuth.login(
+                    'test@heavenlywisdom.com',
+                    'TestPass123'
+                );
+                result.innerHTML = `<strong>Login Result:</strong><br><pre>${JSON.stringify(response, null, 2)}</pre>`;
+                result.style.background = response.success ? '#d4edda' : '#f8d7da';
+            } catch (error) {
+                result.innerHTML = `<strong>Error:</strong> ${error.message}`;
+                result.style.background = '#f8d7da';
+            }
+        }
+
+        function testCurrentUser() {
+            const result = document.getElementById('currentUserResult');
+            try {
+                const user = window.localAuth.getCurrentUser();
+                result.innerHTML = `<strong>Current User:</strong><br><pre>${JSON.stringify(user, null, 2)}</pre>`;
+                result.style.background = user ? '#d4edda' : '#fff3cd';
+            } catch (error) {
+                result.innerHTML = `<strong>Error:</strong> ${error.message}`;
+                result.style.background = '#f8d7da';
+            }
+        }
+
+        async function testAdmission() {
+            const result = document.getElementById('admissionResult');
+            try {
+                const formData = {
+                    fullName: 'Test Student',
+                    address: '123 Test Street',
+                    guardianName: 'Test Parent',
+                    guardianPhone: '1234567890'
+                };
+                const response = await window.submitAdmissionForm(formData, null);
+                result.innerHTML = `<strong>Admission Result:</strong><br><pre>${JSON.stringify(response, null, 2)}</pre>`;
+                result.style.background = response.success ? '#d4edda' : '#f8d7da';
+            } catch (error) {
+                result.innerHTML = `<strong>Error:</strong> ${error.message}`;
+                result.style.background = '#f8d7da';
+            }
+        }
+
+        function viewStoredData() {
+            const result = document.getElementById('storedDataResult');
+            try {
+                const users = JSON.parse(localStorage.getItem('heavenly_users') || '[]');
+                const admissions = JSON.parse(localStorage.getItem('heavenly_admissions') || '[]');
+                const currentUser = JSON.parse(localStorage.getItem('heavenly_current_user') || 'null');
+                
+                const data = {
+                    users: users,
+                    admissions: admissions,
+                    currentUser: currentUser,
+                    totalUsers: users.length,
+                    totalAdmissions: admissions.length
+                };
+                
+                result.innerHTML = `<strong>Stored Data:</strong><br><pre>${JSON.stringify(data, null, 2)}</pre>`;
+                result.style.background = '#e2e3e5';
+            } catch (error) {
+                result.innerHTML = `<strong>Error:</strong> ${error.message}`;
+                result.style.background = '#f8d7da';
+            }
+        }
+
+        // Test if auth system loads
+        window.addEventListener('load', () => {
+            if (window.localAuth) {
+                console.log('✅ Authentication system loaded successfully');
+            } else {
+                console.error('❌ Authentication system failed to load');
+            }
+        });
+    </script>
+</body>
+</html>

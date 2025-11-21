@@ -55,28 +55,45 @@ document.getElementById("signupForm").addEventListener("submit", async function(
   try {
     // Show loading
     const submitBtn = document.querySelector('button[type="submit"]');
-    setButtonLoading(submitBtn, true);
-    showLoading('Creating your account...');
+    if (typeof setButtonLoading === 'function') setButtonLoading(submitBtn, true);
+    if (typeof showLoading === 'function') showLoading('Creating your account...');
+
+    // Check if localAuth is available
+    if (!window.localAuth) {
+      throw new Error('Authentication system not loaded');
+    }
 
     // Use local authentication for Vercel static hosting
     const result = await window.localAuth.signup(name, email, password, role);
     
     if (result.success) {
-      showSuccess(`Welcome, ${result.user.fullName}! You can now sign in.`, 'Account Created');
+      if (typeof showSuccess === 'function') {
+        showSuccess(`Welcome, ${result.user.fullName}! You can now sign in.`, 'Account Created');
+      } else {
+        alert(`Welcome, ${result.user.fullName}! You can now sign in.`);
+      }
       // Redirect to signin page after short delay
       setTimeout(() => {
         window.location.href = '../index.html';
       }, 2000);
     } else {
-      showError(result.message, 'Sign Up Failed');
+      if (typeof showError === 'function') {
+        showError(result.message, 'Sign Up Failed');
+      } else {
+        alert('Sign Up Failed: ' + result.message);
+      }
     }
 
   } catch (error) {
     console.error('Signup error:', error);
-    showError('Signup failed. Please try again.');
+    if (typeof showError === 'function') {
+      showError('Signup failed. Please try again.');
+    } else {
+      alert('Signup failed: ' + error.message);
+    }
   } finally {
-    hideLoading();
-    setButtonLoading(submitBtn, false);
+    if (typeof hideLoading === 'function') hideLoading();
+    if (typeof setButtonLoading === 'function') setButtonLoading(submitBtn, false);
   }
 });
 

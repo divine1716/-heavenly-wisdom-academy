@@ -44,14 +44,23 @@ document.addEventListener("DOMContentLoaded", () => {
       try {
         // Show loading
         const submitBtn = loginForm.querySelector('button[type="submit"]');
-        setButtonLoading(submitBtn, true);
-        showLoading('Signing in...');
+        if (typeof setButtonLoading === 'function') setButtonLoading(submitBtn, true);
+        if (typeof showLoading === 'function') showLoading('Signing in...');
+
+        // Check if localAuth is available
+        if (!window.localAuth) {
+          throw new Error('Authentication system not loaded');
+        }
 
         // Use local authentication for Vercel static hosting
         const result = await window.localAuth.login(email, password);
         
         if (result.success) {
-          showSuccess(result.message);
+          if (typeof showSuccess === 'function') {
+            showSuccess(result.message);
+          } else {
+            alert('Login successful! ' + result.message);
+          }
           
           // Redirect based on role
           setTimeout(() => {
@@ -62,17 +71,23 @@ document.addEventListener("DOMContentLoaded", () => {
             }
           }, 1500);
         } else {
-          showError(result.message);
+          if (typeof showError === 'function') {
+            showError(result.message);
+          } else {
+            alert('Login failed: ' + result.message);
+          }
         }
-
-        */
 
       } catch (error) {
         console.error('Login error:', error);
-        showError('Login failed. Please try again.');
+        if (typeof showError === 'function') {
+          showError('Login failed. Please try again.');
+        } else {
+          alert('Login failed: ' + error.message);
+        }
       } finally {
-        hideLoading();
-        setButtonLoading(submitBtn, false);
+        if (typeof hideLoading === 'function') hideLoading();
+        if (typeof setButtonLoading === 'function') setButtonLoading(submitBtn, false);
       }
     });
   }
