@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Deployment Test - Heavenly Wisdom Academy</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; padding: 50px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; }
+        .test-box { background: rgba(255,255,255,0.1); padding: 30px; border-radius: 15px; max-width: 500px; margin: 0 auto; }
+        .timestamp { font-size: 18px; margin: 20px 0; }
+        .status { font-size: 24px; margin: 20px 0; }
+        a { color: #fff; text-decoration: none; background: rgba(255,255,255,0.2); padding: 10px 20px; border-radius: 25px; display: inline-block; margin: 10px; }
+        a:hover { background: rgba(255,255,255,0.3); }
+    </style>
+</head>
+<body>
+    <div class="test-box">
+        <h1>🚀 Deployment Test</h1>
+        <div class="status">✅ Website is LIVE and Updated!</div>
+        <div class="timestamp">Last Updated: <span id="timestamp"></span></div>
+        
+        <h3>🔗 Test Links:</h3>
+        <a href="PORTAL/index.html">🔐 New Portal System</a>
+        <a href="ADMISSION/public/index.html">📝 Admission Form</a>
+        <a href="index.html">🏠 Home Page</a>
+        
+        <h3>🔑 Test Access Codes:</h3>
+        <p><strong>Admin:</strong> admin2025</p>
+        <p><strong>Student:</strong> student2025</p>
+        <p><strong>Teacher:</strong> teacher2025</p>
+    </div>
+
+    <script>
+        document.getElementById('timestamp').textContent = new Date().toLocaleString();
+        console.log('🎯 Deployment Test Page Loaded Successfully');
+        console.log('⏰ Current Time:', new Date().toISOString());
+    </script>
+</body>
+</html>
