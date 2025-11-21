@@ -49,9 +49,173 @@
     </div>
   </div>
   
-  <script src="notifications.js"></script>
-  <script src="auth-local.js"></script>
-  <script src="../debug-auth.js"></script>
-  <script src="script.js"></script>
+  <script>
+    // Inline Authentication System (No external dependencies)
+    class SimpleAuth {
+      constructor() {
+        this.users = JSON.parse(localStorage.getItem('heavenly_users') || '[]');
+      }
+      
+      hashPassword(password) {
+        let hash = 0;
+        for (let i = 0; i < password.length; i++) {
+          const char = password.charCodeAt(i);
+          hash = ((hash << 5) - hash) + char;
+          hash = hash & hash;
+        }
+        return Math.abs(hash).toString(16);
+      }
+      
+      login(email, password) {
+        try {
+          if (!email || !password) {
+            return { success: false, message: 'Email and password are required' };
+          }
+
+          const user = this.users.find(u => u.email === email);
+          if (!user) {
+            return { success: false, message: 'Invalid email or password' };
+          }
+
+          const passwordHash = this.hashPassword(password);
+          if (passwordHash !== user.passwordHash) {
+            return { success: false, message: 'Invalid email or password' };
+          }
+
+          const userInfo = {
+            id: user.id,
+            name: user.name,
+            fullName: user.name,
+            email: user.email,
+            role: user.role
+          };
+          
+          localStorage.setItem('heavenly_current_user', JSON.stringify(userInfo));
+          localStorage.setItem('heavenly_token', 'simple_token_' + Date.now());
+
+          return {
+            success: true,
+            message: 'Login successful!',
+            user: userInfo
+          };
+        } catch (error) {
+          return { success: false, message: error.message };
+        }
+      }
+    }
+
+    // Create global auth instance
+    window.localAuth = new SimpleAuth();
+
+    // Toggle password visibility
+    function togglePassword(inputId) {
+      const input = document.getElementById(inputId);
+      const eye = document.getElementById(inputId + '-eye');
+      
+      if (input.type === 'password') {
+        input.type = 'text';
+        eye.classList.remove('fa-eye');
+        eye.classList.add('fa-eye-slash');
+      } else {
+        input.type = 'password';
+        eye.classList.remove('fa-eye-slash');
+        eye.classList.add('fa-eye');
+      }
+    }
+
+    // Forgot password functionality
+    function forgotPassword(event) {
+      event.preventDefault();
+      const email = prompt("Enter your email address to reset password:");
+      
+      if (email && email.trim()) {
+        alert("Password reset link has been sent to " + email + "\n\n(Note: Email functionality not yet implemented. Please contact administrator.)");
+      }
+    }
+
+    // Simple notification functions
+    function showSuccess(message) {
+      alert('✅ ' + message);
+    }
+
+    function showError(message) {
+      alert('❌ ' + message);
+    }
+
+    function showLoading(message) {
+      console.log('Loading:', message);
+    }
+
+    function hideLoading() {
+      console.log('Loading complete');
+    }
+
+    function setButtonLoading(button, loading) {
+      if (loading) {
+        button.disabled = true;
+        button.textContent = 'Signing In...';
+      } else {
+        button.disabled = false;
+        button.textContent = 'Sign In';
+      }
+    }
+
+    // Handle login form
+    document.addEventListener("DOMContentLoaded", () => {
+      const loginForm = document.getElementById("loginForm");
+
+      if (loginForm) {
+        loginForm.addEventListener("submit", async (e) => {
+          e.preventDefault();
+
+          const email = document.getElementById("username").value.trim();
+          const password = document.getElementById("password").value.trim();
+          const role = document.getElementById("role").value;
+
+          if (!email || !password || !role) {
+            showError("Please fill in all fields.");
+            return;
+          }
+
+          try {
+            const submitBtn = loginForm.querySelector('button[type="submit"]');
+            setButtonLoading(submitBtn, true);
+            showLoading('Signing in...');
+
+            const result = window.localAuth.login(email, password);
+            
+            if (result.success) {
+              showSuccess('Welcome back, ' + result.user.name + '!');
+              
+              // Redirect based on role
+              setTimeout(() => {
+                if (role === 'admin') {
+                  window.location.href = 'admin-panel.html';
+                } else {
+                  window.location.href = 'dashboard.html';
+                }
+              }, 1500);
+            } else {
+              showError(result.message);
+              setButtonLoading(submitBtn, false);
+            }
+
+          } catch (error) {
+            console.error('Login error:', error);
+            showError('Login failed: ' + error.message);
+            setButtonLoading(submitBtn, false);
+          } finally {
+            hideLoading();
+          }
+        });
+      }
+    });
+
+    console.log('✅ Login system loaded successfully');
+    console.log('👥 Available users:', window.localAuth.users.length);
+    if (window.localAuth.users.length === 0) {
+      console.log('💡 No users found. Please create an account first.');
+    }
+  </script>
 </body>
 </html>
