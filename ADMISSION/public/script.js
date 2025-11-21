@@ -27,16 +27,19 @@ document.getElementById('admissionForm').addEventListener('submit', async (e) =>
   button.textContent = "Submitting...";
 
   try {
-    const response = await fetch('/submit-admission', {
-      method: 'POST',
-      body: formData,
-    });
-
-    const result = await response.json();
+    // Use local storage for Vercel static hosting
+    const formDataObj = {};
+    for (let [key, value] of formData.entries()) {
+      if (key !== 'passport') {
+        formDataObj[key] = value;
+      }
+    }
+    
+    const result = await window.submitAdmissionForm(formDataObj, passportFile);
     if (result.success) {
-      alert("Admission form submitted successfully.");
+      alert("Admission form submitted successfully! Your application has been saved.");
       form.reset();
-      document.getElementById('passportPreview').src = '';
+      document.getElementById('passportPreview').style.display = 'none';
     } else {
       alert("Submission failed: " + result.error);
     }

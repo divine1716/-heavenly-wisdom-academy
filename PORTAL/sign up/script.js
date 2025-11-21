@@ -58,37 +58,24 @@ document.getElementById("signupForm").addEventListener("submit", async function(
     setButtonLoading(submitBtn, true);
     showLoading('Creating your account...');
 
-    const response = await fetch('/api/auth/signup', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        name,
-        email,
-        password,
-        role
-      })
-    });
-
-    const data = await response.json();
-    hideLoading();
-
-    if (data.success) {
-      showSuccess(`Welcome, ${data.user.fullName}! You can now sign in.`, 'Account Created');
+    // Use local authentication for Vercel static hosting
+    const result = await window.localAuth.signup(name, email, password, role);
+    
+    if (result.success) {
+      showSuccess(`Welcome, ${result.user.fullName}! You can now sign in.`, 'Account Created');
       // Redirect to signin page after short delay
       setTimeout(() => {
         window.location.href = '../index.html';
       }, 2000);
     } else {
-      showError(data.message, 'Sign Up Failed');
-      setButtonLoading(submitBtn, false);
+      showError(result.message, 'Sign Up Failed');
     }
 
   } catch (error) {
     console.error('Signup error:', error);
+    showError('Signup failed. Please try again.');
+  } finally {
     hideLoading();
-    showError('Unable to connect to server. Please ensure backend is running.', 'Connection Error');
     setButtonLoading(submitBtn, false);
   }
 });

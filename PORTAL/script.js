@@ -47,39 +47,31 @@ document.addEventListener("DOMContentLoaded", () => {
         setButtonLoading(submitBtn, true);
         showLoading('Signing in...');
 
-        const response = await fetch('/api/auth/login', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ email, password })
-        });
-
-        const data = await response.json();
-
-        hideLoading();
+        // Use local authentication for Vercel static hosting
+        const result = await window.localAuth.login(email, password);
         
-        if (data.success) {
-          // Store token and user info
-          localStorage.setItem('token', data.token);
-          localStorage.setItem('userRole', data.user.role);
-          localStorage.setItem('userInfo', JSON.stringify(data.user));
-
-          showSuccess(`Welcome back, ${data.user.fullName}!`, 'Login Successful');
+        if (result.success) {
+          showSuccess(result.message);
           
-          // Redirect to dashboard after short delay
+          // Redirect based on role
           setTimeout(() => {
-            window.location.href = 'dashboard.html';
-          }, 1000);
+            if (role === 'admin') {
+              window.location.href = 'admin-panel.html';
+            } else {
+              window.location.href = 'dashboard.html';
+            }
+          }, 1500);
         } else {
-          showError(data.message, 'Login Failed');
-          setButtonLoading(submitBtn, false);
+          showError(result.message);
         }
+
+        */
 
       } catch (error) {
         console.error('Login error:', error);
+        showError('Login failed. Please try again.');
+      } finally {
         hideLoading();
-        showError('Unable to connect to server. Please ensure backend is running.', 'Connection Error');
         setButtonLoading(submitBtn, false);
       }
     });
