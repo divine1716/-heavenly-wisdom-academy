@@ -9,46 +9,56 @@ function previewImage(event) {
   reader.readAsDataURL(event.target.files[0]);
 }
 
-// Handle form submission
-document.getElementById('admissionForm').addEventListener('submit', async (e) => {
-  e.preventDefault();
-
-  const form = e.target;
-  const formData = new FormData(form);
-
-  // Attach passport image
-  const passportFile = document.getElementById('passportUpload').files[0];
-  if (passportFile) {
-    formData.append('passport', passportFile);
-  }
-
-  const button = form.querySelector('button[type="submit"]');
+// Handle form submission with Formspree
+document.getElementById('admissionForm').addEventListener('submit', function(e) {
+  // Set submission date
+  document.getElementById('submissionDate').value = new Date().toISOString();
+  
+  const button = this.querySelector('button[type="submit"]');
   button.disabled = true;
-  button.textContent = "Submitting...";
-
-  try {
-    // Use local storage for Vercel static hosting
-    const formDataObj = {};
-    for (let [key, value] of formData.entries()) {
-      if (key !== 'passport') {
-        formDataObj[key] = value;
-      }
-    }
-    
-    const result = await window.submitAdmissionForm(formDataObj, passportFile);
-    if (result.success) {
-      alert("Admission form submitted successfully! Your application has been saved.");
-      form.reset();
-      document.getElementById('passportPreview').style.display = 'none';
-    } else {
-      alert("Submission failed: " + result.error);
-    }
-  } catch (err) {
-    alert("Error: " + err.message);
-  } finally {
-    button.disabled = false;
-    button.textContent = "Submit Form";
-  }
+  button.textContent = "Submitting Application...";
+  
+  // Show loading message
+  const loadingMsg = document.createElement('div');
+  loadingMsg.id = 'loadingMessage';
+  loadingMsg.style.cssText = `
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: linear-gradient(135deg, #007bff, #0056b3);
+    color: white;
+    padding: 20px 30px;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    z-index: 10000;
+    text-align: center;
+    font-size: 18px;
+  `;
+  loadingMsg.innerHTML = `
+    <div style="margin-bottom: 10px;">📤 Submitting Your Application...</div>
+    <div style="font-size: 14px; opacity: 0.9;">Please wait while we process your information</div>
+  `;
+  document.body.appendChild(loadingMsg);
+  
+  // Store submission in localStorage for admin dashboard
+  const formData = new FormData(this);
+  const submissionData = {
+    id: Date.now().toString(),
+    timestamp: new Date().toISOString(),
+    studentName: formData.get('fullName'),
+    guardianName: formData.get('guardianName'),
+    guardianPhone: formData.get('guardianPhone'),
+    class: formData.get('class'),
+    status: 'submitted'
+  };
+  
+  const submissions = JSON.parse(localStorage.getItem('admission_submissions') || '[]');
+  submissions.push(submissionData);
+  localStorage.setItem('admission_submissions', JSON.stringify(submissions));
+  
+  // Let the form submit naturally to Formspree
+  // Formspree will handle the redirect to success.html
 });
 
 

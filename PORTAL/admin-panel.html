@@ -28,6 +28,7 @@
     <!-- Tab Navigation -->
     <div class="tab-navigation">
       <button class="tab-btn active" onclick="showTab('users')">👥 Manage Users</button>
+      <button class="tab-btn" onclick="showTab('admissions')">📝 Admissions</button>
       <button class="tab-btn" onclick="showTab('students')">🎓 Manage Students</button>
       <button class="tab-btn" onclick="showTab('results')">📊 Manage Results</button>
     </div>
@@ -41,6 +42,47 @@
         <button class="card-btn" onclick="loadUsers()">Refresh List</button>
         <div id="usersTableContainer">
           <p>Click "Refresh List" to load users</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Admissions Tab -->
+    <div id="admissionsTab" class="tab-content">
+      <h2>Admission Applications</h2>
+      
+      <div class="admin-card">
+        <h3>📝 Recent Applications</h3>
+        <div class="card-actions">
+          <button class="card-btn" onclick="loadAdmissions()">🔄 Refresh</button>
+          <button class="card-btn" onclick="exportAdmissions()">📊 Export Data</button>
+          <button class="card-btn" onclick="clearAdmissions()">🗑️ Clear All</button>
+        </div>
+        <div id="admissionsTableContainer">
+          <p>Click "Refresh" to load admission applications</p>
+        </div>
+      </div>
+
+      <div class="admin-card">
+        <h3>📈 Admission Statistics</h3>
+        <div id="admissionStats">
+          <div class="stat-grid">
+            <div class="stat-item">
+              <div class="stat-number" id="totalApplications">0</div>
+              <div class="stat-label">Total Applications</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number" id="todayApplications">0</div>
+              <div class="stat-label">Today</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number" id="thisWeekApplications">0</div>
+              <div class="stat-label">This Week</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number" id="pendingApplications">0</div>
+              <div class="stat-label">Pending Review</div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

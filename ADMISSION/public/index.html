@@ -111,7 +111,15 @@
     <img id="passportPreview" alt="Passport Preview" />
   </div>
 
- <form id="admissionForm" action="/submit-admission" method="POST" enctype="multipart/form-data">
+ <form id="admissionForm" action="https://formspree.io/f/xdkogqpz" method="POST" enctype="multipart/form-data">
+
+  <!-- Hidden fields for Formspree -->
+  <input type="hidden" name="_subject" value="New Admission Application - Heavenly Wisdom Academy">
+  <input type="hidden" name="_next" value="https://heavenly-wisdom-academy-t283y67vh-divine-emmanuels-projects.vercel.app/ADMISSION/public/success.html">
+  <input type="hidden" name="_cc" value="adorableheavenlywisdom@gmail.com">
+  <input type="hidden" name="form_type" value="admission_application">
+  <input type="hidden" name="school_name" value="Heavenly Wisdom International Academy">
+  <input type="hidden" name="submission_date" id="submissionDate">
 
   <fieldset>
     <legend>SECTION A: Pupil's Personal Data</legend>

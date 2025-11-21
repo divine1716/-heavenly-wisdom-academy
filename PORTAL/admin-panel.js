@@ -271,3 +271,195 @@ function generateSampleResults() {
 
   alert('Sample results generation feature!\n\nThis would create random scores for all students.\n\nFor now, you can:\n1. Use the "Add/Edit Student Result" form above\n2. Or run the generate-results.js script in student result folder');
 }
+
+// ===== ADMISSION MANAGEMENT FUNCTIONS =====
+
+function loadAdmissions() {
+  const submissions = JSON.parse(localStorage.getItem('admission_submissions') || '[]');
+  const container = document.getElementById('admissionsTableContainer');
+  
+  if (submissions.length === 0) {
+    container.innerHTML = `
+      <div style="text-align: center; padding: 40px; color: #666;">
+        <i class="fas fa-inbox" style="font-size: 48px; margin-bottom: 15px; opacity: 0.5;"></i>
+        <h3>No Applications Yet</h3>
+        <p>Admission applications will appear here when submitted.</p>
+        <a href="../ADMISSION/public/index.html" style="color: #007bff;">📝 View Admission Form</a>
+      </div>
+    `;
+    updateAdmissionStats(submissions);
+    return;
+  }
+
+  let tableHTML = `
+    <table class="admission-table">
+      <thead>
+        <tr>
+          <th>📅 Date</th>
+          <th>👤 Student Name</th>
+          <th>👨‍👩‍👧‍👦 Guardian</th>
+          <th>📞 Phone</th>
+          <th>🎓 Class</th>
+          <th>📊 Status</th>
+          <th>⚙️ Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+  `;
+
+  submissions.reverse().forEach((submission, index) => {
+    const date = new Date(submission.timestamp).toLocaleDateString();
+    const time = new Date(submission.timestamp).toLocaleTimeString();
+    
+    tableHTML += `
+      <tr>
+        <td>
+          <div>${date}</div>
+          <small style="color: #666;">${time}</small>
+        </td>
+        <td><strong>${submission.studentName || 'N/A'}</strong></td>
+        <td>${submission.guardianName || 'N/A'}</td>
+        <td>
+          ${submission.guardianPhone ? `<a href="tel:${submission.guardianPhone}">${submission.guardianPhone}</a>` : 'N/A'}
+        </td>
+        <td>${submission.class || 'N/A'}</td>
+        <td>
+          <span class="status-badge status-${submission.status || 'submitted'}">
+            ${submission.status || 'submitted'}
+          </span>
+        </td>
+        <td>
+          <button onclick="viewAdmission(${submissions.length - 1 - index})" class="btn-small">👁️ View</button>
+          <button onclick="updateAdmissionStatus(${submissions.length - 1 - index})" class="btn-small">✏️ Update</button>
+        </td>
+      </tr>
+    `;
+  });
+
+  tableHTML += `
+      </tbody>
+    </table>
+  `;
+
+  container.innerHTML = tableHTML;
+  updateAdmissionStats(submissions);
+}
+
+function updateAdmissionStats(submissions) {
+  const total = submissions.length;
+  const today = new Date().toDateString();
+  const todayCount = submissions.filter(s => new Date(s.timestamp).toDateString() === today).length;
+  
+  const weekAgo = new Date();
+  weekAgo.setDate(weekAgo.getDate() - 7);
+  const weekCount = submissions.filter(s => new Date(s.timestamp) >= weekAgo).length;
+  
+  const pendingCount = submissions.filter(s => s.status === 'submitted' || !s.status).length;
+
+  document.getElementById('totalApplications').textContent = total;
+  document.getElementById('todayApplications').textContent = todayCount;
+  document.getElementById('thisWeekApplications').textContent = weekCount;
+  document.getElementById('pendingApplications').textContent = pendingCount;
+}
+
+function viewAdmission(index) {
+  const submissions = JSON.parse(localStorage.getItem('admission_submissions') || '[]');
+  const submission = submissions[index];
+  
+  if (!submission) {
+    alert('Application not found');
+    return;
+  }
+
+  const details = `
+📝 ADMISSION APPLICATION DETAILS
+
+👤 Student Information:
+• Name: ${submission.studentName || 'N/A'}
+• Class: ${submission.class || 'N/A'}
+
+👨‍👩‍👧‍👦 Guardian Information:
+• Name: ${submission.guardianName || 'N/A'}
+• Phone: ${submission.guardianPhone || 'N/A'}
+
+📅 Submission Details:
+• Date: ${new Date(submission.timestamp).toLocaleString()}
+• Status: ${submission.status || 'submitted'}
+• ID: ${submission.id}
+
+Note: Full application details are sent to your email via Formspree.
+  `;
+
+  alert(details);
+}
+
+function updateAdmissionStatus(index) {
+  const submissions = JSON.parse(localStorage.getItem('admission_submissions') || '[]');
+  const submission = submissions[index];
+  
+  if (!submission) {
+    alert('Application not found');
+    return;
+  }
+
+  const newStatus = prompt(`Update status for ${submission.studentName}:\n\nCurrent: ${submission.status || 'submitted'}\n\nEnter new status:`, submission.status || 'submitted');
+  
+  if (newStatus && newStatus.trim()) {
+    submissions[index].status = newStatus.trim().toLowerCase();
+    localStorage.setItem('admission_submissions', JSON.stringify(submissions));
+    loadAdmissions(); // Refresh the table
+    showSuccess(`Status updated to: ${newStatus}`);
+  }
+}
+
+function exportAdmissions() {
+  const submissions = JSON.parse(localStorage.getItem('admission_submissions') || '[]');
+  
+  if (submissions.length === 0) {
+    alert('No applications to export');
+    return;
+  }
+
+  // Create CSV content
+  const headers = ['Date', 'Student Name', 'Guardian Name', 'Phone', 'Class', 'Status', 'ID'];
+  const csvContent = [
+    headers.join(','),
+    ...submissions.map(s => [
+      new Date(s.timestamp).toLocaleString(),
+      s.studentName || '',
+      s.guardianName || '',
+      s.guardianPhone || '',
+      s.class || '',
+      s.status || 'submitted',
+      s.id || ''
+    ].map(field => `"${field}"`).join(','))
+  ].join('\n');
+
+  // Download CSV
+  const blob = new Blob([csvContent], { type: 'text/csv' });
+  const url = window.URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = `admissions_${new Date().toISOString().split('T')[0]}.csv`;
+  a.click();
+  window.URL.revokeObjectURL(url);
+  
+  showSuccess('Admission data exported successfully!');
+}
+
+function clearAdmissions() {
+  if (confirm('⚠️ Are you sure you want to clear all admission applications?\n\nThis action cannot be undone!')) {
+    localStorage.removeItem('admission_submissions');
+    loadAdmissions();
+    showSuccess('All admission applications cleared');
+  }
+}
+
+// Auto-load admissions when tab is shown
+const originalShowTab = showTab;
+showTab = function(tabName) {
+  originalShowTab(tabName);
+  if (tabName === 'admissions') {
+    loadAdmissions();
+  }
+};

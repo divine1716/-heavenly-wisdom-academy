@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admission Submitted Successfully - Heavenly Wisdom Academy</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://kit.fontawesome.com/c4254e24a8.js" crossorigin="anonymous"></script>
+  <style>
+    .success-container {
+      max-width: 600px;
+      margin: 50px auto;
+      padding: 40px;
+      text-align: center;
+      background: linear-gradient(135deg, #28a745, #20c997);
+      color: white;
+      border-radius: 15px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+    .success-icon {
+      font-size: 80px;
+      margin-bottom: 20px;
+      animation: bounce 2s infinite;
+    }
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+      40% { transform: translateY(-10px); }
+      60% { transform: translateY(-5px); }
+    }
+    .success-title {
+      font-size: 32px;
+      margin-bottom: 15px;
+      font-weight: bold;
+    }
+    .success-message {
+      font-size: 18px;
+      line-height: 1.6;
+      margin-bottom: 30px;
+    }
+    .next-steps {
+      background: rgba(255,255,255,0.1);
+      padding: 20px;
+      border-radius: 10px;
+      margin: 20px 0;
+      text-align: left;
+    }
+    .next-steps h3 {
+      margin-top: 0;
+      color: #fff;
+    }
+    .next-steps ul {
+      margin: 0;
+      padding-left: 20px;
+    }
+    .next-steps li {
+      margin: 8px 0;
+    }
+    .action-buttons {
+      margin-top: 30px;
+    }
+    .btn {
+      display: inline-block;
+      padding: 12px 25px;
+      margin: 10px;
+      background: white;
+      color: #28a745;
+      text-decoration: none;
+      border-radius: 25px;
+      font-weight: bold;
+      transition: all 0.3s;
+    }
+    .btn:hover {
+      background: #f8f9fa;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+    .contact-info {
+      margin-top: 30px;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+  <div class="success-container">
+    <div class="success-icon">✅</div>
+    
+    <h1 class="success-title">Application Submitted Successfully!</h1>
+    
+    <div class="success-message">
+      <p><strong>Thank you for applying to Heavenly Wisdom International Academy!</strong></p>
+      <p>Your admission application has been received and will be reviewed by our admissions team.</p>
+    </div>
+
+    <div class="next-steps">
+      <h3>📋 What Happens Next?</h3>
+      <ul>
+        <li><strong>Email Confirmation:</strong> You'll receive a confirmation email shortly</li>
+        <li><strong>Review Process:</strong> Our team will review your application within 3-5 business days</li>
+        <li><strong>Interview:</strong> If selected, we'll contact you to schedule an interview</li>
+        <li><strong>Decision:</strong> You'll be notified of our decision via email and phone</li>
+      </ul>
+    </div>
+
+    <div class="contact-info">
+      <p><strong>📞 Questions?</strong> Call us: <a href="tel:+2348162297002" style="color: white;">+234 816 229 7002</a></p>
+      <p><strong>✉️ Email:</strong> <a href="mailto:adorableheavenlywisdom@gmail.com" style="color: white;">adorableheavenlywisdom@gmail.com</a></p>
+    </div>
+
+    <div class="action-buttons">
+      <a href="/index.html" class="btn">🏠 Return Home</a>
+      <a href="/PORTAL/index.html" class="btn">🔐 Student Portal</a>
+      <a href="/ABOUT US/index.html" class="btn">ℹ️ About Us</a>
+    </div>
+  </div>
+
+  <script>
+    // Add some celebration effects
+    document.addEventListener('DOMContentLoaded', function() {
+      // Create confetti effect
+      function createConfetti() {
+        const colors = ['#ff6b6b', '#4ecdc4', '#45b7d1', '#96ceb4', '#ffeaa7'];
+        for (let i = 0; i < 50; i++) {
+          setTimeout(() => {
+            const confetti = document.createElement('div');
+            confetti.style.position = 'fixed';
+            confetti.style.left = Math.random() * 100 + 'vw';
+            confetti.style.top = '-10px';
+            confetti.style.width = '10px';
+            confetti.style.height = '10px';
+            confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+            confetti.style.borderRadius = '50%';
+            confetti.style.pointerEvents = 'none';
+            confetti.style.zIndex = '9999';
+            confetti.style.animation = 'fall 3s linear forwards';
+            
+            document.body.appendChild(confetti);
+            
+            setTimeout(() => {
+              confetti.remove();
+            }, 3000);
+          }, i * 100);
+        }
+      }
+
+      // Add CSS for falling animation
+      const style = document.createElement('style');
+      style.textContent = `
+        @keyframes fall {
+          to {
+            transform: translateY(100vh) rotate(360deg);
+          }
+        }
+      `;
+      document.head.appendChild(style);
+
+      // Start confetti
+      createConfetti();
+      
+      // Log success for admin dashboard
+      const submissionData = {
+        timestamp: new Date().toISOString(),
+        type: 'admission_success',
+        message: 'New admission application submitted successfully'
+      };
+      
+      // Store in localStorage for admin dashboard
+      const submissions = JSON.parse(localStorage.getItem('admission_submissions') || '[]');
+      submissions.push(submissionData);
+      localStorage.setItem('admission_submissions', JSON.stringify(submissions));
+      
+      console.log('✅ Admission application submitted successfully');
+    });
+  </script>
+</body>
+</html>
