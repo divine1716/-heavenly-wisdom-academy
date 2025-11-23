@@ -1,38 +1,32 @@
 // Show correct section on Dashboard
 document.addEventListener("DOMContentLoaded", async () => {
-  const token = localStorage.getItem("token");
-  const userInfo = localStorage.getItem("userInfo");
-
-  if (!token || !userInfo) {
-    // If no token or user info, go back to login
-    alert("Please sign in to access the dashboard.");
-    window.location.href = "index.html";
-    return;
-  }
-
-  try {
-    // Verify token with backend
-    const response = await fetch('/api/user/me', {
-      method: 'GET',
-      headers: {
-        'Authorization': `Bearer ${token}`,
-        'Content-Type': 'application/json'
-      }
-    });
-
-    if (!response.ok) {
-      throw new Error('Token verification failed');
-    }
-
-    const data = await response.json();
-    const user = data.user;
-    const role = user.role;
+  // Check for session storage (new password-based system)
+  const portalUser = sessionStorage.getItem("portal_user");
+  
+  if (portalUser) {
+    // New system - use session storage
+    const userData = JSON.parse(portalUser);
+    const user = {
+      name: userData.role.charAt(0).toUpperCase() + userData.role.slice(1) + " User",
+      fullName: userData.role.charAt(0).toUpperCase() + userData.role.slice(1) + " User",
+      email: userData.role + "@heavenlywisdom.edu",
+      role: userData.role
+    };
+    const role = userData.role;
 
     // Update user info display
-    document.getElementById("userEmail").innerText = user.email;
-    document.getElementById("userRole").innerText = role.charAt(0).toUpperCase() + role.slice(1);
-    document.getElementById("sidebarUserName").innerText = user.fullName || user.name;
-    document.getElementById("sidebarUserRole").innerText = role.charAt(0).toUpperCase() + role.slice(1);
+    if (document.getElementById("userEmail")) {
+      document.getElementById("userEmail").innerText = user.email;
+    }
+    if (document.getElementById("userRole")) {
+      document.getElementById("userRole").innerText = role.charAt(0).toUpperCase() + role.slice(1);
+    }
+    if (document.getElementById("sidebarUserName")) {
+      document.getElementById("sidebarUserName").innerText = user.fullName || user.name;
+    }
+    if (document.getElementById("sidebarUserRole")) {
+      document.getElementById("sidebarUserRole").innerText = role.charAt(0).toUpperCase() + role.slice(1);
+    }
 
     // Hide all role sections
     document.querySelectorAll(".role-section").forEach(section => {
@@ -56,13 +50,11 @@ document.addEventListener("DOMContentLoaded", async () => {
       loadUserCount();
     }
 
-  } catch (error) {
-    console.error('Authentication verification failed:', error);
-    alert("Session expired. Please sign in again.");
-    localStorage.removeItem("token");
-    localStorage.removeItem("userRole");
-    localStorage.removeItem("userInfo");
+  } else {
+    // No session found - redirect to login
+    alert("Please sign in to access the dashboard.");
     window.location.href = "index.html";
+    return;
   }
 });
 
@@ -144,26 +136,22 @@ function hideUserList() {
 
 // Logout
 async function logout() {
-  const confirmed = await confirmAction('Are you sure you want to logout?', 'Confirm Logout');
+  const confirmed = confirm('Are you sure you want to logout?');
   
   if (confirmed) {
-    showLoading('Logging out...');
+    // Clear session storage (new system)
+    sessionStorage.removeItem("portal_user");
     
-    // Clear local storage
+    // Clear local storage (old system - for compatibility)
     localStorage.removeItem("token");
     localStorage.removeItem("userRole");
     localStorage.removeItem("userInfo");
     
     // Show success message
-    setTimeout(() => {
-      hideLoading();
-      showSuccess('You have been logged out successfully', 'Goodbye!');
-      
-      // Redirect after short delay
-      setTimeout(() => {
-        window.location.href = "index.html";
-      }, 1000);
-    }, 500);
+    alert('You have been logged out successfully!');
+    
+    // Redirect immediately
+    window.location.href = "index.html";
   }
 }
 
