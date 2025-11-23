@@ -9,8 +9,15 @@
   <link rel="stylesheet" href="notifications.css">
 </head>
 <body>
+  <!-- Mobile Menu Toggle Button -->
+  <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">☰</button>
+
+  <!-- Sidebar Overlay -->
+  <div class="sidebar-overlay" onclick="toggleMobileMenu()"></div>
+
   <!-- Sidebar -->
-  <div class="sidebar">
+  <div class="sidebar" id="sidebar">
+    <button class="sidebar-close" onclick="toggleMobileMenu()">×</button>
     <h2>Admin Panel</h2>
     <ul>
       <li><a href="dashboard.html">🏠 Dashboard</a></li>
