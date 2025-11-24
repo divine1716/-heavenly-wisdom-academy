@@ -7,6 +7,17 @@ if (!portalUser) {
   window.location.href = "../index.html";
 }
 
+// Display logged-in student info
+try {
+  const userData = JSON.parse(portalUser);
+  const loggedInElement = document.getElementById("loggedInStudent");
+  if (loggedInElement && userData.name) {
+    loggedInElement.innerHTML = `👋 Logged in as: <strong>${userData.name}</strong> ${userData.class ? `(${userData.class})` : ''}`;
+  }
+} catch (error) {
+  console.error("Error parsing user data:", error);
+}
+
 const dropdownLinks = document.querySelectorAll(".dropdown-content a");
 const studentList = document.getElementById("studentList");
 const dropbtn = document.querySelector(".dropbtn");

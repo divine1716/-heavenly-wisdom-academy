@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Print Student Login Cards</title>
+  <style>
+    @media print {
+      .no-print { display: none; }
+      .page-break { page-break-after: always; }
+    }
+    
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background: #f5f5f5;
+    }
+    
+    .no-print {
+      text-align: center;
+      margin-bottom: 30px;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    
+    .no-print h1 {
+      color: #333;
+      margin-bottom: 10px;
+    }
+    
+    .no-print button {
+      background: #4CAF50;
+      color: white;
+      border: none;
+      padding: 15px 30px;
+      font-size: 16px;
+      border-radius: 5px;
+      cursor: pointer;
+      margin: 10px;
+    }
+    
+    .no-print button:hover {
+      background: #45a049;
+    }
+    
+    .cards-container {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    
+    .student-card {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border-radius: 15px;
+      padding: 25px;
+      color: white;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .student-card::before {
+      content: '🎓';
+      position: absolute;
+      font-size: 120px;
+      opacity: 0.1;
+      right: -20px;
+      bottom: -20px;
+    }
+    
+    .card-header {
+      text-align: center;
+      border-bottom: 2px solid rgba(255,255,255,0.3);
+      padding-bottom: 15px;
+      margin-bottom: 20px;
+    }
+    
+    .school-name {
+      font-size: 16px;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+    
+    .card-title {
+      font-size: 14px;
+      opacity: 0.9;
+    }
+    
+    .card-body {
+      position: relative;
+      z-index: 1;
+    }
+    
+    .info-row {
+      margin: 12px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    
+    .info-label {
+      font-size: 12px;
+      opacity: 0.8;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    
+    .info-value {
+      font-size: 16px;
+      font-weight: bold;
+      background: rgba(255,255,255,0.2);
+      padding: 8px 15px;
+      border-radius: 5px;
+      flex: 1;
+      margin-left: 10px;
+      text-align: center;
+    }
+    
+    .password-box {
+      background: rgba(255,255,255,0.3);
+      padding: 15px;
+      border-radius: 10px;
+      margin-top: 15px;
+      text-align: center;
+    }
+    
+    .password-label {
+      font-size: 12px;
+      opacity: 0.9;
+      margin-bottom: 5px;
+    }
+    
+    .password-value {
+      font-size: 24px;
+      font-weight: bold;
+      letter-spacing: 3px;
+      font-family: 'Courier New', monospace;
+    }
+    
+    .card-footer {
+      margin-top: 20px;
+      padding-top: 15px;
+      border-top: 2px solid rgba(255,255,255,0.3);
+      font-size: 11px;
+      text-align: center;
+      opacity: 0.8;
+    }
+    
+    .url-box {
+      background: rgba(255,255,255,0.2);
+      padding: 8px;
+      border-radius: 5px;
+      margin-top: 10px;
+      word-break: break-all;
+    }
+  </style>
+</head>
+<body>
+  <div class="no-print">
+    <h1>🎓 Student Portal Login Cards</h1>
+    <p>Print these cards and distribute to students</p>
+    <button onclick="window.print()">🖨️ Print All Cards</button>
+    <button onclick="window.location.href='STUDENT_LOGIN_CREDENTIALS.md'">📄 View Full List</button>
+  </div>
+
+  <div class="cards-container" id="cardsContainer">
+    <!-- Cards will be generated here -->
+  </div>
+
+  <script type="module">
+    import { studentCredentials } from './student-credentials.js';
+
+    const cardsContainer = document.getElementById('cardsContainer');
+    const websiteUrl = window.location.origin;
+    const loginUrl = `${websiteUrl}/PORTAL/student-login.html`;
+
+    // Generate cards for all students
+    Object.entries(studentCredentials).forEach(([name, data]) => {
+      const card = document.createElement('div');
+      card.className = 'student-card';
+      card.innerHTML = `
+        <div class="card-header">
+          <div class="school-name">HEAVENLY WISDOM ACADEMY</div>
+          <div class="card-title">Student Portal Access Card</div>
+        </div>
+        
+        <div class="card-body">
+          <div class="info-row">
+            <span class="info-label">Student Name:</span>
+            <span class="info-value">${name}</span>
+          </div>
+          
+          <div class="info-row">
+            <span class="info-label">Class:</span>
+            <span class="info-value">${data.class}</span>
+          </div>
+          
+          <div class="info-row">
+            <span class="info-label">Student ID:</span>
+            <span class="info-value">${data.studentId}</span>
+          </div>
+          
+          <div class="password-box">
+            <div class="password-label">🔐 Your Password</div>
+            <div class="password-value">${data.password}</div>
+          </div>
+        </div>
+        
+        <div class="card-footer">
+          <div>📱 Login Portal:</div>
+          <div class="url-box">${loginUrl}</div>
+          <div style="margin-top: 10px;">Keep this card safe! Do not share your password.</div>
+        </div>
+      `;
+      
+      cardsContainer.appendChild(card);
+    });
+
+    console.log(`Generated ${Object.keys(studentCredentials).length} student cards`);
+  </script>
+</body>
+</html>
