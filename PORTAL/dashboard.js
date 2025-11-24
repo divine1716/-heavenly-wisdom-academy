@@ -6,11 +6,15 @@ document.addEventListener("DOMContentLoaded", async () => {
   if (portalUser) {
     // New system - use session storage
     const userData = JSON.parse(portalUser);
+    
+    // Use actual student name if available, otherwise use role-based name
     const user = {
-      name: userData.role.charAt(0).toUpperCase() + userData.role.slice(1) + " User",
-      fullName: userData.role.charAt(0).toUpperCase() + userData.role.slice(1) + " User",
-      email: userData.role + "@heavenlywisdom.edu",
-      role: userData.role
+      name: userData.name || (userData.role.charAt(0).toUpperCase() + userData.role.slice(1) + " User"),
+      fullName: userData.name || (userData.role.charAt(0).toUpperCase() + userData.role.slice(1) + " User"),
+      email: userData.email || (userData.role + "@heavenlywisdom.edu"),
+      role: userData.role,
+      class: userData.class || "",
+      studentId: userData.studentId || ""
     };
     const role = userData.role;
 
@@ -26,6 +30,20 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
     if (document.getElementById("sidebarUserRole")) {
       document.getElementById("sidebarUserRole").innerText = role.charAt(0).toUpperCase() + role.slice(1);
+    }
+    
+    // Show student-specific info if student
+    if (role === "student" && user.class) {
+      const classInfo = document.getElementById("studentClassInfo");
+      const idInfo = document.getElementById("studentIdInfo");
+      if (classInfo) {
+        classInfo.style.display = "block";
+        document.getElementById("userClass").innerText = user.class;
+      }
+      if (idInfo && user.studentId) {
+        idInfo.style.display = "block";
+        document.getElementById("userStudentId").innerText = user.studentId;
+      }
     }
 
     // Hide all role sections

@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Login - Heavenly Wisdom Academy</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://kit.fontawesome.com/c4254e24a8.js" crossorigin="anonymous"></script>
+  <style>
+    .portal-header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .school-logo {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 15px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 35px;
+      color: white;
+    }
+    .portal-title {
+      font-size: 28px;
+      color: #333;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+    .portal-subtitle {
+      color: #666;
+      font-size: 16px;
+      margin-bottom: 20px;
+    }
+    .info-box {
+      background: linear-gradient(135deg, #e3f2fd, #f3e5f5);
+      padding: 20px;
+      border-radius: 10px;
+      margin-bottom: 25px;
+      border-left: 4px solid #2196f3;
+    }
+    .info-box h3 {
+      margin: 0 0 10px 0;
+      color: #1976d2;
+      font-size: 18px;
+    }
+    .info-box p {
+      margin: 5px 0;
+      color: #555;
+    }
+    .loading {
+      display: none;
+      text-align: center;
+      color: #666;
+      margin: 10px 0;
+    }
+    .back-link {
+      text-align: center;
+      margin-top: 20px;
+    }
+    .back-link a {
+      color: #007bff;
+      text-decoration: none;
+    }
+    .back-link a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="form-box">
+      <div class="portal-header">
+        <div class="school-logo">🎓</div>
+        <h1 class="portal-title">STUDENT PORTAL</h1>
+        <p class="portal-subtitle">Heavenly Wisdom International Academy</p>
+      </div>
+
+      <div class="info-box">
+        <h3>👋 Welcome Students!</h3>
+        <p>Enter your full name and password to access your portal.</p>
+        <p><strong>Note:</strong> Use your name exactly as registered in school.</p>
+      </div>
+
+      <form id="studentLoginForm">
+        <div class="input-box">
+          <input type="text" id="studentName" placeholder="Enter Your Full Name" required autocomplete="off">
+          <i class="fas fa-user" style="position: absolute; right: 15px; top: 50%; transform: translateY(-50%); color: #666;"></i>
+        </div>
+
+        <div class="input-box">
+          <input type="password" id="studentPassword" placeholder="Enter Your Password" required>
+          <i class="fas fa-eye" id="password-eye" onclick="togglePassword()" style="position: absolute; right: 15px; top: 50%; transform: translateY(-50%); color: #666; cursor: pointer;"></i>
+        </div>
+
+        <div class="loading" id="loadingMsg">
+          <i class="fas fa-spinner fa-spin"></i> Logging in...
+        </div>
+
+        <button type="submit">🚀 Login to Portal</button>
+      </form>
+
+      <div class="back-link">
+        <a href="index.html">← Back to Main Portal</a>
+      </div>
+
+      <div class="info-box" style="margin-top: 20px; background: #fff3cd; border-left-color: #ffc107;">
+        <h3>🔑 Forgot Your Password?</h3>
+        <p>Contact your class teacher or call: <strong>+234 806 229 7002</strong></p>
+        <p>Email: <strong>adorableheavenlywisdom@gmail.com</strong></p>
+      </div>
+    </div>
+  </div>
+
+  <script type="module">
+    import { authenticateStudent } from './student-credentials.js';
+
+    function togglePassword() {
+      const input = document.getElementById('studentPassword');
+      const eye = document.getElementById('password-eye');
+      
+      if (input.type === 'password') {
+        input.type = 'text';
+        eye.classList.remove('fa-eye');
+        eye.classList.add('fa-eye-slash');
+      } else {
+        input.type = 'password';
+        eye.classList.remove('fa-eye-slash');
+        eye.classList.add('fa-eye');
+      }
+    }
+
+    // Make togglePassword available globally
+    window.togglePassword = togglePassword;
+
+    document.getElementById('studentLoginForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const studentName = document.getElementById('studentName').value.trim();
+      const studentPassword = document.getElementById('studentPassword').value.trim();
+      const loadingMsg = document.getElementById('loadingMsg');
+      const submitBtn = this.querySelector('button[type="submit"]');
+      
+      if (!studentName || !studentPassword) {
+        alert('⚠️ Please enter your name and password');
+        return;
+      }
+
+      // Show loading
+      loadingMsg.style.display = 'block';
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'Logging in...';
+
+      // Simulate verification delay
+      setTimeout(() => {
+        const result = authenticateStudent(studentName, studentPassword);
+        
+        if (result.success) {
+          // Store student session
+          sessionStorage.setItem('portal_user', JSON.stringify({
+            ...result.data,
+            accessTime: new Date().toISOString()
+          }));
+          
+          // Success message
+          loadingMsg.innerHTML = '<i class="fas fa-check-circle" style="color: green;"></i> Login successful! Welcome ' + studentName + '!';
+          
+          // Redirect to dashboard
+          setTimeout(() => {
+            window.location.href = 'dashboard.html';
+          }, 1500);
+          
+        } else {
+          // Login failed
+          loadingMsg.style.display = 'none';
+          submitBtn.disabled = false;
+          submitBtn.textContent = '🚀 Login to Portal';
+          
+          alert('❌ ' + result.message + '\n\nPlease check your name and password or contact your teacher.');
+        }
+      }, 1000);
+    });
+
+    // Check if already logged in
+    window.addEventListener('load', () => {
+      const user = sessionStorage.getItem('portal_user');
+      if (user) {
+        const userData = JSON.parse(user);
+        if (userData.role === 'student' && userData.name) {
+          const accessTime = new Date(userData.accessTime);
+          const now = new Date();
+          const hoursSinceAccess = (now - accessTime) / (1000 * 60 * 60);
+          
+          // Auto-redirect if accessed within last 8 hours
+          if (hoursSinceAccess < 8) {
+            if (confirm('Welcome back, ' + userData.name + '! Continue to your dashboard?')) {
+              window.location.href = 'dashboard.html';
+            } else {
+              sessionStorage.removeItem('portal_user');
+            }
+          }
+        }
+      }
+    });
+
+    console.log('🎓 Student Portal Login System Loaded');
+  </script>
+</body>
+</html>
