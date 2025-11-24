@@ -41,11 +41,11 @@
 
       <!-- Desktop Navigation -->
       <ul class="nav-links desktop-nav">
-        <li><a href="../index.html">🏠 Home</a></li>
-        <li><a href="../ADMISSION/public/index.html">📝 Admission</a></li>
-        <li><a href="../PORTAL/index.html">🔐 Portal</a></li>
-        <li><a href="../ABOUT US/index.html">ℹ️ About</a></li>
-        <li><a href="../GALLERY/index.html">📷 Gallery</a></li>
+        <li><a href="../dashboard.html">🏠 Dashboard</a></li>
+        <li><a href="../profile.html">👤 Profile</a></li>
+        <li><a href="index.html">📊 Results</a></li>
+        <li><a href="../../GALLERY/index.html">📷 Gallery</a></li>
+        <li><a href="../index.html" onclick="sessionStorage.removeItem('portal_user'); return true;">🚪 Logout</a></li>
       </ul>
 
       <!-- Mobile Navigation -->
@@ -66,27 +66,22 @@
       </div>
       
       <div class="mobile-nav-grid">
-        <a href="../index.html" class="mobile-nav-card home-card">
+        <a href="../../index.html" class="mobile-nav-card home-card">
           <div class="nav-icon">🏠</div>
           <div class="nav-text">Home</div>
         </a>
         
-        <a href="../ADMISSION/public/index.html" class="mobile-nav-card admission-card">
-          <div class="nav-icon">📝</div>
-          <div class="nav-text">Admission</div>
+        <a href="../dashboard.html" class="mobile-nav-card portal-card">
+          <div class="nav-icon">🏠</div>
+          <div class="nav-text">Dashboard</div>
         </a>
         
-        <a href="../PORTAL/index.html" class="mobile-nav-card portal-card">
-          <div class="nav-icon">🔐</div>
-          <div class="nav-text">Portal</div>
+        <a href="../profile.html" class="mobile-nav-card about-card">
+          <div class="nav-icon">👤</div>
+          <div class="nav-text">Profile</div>
         </a>
         
-        <a href="../ABOUT US/index.html" class="mobile-nav-card about-card">
-          <div class="nav-icon">ℹ️</div>
-          <div class="nav-text">About</div>
-        </a>
-        
-        <a href="../GALLERY/index.html" class="mobile-nav-card gallery-card">
+        <a href="../../GALLERY/index.html" class="mobile-nav-card gallery-card">
           <div class="nav-icon">📷</div>
           <div class="nav-text">Gallery</div>
         </a>
@@ -94,6 +89,11 @@
         <a href="index.html" class="mobile-nav-card result-card active">
           <div class="nav-icon">📊</div>
           <div class="nav-text">Results</div>
+        </a>
+        
+        <a href="../index.html" class="mobile-nav-card admission-card" onclick="sessionStorage.removeItem('portal_user'); return true;">
+          <div class="nav-icon">🚪</div>
+          <div class="nav-text">Logout</div>
         </a>
       </div>
     </div>

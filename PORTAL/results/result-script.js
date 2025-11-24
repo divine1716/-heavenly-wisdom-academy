@@ -1,5 +1,12 @@
 import { studentResults } from "./student.js";
 
+// Check if user is logged in
+const portalUser = sessionStorage.getItem("portal_user");
+if (!portalUser) {
+  alert("⚠️ Please login to the portal to access student results.");
+  window.location.href = "../index.html";
+}
+
 // Get URL parameters
 const urlParams = new URLSearchParams(window.location.search);
 const studentName = urlParams.get("name");
