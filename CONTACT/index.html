@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us - Heavenly Wisdom Academy</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <!-- Top Info Bar -->
+  <div class="top-bar">
+    <div class="contact">
+      <span>Adorableheavenlywisdom@gmail.com</span> |
+      <span>Call Us (Full time)</span>
+    </div>
+    <div class="top-social-icons">
+      <a href="https://www.facebook.com/profile.php?id=61582386687704" target="_blank"><i class="fab fa-facebook-f"></i></a>
+      <a href="https://x.com/AdorableWi40474" target="_blank"><i class="fab fa-twitter"></i></a>
+      <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+      <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+    </div>
+  </div>
+
+  <!-- Header Section -->
+  <header>
+    <nav>
+      <div class="logo">
+        <img src="../images/HEAVENLY.jpg" alt="School Logo" />
+        <h1>HEAVENLY WISDOM INTERNATIONAL ACADEMY</h1>
+      </div>
+      <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">☰</button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="../index.html">🏠 Home</a></li>
+        <li><a href="../ADMISSION/public/index.html">📝 Admission</a></li>
+        <li><a href="../PORTAL/student-login.html">🎓 Student Login</a></li>
+        <li><a href="../ABOUT US/index.html">ℹ️ About</a></li>
+        <li><a href="../GALLERY/index.html">📷 Gallery</a></li>
+        <li><a href="index.html">📞 Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Main Content -->
+  <main class="contact-main">
+    <div class="contact-hero">
+      <h1>📞 Get In Touch With Us</h1>
+      <p>We'd love to hear from you! Send us a message and we'll respond as soon as possible.</p>
+    </div>
+
+    <div class="contact-container">
+      <!-- Contact Information -->
+      <div class="contact-info-section">
+        <div class="info-card">
+          <div class="info-icon">📍</div>
+          <h3>Our Location</h3>
+          <p>Opposite Nikton Junction<br>Yenagoa, Bayelsa State<br>Nigeria</p>
+        </div>
+
+        <div class="info-card">
+          <div class="info-icon">📧</div>
+          <h3>Email Us</h3>
+          <p><a href="mailto:adorableheavenlywisdom@gmail.com">adorableheavenlywisdom@gmail.com</a></p>
+        </div>
+
+        <div class="info-card">
+          <div class="info-icon">📱</div>
+          <h3>Call Us</h3>
+          <p><a href="tel:+2348062297002">+234 806 229 7002</a></p>
+          <p>Available: Mon - Fri (8AM - 5PM)</p>
+        </div>
+
+        <div class="info-card">
+          <div class="info-icon">🕐</div>
+          <h3>Office Hours</h3>
+          <p>Monday - Friday: 8:00 AM - 5:00 PM</p>
+          <p>Saturday: 9:00 AM - 2:00 PM</p>
+          <p>Sunday: Closed</p>
+        </div>
+      </div>
+
+      <!-- Contact Forms -->
+      <div class="forms-section">
+        <!-- Quick Inquiry Form -->
+        <div class="form-card">
+          <h2>💬 Quick Inquiry</h2>
+          <p>Have a question? Send us a quick message!</p>
+          <form id="quickInquiryForm" class="contact-form">
+            <div class="form-group">
+              <label for="inquiryName">Your Name *</label>
+              <input type="text" id="inquiryName" name="name" required placeholder="Enter your full name">
+            </div>
+
+            <div class="form-group">
+              <label for="inquiryEmail">Email Address *</label>
+              <input type="email" id="inquiryEmail" name="email" required placeholder="your.email@example.com">
+            </div>
+
+            <div class="form-group">
+              <label for="inquiryPhone">Phone Number</label>
+              <input type="tel" id="inquiryPhone" name="phone" placeholder="+234 800 000 0000">
+            </div>
+
+            <div class="form-group">
+              <label for="inquirySubject">Subject *</label>
+              <select id="inquirySubject" name="subject" required>
+                <option value="">Select a subject</option>
+                <option value="admission">Admission Inquiry</option>
+                <option value="fees">Fee Structure</option>
+                <option value="curriculum">Curriculum Information</option>
+                <option value="facilities">School Facilities</option>
+                <option value="transport">Transportation</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="inquiryMessage">Your Message *</label>
+              <textarea id="inquiryMessage" name="message" required rows="5" placeholder="Tell us what you'd like to know..."></textarea>
+            </div>
+
+            <button type="submit" class="submit-btn">
+              <i class="fas fa-paper-plane"></i> Send Message
+            </button>
+          </form>
+        </div>
+
+        <!-- School Tour Request Form -->
+        <div class="form-card">
+          <h2>🏫 Request a School Tour</h2>
+          <p>Visit our campus and see our facilities firsthand!</p>
+          <form id="tourRequestForm" class="contact-form">
+            <div class="form-group">
+              <label for="tourName">Parent/Guardian Name *</label>
+              <input type="text" id="tourName" name="name" required placeholder="Enter your full name">
+            </div>
+
+            <div class="form-group">
+              <label for="tourEmail">Email Address *</label>
+              <input type="email" id="tourEmail" name="email" required placeholder="your.email@example.com">
+            </div>
+
+            <div class="form-group">
+              <label for="tourPhone">Phone Number *</label>
+              <input type="tel" id="tourPhone" name="phone" required placeholder="+234 800 000 0000">
+            </div>
+
+            <div class="form-group">
+              <label for="tourDate">Preferred Date *</label>
+              <input type="date" id="tourDate" name="date" required>
+            </div>
+
+            <div class="form-group">
+              <label for="tourTime">Preferred Time *</label>
+              <select id="tourTime" name="time" required>
+                <option value="">Select a time</option>
+                <option value="9:00 AM">9:00 AM</option>
+                <option value="10:00 AM">10:00 AM</option>
+                <option value="11:00 AM">11:00 AM</option>
+                <option value="12:00 PM">12:00 PM</option>
+                <option value="2:00 PM">2:00 PM</option>
+                <option value="3:00 PM">3:00 PM</option>
+                <option value="4:00 PM">4:00 PM</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="tourVisitors">Number of Visitors</label>
+              <input type="number" id="tourVisitors" name="visitors" min="1" max="10" value="1">
+            </div>
+
+            <div class="form-group">
+              <label for="tourNotes">Additional Notes</label>
+              <textarea id="tourNotes" name="notes" rows="3" placeholder="Any specific areas you'd like to see or questions you have..."></textarea>
+            </div>
+
+            <button type="submit" class="submit-btn">
+              <i class="fas fa-calendar-check"></i> Request Tour
+            </button>
+          </form>
+        </div>
+
+        <!-- Callback Request Form -->
+        <div class="form-card">
+          <h2>📞 Request a Callback</h2>
+          <p>We'll call you back at your preferred time!</p>
+          <form id="callbackForm" class="contact-form">
+            <div class="form-group">
+              <label for="callbackName">Your Name *</label>
+              <input type="text" id="callbackName" name="name" required placeholder="Enter your full name">
+            </div>
+
+            <div class="form-group">
+              <label for="callbackPhone">Phone Number *</label>
+              <input type="tel" id="callbackPhone" name="phone" required placeholder="+234 800 000 0000">
+            </div>
+
+            <div class="form-group">
+              <label for="callbackEmail">Email Address</label>
+              <input type="email" id="callbackEmail" name="email" placeholder="your.email@example.com">
+            </div>
+
+            <div class="form-group">
+              <label for="callbackTime">Best Time to Call *</label>
+              <select id="callbackTime" name="time" required>
+                <option value="">Select preferred time</option>
+                <option value="Morning (8AM-12PM)">Morning (8AM-12PM)</option>
+                <option value="Afternoon (12PM-3PM)">Afternoon (12PM-3PM)</option>
+                <option value="Evening (3PM-6PM)">Evening (3PM-6PM)</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="callbackReason">Reason for Call *</label>
+              <select id="callbackReason" name="reason" required>
+                <option value="">Select a reason</option>
+                <option value="admission">Admission Information</option>
+                <option value="fees">Fee Discussion</option>
+                <option value="curriculum">Curriculum Details</option>
+                <option value="enrollment">Enrollment Process</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+
+            <button type="submit" class="submit-btn">
+              <i class="fas fa-phone"></i> Request Callback
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div id="successModal" class="modal">
+      <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <div class="success-icon">✅</div>
+        <h2>Message Sent Successfully!</h2>
+        <p id="successMessage">Thank you for contacting us. We'll get back to you soon!</p>
+        <button onclick="closeModal()" class="modal-btn">Close</button>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-container">
+      <div class="footer-section">
+        <h3>ABOUT US</h3>
+        <p>Heavenly Wisdom International Academy - Building future leaders with knowledge and the fear of God.</p>
+      </div>
+      <div class="footer-section">
+        <h3>QUICK LINKS</h3>
+        <ul>
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../ADMISSION/public/index.html">Admission</a></li>
+          <li><a href="../PORTAL/student-login.html">Student Portal</a></li>
+          <li><a href="../ABOUT US/index.html">About Us</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3>CONTACT INFO</h3>
+        <p>📍 Opposite Nikton Junction, Yenagoa</p>
+        <p>📧 adorableheavenlywisdom@gmail.com</p>
+        <p>📱 +234 806 229 7002</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Heavenly Wisdom International Academy. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

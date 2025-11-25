@@ -41,10 +41,10 @@ if (studentName && studentResults[studentName]) {
   const average = (grandTotal / result.subjects.length).toFixed(2);
   
   // Determine sex (you can add this to student data later)
-  const sex = "..........."; // Placeholder
-  const numInClass = "..........."; // Placeholder
-  const timesOpened = "..........."; // Placeholder
-  const attendance = "..........."; // Placeholder
+  const sex = ""; // Placeholder
+  const numInClass = ""; // Placeholder
+  const timesOpened = ""; // Placeholder
+  const attendance = ""; // Placeholder
   
   // Update student info with new format
   document.querySelector(".student-info").innerHTML = `
@@ -94,11 +94,8 @@ if (studentName && studentResults[studentName]) {
   
   // Update remarks section
   document.querySelector(".remark-box").innerHTML = `
-    <p><strong>Form Teacher's Remark:</strong> ${result.formTeacherRemark}</p>
-    <p><strong>Hostel Master's Remark:</strong> ${result.hostelMasterRemark}</p>
-    <p><strong>Guidance Counsellor's Remark:</strong> ${result.guidanceCounsellorRemark}</p>
-    <p><strong>Principal's Remark:</strong> ${result.principalRemark}</p>
-    <p><strong>Next Term Begins:</strong> ${result.nextTermBegins}</p>
+    <p><strong>CLASS TEACHER'S REMARK:</strong> <span class="remark-line">${result.formTeacherRemark || ''}</span></p>
+    <p><strong>HEAD TEACHER'S REMARK:</strong> <span class="remark-line">${result.principalRemark || ''}</span></p>
   `;
 } else {
   document.querySelector(".result-container").innerHTML = `
