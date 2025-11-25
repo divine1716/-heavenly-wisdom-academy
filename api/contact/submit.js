@@ -65,16 +65,24 @@ Form Type: ${formType || 'General Inquiry'}
       `
     };
 
-    // TODO: Integrate with email service (SendGrid, Mailgun, etc.)
-    // Example with SendGrid:
-    /*
-    const sgMail = require('@sendgrid/mail');
-    sgMail.setApiKey(process.env.SENDGRID_API_KEY);
-    await sgMail.send(emailContent);
-    */
-
-    // For now, just log and return success
-    console.log('Contact form submission:', emailContent);
+    // SendGrid Integration
+    if (process.env.SENDGRID_API_KEY && process.env.SENDGRID_API_KEY !== 'REGENERATE_YOUR_KEY_DONT_USE_THE_OLD_ONE') {
+      try {
+        const sgMail = require('@sendgrid/mail');
+        sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+        
+        // Update email content with proper from address
+        emailContent.from = process.env.SENDGRID_FROM_EMAIL || 'noreply@heavenlywisdom.sendgrid.net';
+        
+        await sgMail.send(emailContent);
+        console.log('Email sent successfully via SendGrid');
+      } catch (emailError) {
+        console.error('SendGrid error:', emailError);
+        // Continue anyway - don't fail the request
+      }
+    } else {
+      console.log('SendGrid not configured. Email content:', emailContent);
+    }
 
     // Send auto-reply to user
     const autoReply = {
@@ -113,8 +121,16 @@ Form Type: ${formType || 'General Inquiry'}
       `
     };
 
-    // TODO: Send auto-reply
-    // await sgMail.send(autoReply);
+    // Send auto-reply
+    if (process.env.SENDGRID_API_KEY && process.env.SENDGRID_API_KEY !== 'REGENERATE_YOUR_KEY_DONT_USE_THE_OLD_ONE') {
+      try {
+        autoReply.from = process.env.SENDGRID_FROM_EMAIL || 'noreply@heavenlywisdom.sendgrid.net';
+        await sgMail.send(autoReply);
+        console.log('Auto-reply sent successfully');
+      } catch (replyError) {
+        console.error('Auto-reply error:', replyError);
+      }
+    }
 
     // Return success response
     return res.status(200).json({
