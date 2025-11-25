@@ -40,16 +40,42 @@ if (studentName && studentResults[studentName]) {
   });
   const average = (grandTotal / result.subjects.length).toFixed(2);
   
-  // Update student info
+  // Determine sex (you can add this to student data later)
+  const sex = "..........."; // Placeholder
+  const numInClass = "..........."; // Placeholder
+  const timesOpened = "..........."; // Placeholder
+  const attendance = "..........."; // Placeholder
+  
+  // Update student info with new format
   document.querySelector(".student-info").innerHTML = `
-    <p><strong>Name:</strong> ${studentName}</p>
-    <p><strong>Class:</strong> ${result.class}</p>
-    <p><strong>Term:</strong> ${result.term}</p>
-    <p><strong>Year:</strong> ${result.year}</p>
-    <p><strong>Total:</strong> ${grandTotal}</p>
-    <p><strong>Average:</strong> ${average}</p>
-    <p><strong>Position:</strong> 1st</p>
-    <p><strong>Remark:</strong> ${getRemark(average)}</p>
+    <div class="info-row">
+      <span class="info-label">Name of Student:</span>
+      <span class="info-value">${studentName}</span>
+      <span class="info-label">Sex:</span>
+      <span class="info-value">${sex}</span>
+      <span class="info-label">Class:</span>
+      <span class="info-value">${result.class}</span>
+    </div>
+    <div class="info-row">
+      <span class="info-label">Number of times school opened:</span>
+      <span class="info-value">${timesOpened}</span>
+      <span class="info-label">Number of Attendance:</span>
+      <span class="info-value">${attendance}</span>
+    </div>
+    <div class="info-row">
+      <span class="info-label">Number in Class:</span>
+      <span class="info-value">${numInClass}</span>
+      <span class="info-label">Grade:</span>
+      <span class="info-value">${calculateGrade(average)}</span>
+      <span class="info-label">Year:</span>
+      <span class="info-value">${result.year}</span>
+    </div>
+    <div class="info-row">
+      <span class="info-label">Term:</span>
+      <span class="info-value">${result.term}</span>
+      <span class="info-label">Next Term Begins:</span>
+      <span class="info-value">${result.nextTermBegins}</span>
+    </div>
   `;
   
   // Update results table
