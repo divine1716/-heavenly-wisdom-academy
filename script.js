@@ -114,3 +114,56 @@ window.addEventListener('resize', () => {
     navLinks.classList.remove('mobile-hidden', 'mobile-visible');
   }
 });
+
+// Hom
+epage Contact Form Handler
+document.getElementById('homeContactForm')?.addEventListener('submit', function(e) {
+  e.preventDefault();
+  
+  const submitBtn = this.querySelector('.contact-submit-btn');
+  const originalText = submitBtn.innerHTML;
+  
+  // Disable button and show loading
+  submitBtn.disabled = true;
+  submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+  
+  const formData = {
+    name: document.getElementById('homeName').value,
+    email: document.getElementById('homeEmail').value,
+    phone: document.getElementById('homePhone').value,
+    subject: document.getElementById('homeSubject').value,
+    message: document.getElementById('homeMessage').value
+  };
+  
+  // Create email
+  const schoolEmail = 'adorableheavenlywisdom@gmail.com';
+  const subject = `Website Inquiry: ${formData.subject}`;
+  const body = `Name: ${formData.name}\nEmail: ${formData.email}\nPhone: ${formData.phone || 'Not provided'}\n\nMessage:\n${formData.message}`;
+  
+  // Save to localStorage
+  const inquiries = JSON.parse(localStorage.getItem('inquiries') || '[]');
+  inquiries.push({
+    type: 'homepage_inquiry',
+    data: formData,
+    timestamp: new Date().toISOString(),
+    status: 'pending'
+  });
+  localStorage.setItem('inquiries', JSON.stringify(inquiries));
+  
+  // Simulate sending delay
+  setTimeout(() => {
+    // Open email client
+    const mailtoLink = `mailto:${schoolEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    window.location.href = mailtoLink;
+    
+    // Show success message
+    alert('✅ Thank you for contacting us! Your message has been sent. We will respond within 24 hours.');
+    
+    // Reset form
+    this.reset();
+    
+    // Re-enable button
+    submitBtn.disabled = false;
+    submitBtn.innerHTML = originalText;
+  }, 1000);
+});
