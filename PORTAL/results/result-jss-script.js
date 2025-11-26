@@ -12,34 +12,29 @@ const urlParams = new URLSearchParams(window.location.search);
 const studentName = urlParams.get("name");
 const className = urlParams.get("class");
 
-// Function to calculate grade
+// Function to calculate grade for JSS
 function calculateGrade(total) {
   if (total >= 70) return "A";
-  if (total >= 55) return "B";
-  if (total >= 40) return "C";
+  if (total >= 60) return "B";
+  if (total >= 50) return "C";
+  if (total >= 45) return "D";
+  if (total >= 40) return "E";
   return "F";
 }
 
-// Function to get remark based on total
+// Function to get remark based on total for JSS
 function getRemark(total) {
-  if (total >= 90) return "Excellent";
-  if (total >= 70) return "Very Good";
-  if (total >= 55) return "Good";
-  if (total >= 40) return "Fair";
-  return "Needs Improvement";
+  if (total >= 70) return "Excellent";
+  if (total >= 60) return "Very Good";
+  if (total >= 50) return "Good";
+  if (total >= 45) return "Pass";
+  if (total >= 40) return "Weak Pass";
+  return "Fail";
 }
 
 // Load student result
 if (studentName && studentResults[studentName]) {
   const result = studentResults[studentName];
-  
-  // Check if student is JSS or SS - redirect to appropriate template
-  const classLower = result.class.toLowerCase();
-  if (classLower.includes('jss') || classLower.includes('ss')) {
-    // Redirect to JSS/SS result template
-    window.location.href = `result-jss.html?name=${encodeURIComponent(studentName)}&class=${encodeURIComponent(className)}`;
-    return;
-  }
   
   // Calculate totals
   let grandTotal = 0;
@@ -91,8 +86,8 @@ if (studentName && studentResults[studentName]) {
   tbody.innerHTML = result.subjects.map(subject => `
     <tr>
       <td>${subject.name}</td>
-      <td>${subject.test1}</td>
-      <td>${subject.test2}</td>
+      <td>${subject.ca1 || subject.test1}</td>
+      <td>${subject.ca2 || subject.test2}</td>
       <td>${subject.exam}</td>
       <td>${subject.total}</td>
       <td>${subject.grade}</td>
