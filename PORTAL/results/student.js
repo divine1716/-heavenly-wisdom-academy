@@ -245,3 +245,11 @@ export const studentResults = {
     nextTermBegins: "January 15, 2026"
   }
 };
+
+
+// Student departments for SS students (science, arts, or commercial)
+export const studentDepartments = {
+  "Stanley Favour": "science"
+  // Add more SS students here as needed
+  // Example: "Student Name": "arts" or "commercial"
+};

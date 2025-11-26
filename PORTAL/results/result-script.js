@@ -11,6 +11,7 @@ if (!portalUser) {
 const urlParams = new URLSearchParams(window.location.search);
 const studentName = urlParams.get("name");
 const className = urlParams.get("class");
+const department = urlParams.get("department");
 
 // Function to calculate grade
 function calculateGrade(total) {
@@ -43,9 +44,9 @@ if (studentName && studentResults[studentName]) {
   }
   
   if (classLower.includes('ss')) {
-    // For SS students, check department (default to science if not specified)
-    const department = result.department || 'science'; // You can add department to student data
-    window.location.href = `result-ss-${department.toLowerCase()}.html?name=${encodeURIComponent(studentName)}&class=${encodeURIComponent(className)}`;
+    // For SS students, check department from URL or result data (default to science if not specified)
+    const studentDepartment = department || result.department || 'science';
+    window.location.href = `result-ss-${studentDepartment.toLowerCase()}.html?name=${encodeURIComponent(studentName)}&class=${encodeURIComponent(className)}`;
     return;
   }
   
