@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>News & Announcements - Heavenly Wisdom Academy</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <!-- Top Info Bar -->
+  <div class="top-bar">
+    <div class="contact">
+      <span>Adorableheavenlywisdom@gmail.com</span> |
+      <span>Call Us (Full time)</span>
+    </div>
+    <div class="top-social-icons">
+      <a href="https://www.facebook.com/profile.php?id=61582386687704" target="_blank"><i class="fab fa-facebook-f"></i></a>
+      <a href="https://x.com/AdorableWi40474" target="_blank"><i class="fab fa-twitter"></i></a>
+      <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+      <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+    </div>
+  </div>
+
+  <!-- Header Section -->
+  <header>
+    <nav>
+      <div class="logo">
+        <img src="../images/HEAVENLY.jpg" alt="School Logo" />
+        <h1>HEAVENLY WISDOM INTERNATIONAL ACADEMY</h1>
+      </div>
+      <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">☰</button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="../index.html">🏠 Home</a></li>
+        <li><a href="../ADMISSION/public/index.html">📝 Admission</a></li>
+        <li><a href="../PORTAL/student-login.html">🎓 Student Login</a></li>
+        <li><a href="../ABOUT US/index.html">ℹ️ About</a></li>
+        <li><a href="../GALLERY/index.html">📷 Gallery</a></li>
+        <li><a href="index.html">📰 News</a></li>
+        <li><a href="../CONTACT/index.html">📞 Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Main Content -->
+  <main class="news-main">
+    <div class="news-hero">
+      <h1>📰 News & Announcements</h1>
+      <p>Stay updated with the latest happenings at Heavenly Wisdom Academy</p>
+    </div>
+
+    <div class="news-container">
+      <!-- Filter Tabs -->
+      <div class="news-filters">
+        <button class="filter-btn active" data-filter="all">All News</button>
+        <button class="filter-btn" data-filter="announcement">📢 Announcements</button>
+        <button class="filter-btn" data-filter="event">🎉 Events</button>
+        <button class="filter-btn" data-filter="achievement">🏆 Achievements</button>
+        <button class="filter-btn" data-filter="academic">📚 Academic</button>
+      </div>
+
+      <!-- News Grid -->
+      <div class="news-grid" id="newsGrid">
+        <!-- News items will be loaded here by JavaScript -->
+      </div>
+
+      <!-- Pagination -->
+      <div class="pagination" id="pagination">
+        <!-- Pagination buttons will be added by JavaScript -->
+      </div>
+    </div>
+
+    <!-- Important Notices Sidebar -->
+    <aside class="notices-sidebar">
+      <h3>🔔 Important Notices</h3>
+      <div class="notice-card urgent">
+        <span class="notice-badge">URGENT</span>
+        <h4>2025/2026 Admission Ongoing</h4>
+        <p>Applications are now open for the new academic session. Apply now!</p>
+        <a href="../ADMISSION/public/index.html" class="notice-link">Apply Now →</a>
+      </div>
+
+      <div class="notice-card">
+        <span class="notice-badge">REMINDER</span>
+        <h4>First Term Ends Soon</h4>
+        <p>First term examination begins January 10, 2026</p>
+      </div>
+
+      <div class="notice-card">
+        <span class="notice-badge">INFO</span>
+        <h4>School Fees Payment</h4>
+        <p>Second term fees payment deadline: January 20, 2026</p>
+      </div>
+
+      <!-- Academic Calendar Widget -->
+      <div class="calendar-widget">
+        <h3>📅 Upcoming Events</h3>
+        <div class="event-item">
+          <div class="event-date">
+            <span class="day">15</span>
+            <span class="month">JAN</span>
+          </div>
+          <div class="event-details">
+            <h4>Second Term Begins</h4>
+            <p>Resumption for all students</p>
+          </div>
+        </div>
+        <div class="event-item">
+          <div class="event-date">
+            <span class="day">20</span>
+            <span class="month">JAN</span>
+          </div>
+          <div class="event-details">
+            <h4>PTA Meeting</h4>
+            <p>Parent-Teacher Association meeting</p>
+          </div>
+        </div>
+        <div class="event-item">
+          <div class="event-date">
+            <span class="day">05</span>
+            <span class="month">FEB</span>
+          </div>
+          <div class="event-details">
+            <h4>Inter-House Sports</h4>
+            <p>Annual sports competition</p>
+          </div>
+        </div>
+      </div>
+    </aside>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-container">
+      <div class="footer-section">
+        <h3>ABOUT US</h3>
+        <p>Heavenly Wisdom International Academy - Building future leaders with knowledge and the fear of God.</p>
+      </div>
+      <div class="footer-section">
+        <h3>QUICK LINKS</h3>
+        <ul>
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../ADMISSION/public/index.html">Admission</a></li>
+          <li><a href="../PORTAL/student-login.html">Student Portal</a></li>
+          <li><a href="../ABOUT US/index.html">About Us</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3>CONTACT INFO</h3>
+        <p>📍 Opposite Nikton Junction, Yenagoa</p>
+        <p>📧 adorableheavenlywisdom@gmail.com</p>
+        <p>📱 +234 806 229 7002</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Heavenly Wisdom International Academy. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
