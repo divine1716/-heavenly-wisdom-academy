@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fee Structure - Heavenly Wisdom Academy</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <!-- Top Info Bar -->
+  <div class="top-bar">
+    <div class="contact">
+      <span>Adorableheavenlywisdom@gmail.com</span> |
+      <span>Call Us (Full time)</span>
+    </div>
+    <div class="top-social-icons">
+      <a href="https://www.facebook.com/profile.php?id=61582386687704" target="_blank"><i class="fab fa-facebook-f"></i></a>
+      <a href="https://x.com/AdorableWi40474" target="_blank"><i class="fab fa-twitter"></i></a>
+      <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+      <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+    </div>
+  </div>
+
+  <!-- Header Section -->
+  <header>
+    <nav>
+      <div class="logo">
+        <img src="../images/HEAVENLY.jpg" alt="School Logo" />
+        <h1>HEAVENLY WISDOM INTERNATIONAL ACADEMY</h1>
+      </div>
+      <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">☰</button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="../index.html">🏠 Home</a></li>
+        <li><a href="../ADMISSION/public/index.html">📝 Admission</a></li>
+        <li><a href="../PORTAL/student-login.html">🎓 Student Login</a></li>
+        <li><a href="../ABOUT US/index.html">ℹ️ About</a></li>
+        <li><a href="../GALLERY/index.html">📷 Gallery</a></li>
+        <li><a href="../NEWS/index.html">📰 News</a></li>
+        <li><a href="index.html">💰 Fees</a></li>
+        <li><a href="../CONTACT/index.html">📞 Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Main Content -->
+  <main class="fees-main">
+    <div class="fees-hero">
+      <h1>💰 Fee Structure</h1>
+      <p>Transparent and affordable quality education for your child</p>
+    </div>
+
+    <div class="fees-container">
+      <!-- Important Notice -->
+      <div class="notice-banner">
+        <i class="fas fa-info-circle"></i>
+        <div>
+          <h3>Payment Information</h3>
+          <p>Fees are payable termly or annually. Early payment discounts available. Contact us for payment plans.</p>
+        </div>
+      </div>
+
+      <!-- Fee Categories Tabs -->
+      <div class="fee-tabs">
+        <button class="tab-btn active" data-tab="nursery">Nursery & Pre-Primary</button>
+        <button class="tab-btn" data-tab="primary">Primary (1-5)</button>
+        <button class="tab-btn" data-tab="jss">JSS (1-3)</button>
+        <button class="tab-btn" data-tab="ss">SS (1-3)</button>
+      </div>
+
+      <!-- Nursery & Pre-Primary Section -->
+      <div class="fee-section active" id="nursery">
+        <h2>Nursery & Pre-Primary School</h2>
+        <div class="fee-grid">
+          <div class="fee-card">
+            <div class="fee-header">
+              <h3>Creche</h3>
+              <span class="age-range">6 months - 2 years</span>
+            </div>
+            <div class="fee-amount">
+              <span class="currency">₦</span>
+              <span class="amount">80,000</span>
+              <span class="period">per term</span>
+            </div>
+            <ul class="fee-includes">
+              <li><i class="fas fa-check"></i> Tuition</li>
+              <li><i class="fas fa-check"></i> Feeding (3 meals)</li>
+              <li><i class="fas fa-check"></i> Learning materials</li>
+              <li><i class="fas fa-check"></i> Medical care</li>
+            </ul>
+          </div>
+
+          <div class="fee-card">
+            <div class="fee-header">
+              <h3>Pre-Nursery</h3>
+              <span class="age-range">2 - 3 years</span>
+            </div>
+            <div class="fee-amount">
+              <span class="currency">₦</span>
+              <span class="amount">90,000</span>
+              <span class="period">per term</span>
+            </div>
+            <ul class="fee-includes">
+              <li><i class="fas fa-check"></i> Tuition</li>
+              <li><i class="fas fa-check"></i> Feeding (2 meals)</li>
+              <li><i class="fas fa-check"></i> Books & materials</li>
+              <li><i class="fas fa-check"></i> Uniform</li>
+            </ul>
+          </div>
+
+          <div class="fee-card featured">
+            <div class="popular-badge">Most Popular</div>
+            <div class="fee-header">
+              <h3>Nursery 1 & 2</h3>
+              <span class="age-range">3 - 5 years</span>
+            </div>
+            <div class="fee-amount">
+              <span class="currency">₦</span>
+              <span class="amount">100,000</span>
+              <span class="period">per term</span>
+            </div>
+            <ul class="fee-includes">
+              <li><i class="fas fa-check"></i> Tuition</li>
+              <li><i class="fas fa-check"></i> Feeding</li>
+              <li><i class="fas fa-check"></i> All textbooks</li>
+              <li><i class="fas fa-check"></i> Uniform (2 sets)</li>
+              <li><i class="fas fa-check"></i> Excursions</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Primary Section -->
+      <div class="fee-section" id="primary">
+        <h2>Primary School (Basic 1-5)</h2>
+        <div class="fee-grid">
+          <div class="fee-card">
+            <div class="fee-header">
+              <h3>Primary 1 & 2</h3>
+              <span class="age-range">Lower Primary</span>
+            </div>
+            <div class="fee-amount">
+              <span class="currency">₦</span>
+              <span class="amount">120,000</span>
+              <span class="period">per term</span>
+            </div>
+            <ul class="fee-includes">
+              <li><i class="fas fa-check"></i> Tuition</li>
+              <li><i class="fas fa-check"></i> Textbooks</li>
+              <li><i class="fas fa-check"></i> Workbooks</li>
+              <li><i class="fas fa-check"></i> Computer studies</li>
+              <li><i class="fas fa-check"></i> Sports activities</li>
+            </ul>
+          </div>
+
+          <div class="fee-card featured">
+            <div class="popular-badge">Recommended</div>
+            <div class="fee-header">
+              <h3>Primary 3 & 4</h3>
+              <span class="age-range">Middle Primary</span>
+            </div>
+            <div class="fee-amount">
+              <span class="currency">₦</span>
+              <span class="amount">130,000</span>
+              <span class="period">per term</span>
+            </div>
+            <ul class="fee-includes">
+              <li><i class="fas fa-check"></i> Tuition</li>
+              <li><i class="fas fa-check"></i> All textbooks</li>
+              <li><i class="fas fa-check"></i> Workbooks</li>
+              <li><i class="fas fa-check"></i> Computer & ICT</li>
+              <li><i class="fas fa-check"></i> Extra lessons</li>
+              <li><i class="fas fa-check"></i> Sports & Arts</li>
+            </ul>
+          </div>
+
+          <div class="fee-card">
+            <div class="fee-header">
+              <h3>Primary 5</h3>
+              <span class="age-range">Upper Primary</span>
+            </div>
+            <div class="fee-amount">
+              <span class="currency">₦</span>
+              <span class="amount">140,000</span>
+              <span class="period">per term</span>
+            </div>
+            <ul class="fee-includes">
+              <li><i class="fas fa-check"></i> Tuition</li>
+              <li><i class="fas fa-check"></i> All textbooks</li>
+              <li><i class="fas fa-check"></i> Exam preparation</li>
+              <li><i class="fas fa-check"></i> Computer studies</li>
+              <li><i class="fas fa-check"></i> Extra coaching</li>
+              <li><i class="fas fa-check"></i> All activities</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- JSS Section -->
+      <div class="fee-section" id="jss">
+        <h2>Junior Secondary School (JSS 1-3)</h2>
+        <div class="fee-grid">
+          <div class="fee-card">
+            <div class="fee-header">
+              <h3>JSS 1</h3>
+              <span class="age-range">Junior Secondary</span>
+            </div>
+            <div class="fee-amount">
+              <span class="currency">₦</span>
+              <span class="amount">150,000</span>
+              <span class="period">per term</span>
+            </div>
+            <ul class="fee-includes">
+              <li><i class="fas fa-check"></i> Tuition</li>
+              <li><i class="fas fa-check"></i> All textbooks</li>
+              <li><i class="fas fa-check"></i> Laboratory fees</li>
+              <li><i class="fas fa-check"></i> Computer studies</li>
+              <li><i class="fas fa-check"></i> Library access</li>
+            </ul>
+          </div>
+
+          <div class="fee-card featured">
+            <div class="popular-badge">Best Value</div>
+            <div class="fee-header">
+              <h3>JSS 2</h3>
+              <span class="age-range">Junior Secondary</span>
+            </div>
+            <div class="fee-amount">
+              <span class="currency">₦</span>
+              <span class="amount">160,000</span>
+              <span class="period">per term</span>
+            </div>
+            <ul class="fee-includes">
+              <li><i class="fas fa-check"></i> Tuition</li>
+              <li><i class="fas fa-check"></i> All textbooks</li>
+              <li><i class="fas fa-check"></i> Lab practicals</li>
+              <li><i class="fas fa-check"></i> ICT training</li>
+              <li><i class="fas fa-check"></i> Career guidance</li>
+              <li><i class="fas fa-check"></i> Extra classes</li>
+            </ul>
+          </div>
+
+          <div class="fee-card">
+            <div class="fee-header">
+              <h3>JSS 3</h3>
+              <span class="age-range">BECE Preparation</span>
+            </div>
+            <div class="fee-amount">
+              <span class="currency">₦</span>
+              <span class="amount">170,000</span>
+              <span class="period">per term</span>
+            </div>
+            <ul class="fee-includes">
+              <li><i class="fas fa-check"></i> Tuition</li>
+              <li><i class="fas fa-check"></i> All textbooks</li>
+              <li><i class="fas fa-check"></i> BECE preparation</li>
+              <li><i class="fas fa-check"></i> Mock exams</li>
+              <li><i class="fas fa-check"></i> Extra coaching</li>
+              <li><i class="fas fa-check"></i> Career counseling</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- SS Section -->
+      <div class="fee-section" id="ss">
+        <h2>Senior Secondary School (SS 1-3)</h2>
+        <div class="fee-grid">
+          <div class="fee-card">
+            <div class="fee-header">
+              <h3>SS 1</h3>
+              <span class="age-range">Science/Arts/Commercial</span>
+            </div>
+            <div class="fee-amount">
+              <span class="currency">₦</span>
+              <span class="amount">180,000</span>
+              <span class="period">per term</span>
+            </div>
+            <ul class="fee-includes">
+              <li><i class="fas fa-check"></i> Tuition</li>
+              <li><i class="fas fa-check"></i> All textbooks</li>
+              <li><i class="fas fa-check"></i> Laboratory fees</li>
+              <li><i class="fas fa-check"></i> Computer/ICT</li>
+              <li><i class="fas fa-check"></i> Library access</li>
+            </ul>
+          </div>
+
+          <div class="fee-card">
+            <div class="fee-header">
+              <h3>SS 2</h3>
+              <span class="age-range">Science/Arts/Commercial</span>
+            </div>
+            <div class="fee-amount">
+              <span class="currency">₦</span>
+              <span class="amount">190,000</span>
+              <span class="period">per term</span>
+            </div>
+            <ul class="fee-includes">
+              <li><i class="fas fa-check"></i> Tuition</li>
+              <li><i class="fas fa-check"></i> All textbooks</li>
+              <li><i class="fas fa-check"></i> Lab practicals</li>
+              <li><i class="fas fa-check"></i> ICT training</li>
+              <li><i class="fas fa-check"></i> Mock exams</li>
+              <li><i class="fas fa-check"></i> Career guidance</li>
+            </ul>
+          </div>
+
+          <div class="fee-card featured">
+            <div class="popular-badge">WAEC Prep</div>
+            <div class="fee-header">
+              <h3>SS 3</h3>
+              <span class="age-range">WAEC/NECO Preparation</span>
+            </div>
+            <div class="fee-amount">
+              <span class="currency">₦</span>
+              <span class="amount">200,000</span>
+              <span class="period">per term</span>
+            </div>
+            <ul class="fee-includes">
+              <li><i class="fas fa-check"></i> Tuition</li>
+              <li><i class="fas fa-check"></i> All textbooks</li>
+              <li><i class="fas fa-check"></i> WAEC/NECO prep</li>
+              <li><i class="fas fa-check"></i> Mock exams</li>
+              <li><i class="fas fa-check"></i> Extra lessons</li>
+              <li><i class="fas fa-check"></i> University guidance</li>
+              <li><i class="fas fa-check"></i> All practicals</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Additional Fees -->
+      <div class="additional-fees">
+        <h2>Additional Fees & Information</h2>
+        <div class="info-grid">
+          <div class="info-card">
+            <i class="fas fa-graduation-cap"></i>
+            <h3>Registration Fee</h3>
+            <p class="fee-price">₦20,000</p>
+            <p>One-time payment for new students</p>
+          </div>
+
+          <div class="info-card">
+            <i class="fas fa-tshirt"></i>
+            <h3>Uniform</h3>
+            <p class="fee-price">₦15,000</p>
+            <p>Complete set (2 uniforms, sports wear)</p>
+          </div>
+
+          <div class="info-card">
+            <i class="fas fa-bus"></i>
+            <h3>Transportation</h3>
+            <p class="fee-price">₦30,000</p>
+            <p>Per term (optional, varies by location)</p>
+          </div>
+
+          <div class="info-card">
+            <i class="fas fa-utensils"></i>
+            <h3>Feeding</h3>
+            <p class="fee-price">₦25,000</p>
+            <p>Per term (optional, lunch only)</p>
+          </div>
+
+          <div class="info-card">
+            <i class="fas fa-book"></i>
+            <h3>Extra Lessons</h3>
+            <p class="fee-price">₦10,000</p>
+            <p>Per term (optional, after school)</p>
+          </div>
+
+          <div class="info-card">
+            <i class="fas fa-percent"></i>
+            <h3>Early Payment Discount</h3>
+            <p class="fee-price">5% OFF</p>
+            <p>Pay full year fees in advance</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Payment Methods -->
+      <div class="payment-section">
+        <h2>Payment Methods</h2>
+        <div class="payment-methods">
+          <div class="payment-method">
+            <i class="fas fa-university"></i>
+            <h4>Bank Transfer</h4>
+            <p>Direct bank transfer to school account</p>
+          </div>
+          <div class="payment-method">
+            <i class="fas fa-money-bill-wave"></i>
+            <h4>Cash Payment</h4>
+            <p>Pay at school bursar's office</p>
+          </div>
+          <div class="payment-method">
+            <i class="fas fa-credit-card"></i>
+            <h4>Online Payment</h4>
+            <p>Coming soon - Pay with card</p>
+          </div>
+          <div class="payment-method">
+            <i class="fas fa-calendar-alt"></i>
+            <h4>Payment Plans</h4>
+            <p>Flexible installment options available</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- CTA Section -->
+      <div class="cta-section">
+        <h2>Ready to Enroll Your Child?</h2>
+        <p>Join hundreds of parents who trust us with their children's education</p>
+        <div class="cta-buttons">
+          <a href="../ADMISSION/public/index.html" class="cta-btn primary">Apply Now</a>
+          <a href="../CONTACT/index.html" class="cta-btn secondary">Contact Us</a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-container">
+      <div class="footer-section">
+        <h3>ABOUT US</h3>
+        <p>Heavenly Wisdom International Academy - Building future leaders with knowledge and the fear of God.</p>
+      </div>
+      <div class="footer-section">
+        <h3>QUICK LINKS</h3>
+        <ul>
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../ADMISSION/public/index.html">Admission</a></li>
+          <li><a href="../PORTAL/student-login.html">Student Portal</a></li>
+          <li><a href="../ABOUT US/index.html">About Us</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3>CONTACT INFO</h3>
+        <p>📍 Opposite Nikton Junction, Yenagoa</p>
+        <p>📧 adorableheavenlywisdom@gmail.com</p>
+        <p>📱 +234 806 229 7002</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Heavenly Wisdom International Academy. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

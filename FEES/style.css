@@ -1,0 +1,346 @@
+/* Import main styles */
+@import url('../style.css');
+
+/* Fees Page Styles */
+.fees-main {
+  min-height: 100vh;
+  background: #f5f7fa;
+  padding: 20px;
+}
+
+.fees-hero {
+  text-align: center;
+  padding: 60px 20px 40px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 20px;
+  margin-bottom: 40px;
+  color: white;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+
+.fees-hero h1 {
+  font-size: 2.5em;
+  margin-bottom: 15px;
+}
+
+.fees-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Notice Banner */
+.notice-banner {
+  background: #fff3cd;
+  border-left: 4px solid #ffc107;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 30px;
+  display: flex;
+  gap: 15px;
+  align-items: start;
+}
+
+.notice-banner i {
+  font-size: 2em;
+  color: #ffc107;
+}
+
+/* Tabs */
+.fee-tabs {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+}
+
+.tab-btn {
+  padding: 12px 24px;
+  border: 2px solid #e0e0e0;
+  background: white;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.tab-btn:hover {
+  border-color: #667eea;
+  color: #667eea;
+}
+
+.tab-btn.active {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-color: transparent;
+}
+
+/* Fee Sections */
+.fee-section {
+  display: none;
+}
+
+.fee-section.active {
+  display: block;
+}
+
+.fee-section h2 {
+  color: #333;
+  margin-bottom: 30px;
+  font-size: 2em;
+}
+
+/* Fee Grid */
+.fee-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 25px;
+  margin-bottom: 50px;
+}
+
+.fee-card {
+  background: white;
+  border-radius: 15px;
+  padding: 30px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.fee-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+}
+
+.fee-card.featured {
+  border: 3px solid #667eea;
+  transform: scale(1.05);
+}
+
+.popular-badge {
+  position: absolute;
+  top: -15px;
+  right: 20px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 8px 20px;
+  border-radius: 20px;
+  font-size: 0.85em;
+  font-weight: 700;
+}
+
+.fee-header h3 {
+  color: #333;
+  font-size: 1.5em;
+  margin-bottom: 5px;
+}
+
+.age-range {
+  color: #666;
+  font-size: 0.9em;
+}
+
+.fee-amount {
+  margin: 25px 0;
+  text-align: center;
+  padding: 20px;
+  background: #f8f9fa;
+  border-radius: 10px;
+}
+
+.currency {
+  font-size: 1.5em;
+  color: #667eea;
+  font-weight: bold;
+}
+
+.amount {
+  font-size: 2.5em;
+  color: #333;
+  font-weight: bold;
+  margin: 0 5px;
+}
+
+.period {
+  display: block;
+  color: #666;
+  font-size: 0.9em;
+  margin-top: 5px;
+}
+
+.fee-includes {
+  list-style: none;
+  padding: 0;
+}
+
+.fee-includes li {
+  padding: 10px 0;
+  border-bottom: 1px solid #f0f0f0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.fee-includes li:last-child {
+  border-bottom: none;
+}
+
+.fee-includes i {
+  color: #4caf50;
+}
+
+/* Additional Fees */
+.additional-fees {
+  margin: 50px 0;
+}
+
+.additional-fees h2 {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.info-card {
+  background: white;
+  padding: 25px;
+  border-radius: 15px;
+  text-align: center;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.info-card i {
+  font-size: 2.5em;
+  color: #667eea;
+  margin-bottom: 15px;
+}
+
+.info-card h3 {
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.fee-price {
+  font-size: 1.8em;
+  color: #667eea;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+/* Payment Section */
+.payment-section {
+  background: white;
+  padding: 40px;
+  border-radius: 15px;
+  margin: 50px 0;
+}
+
+.payment-section h2 {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.payment-methods {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.payment-method {
+  text-align: center;
+  padding: 20px;
+}
+
+.payment-method i {
+  font-size: 2.5em;
+  color: #667eea;
+  margin-bottom: 15px;
+}
+
+.payment-method h4 {
+  color: #333;
+  margin-bottom: 10px;
+}
+
+/* CTA Section */
+.cta-section {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 60px 40px;
+  border-radius: 20px;
+  text-align: center;
+  margin: 50px 0;
+}
+
+.cta-section h2 {
+  font-size: 2em;
+  margin-bottom: 15px;
+}
+
+.cta-buttons {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  margin-top: 30px;
+  flex-wrap: wrap;
+}
+
+.cta-btn {
+  padding: 15px 40px;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.1em;
+  transition: all 0.3s ease;
+}
+
+.cta-btn.primary {
+  background: white;
+  color: #667eea;
+}
+
+.cta-btn.secondary {
+  background: transparent;
+  color: white;
+  border: 2px solid white;
+}
+
+.cta-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .fees-hero h1 {
+    font-size: 2em;
+  }
+  
+  .fee-tabs {
+    justify-content: center;
+  }
+  
+  .tab-btn {
+    flex: 1;
+    min-width: 150px;
+  }
+  
+  .fee-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .fee-card.featured {
+    transform: scale(1);
+  }
+  
+  .cta-buttons {
+    flex-direction: column;
+  }
+  
+  .cta-btn {
+    width: 100%;
+  }
+}
