@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FAQ - Heavenly Wisdom Academy</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <!-- Top Info Bar -->
+  <div class="top-bar">
+    <div class="contact">
+      <span>Adorableheavenlywisdom@gmail.com</span> |
+      <span>Call Us (Full time)</span>
+    </div>
+    <div class="top-social-icons">
+      <a href="https://www.facebook.com/profile.php?id=61582386687704" target="_blank"><i class="fab fa-facebook-f"></i></a>
+      <a href="https://x.com/AdorableWi40474" target="_blank"><i class="fab fa-twitter"></i></a>
+      <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+      <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+    </div>
+  </div>
+
+  <!-- Header Section -->
+  <header>
+    <nav>
+      <div class="logo">
+        <img src="../images/HEAVENLY.jpg" alt="School Logo" />
+        <h1>HEAVENLY WISDOM INTERNATIONAL ACADEMY</h1>
+      </div>
+      <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">☰</button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="../index.html">🏠 Home</a></li>
+        <li><a href="../ADMISSION/public/index.html">📝 Admission</a></li>
+        <li><a href="../FEES/index.html">💰 Fees</a></li>
+        <li><a href="../PORTAL/student-login.html">🎓 Student Login</a></li>
+        <li><a href="../ABOUT US/index.html">ℹ️ About</a></li>
+        <li><a href="../GALLERY/index.html">📷 Gallery</a></li>
+        <li><a href="../NEWS/index.html">📰 News</a></li>
+        <li><a href="../CONTACT/index.html">📞 Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Main Content -->
+  <main class="faq-main">
+    <div class="faq-hero">
+      <h1>❓ Frequently Asked Questions</h1>
+      <p>Find quick answers to common questions about our school</p>
+    </div>
+
+    <div class="faq-container">
+      <!-- Search Box -->
+      <div class="faq-search">
+        <i class="fas fa-search"></i>
+        <input type="text" id="faqSearch" placeholder="Search for answers..." onkeyup="searchFAQ()">
+      </div>
+
+      <!-- FAQ Categories -->
+      <div class="faq-categories">
+        <button class="category-btn active" onclick="filterCategory('all')">All Questions</button>
+        <button class="category-btn" onclick="filterCategory('admission')">Admission</button>
+        <button class="category-btn" onclick="filterCategory('fees')">Fees & Payment</button>
+        <button class="category-btn" onclick="filterCategory('academic')">Academic</button>
+        <button class="category-btn" onclick="filterCategory('general')">General</button>
+      </div>
+
+      <!-- FAQ Items -->
+      <div class="faq-list">
+        <!-- Admission Questions -->
+        <div class="faq-item" data-category="admission">
+          <div class="faq-question" onclick="toggleFAQ(this)">
+            <h3>How do I apply for admission?</h3>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p>You can apply online through our <a href="../ADMISSION/public/index.html">Admission Portal</a> or visit the school in person. Fill out the application form, submit required documents (birth certificate, previous school report, passport photos), and pay the registration fee.</p>
+          </div>
+        </div>
+
+        <div class="faq-item" data-category="admission">
+          <div class="faq-question" onclick="toggleFAQ(this)">
+            <h3>What is the admission age requirement?</h3>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p><strong>Creche:</strong> 6 months - 2 years<br>
+            <strong>Nursery:</strong> 2 - 5 years<br>
+            <strong>Primary 1:</strong> 5 - 6 years<br>
+            <strong>JSS 1:</strong> 10 - 12 years</p>
+          </div>
+        </div>
+
+        <div class="faq-item" data-category="admission">
+          <div class="faq-question" onclick="toggleFAQ(this)">
+            <h3>When does admission open?</h3>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p>Admission for the 2025/2026 academic session is currently ongoing! We accept applications year-round, but early registration is encouraged to secure a spot.</p>
+          </div>
+        </div>
+
+        <!-- Fees Questions -->
+        <div class="faq-item" data-category="fees">
+          <div class="faq-question" onclick="toggleFAQ(this)">
+            <h3>What are the school fees?</h3>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p>Fees vary by class level. Visit our <a href="../FEES/index.html">Fees Page</a> for detailed breakdown. Ranges from ₦58,500 (Creche) to ₦120,000 (SS3) per term.</p>
+          </div>
+        </div>
+
+        <div class="faq-item" data-category="fees">
+          <div class="faq-question" onclick="toggleFAQ(this)">
+            <h3>Can I pay fees in installments?</h3>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p>Yes! We offer flexible payment plans. Contact the bursar's office at +234 806 229 7002 or email adorableheavenlywisdom@gmail.com to discuss installment options.</p>
+          </div>
+        </div>
+
+        <div class="faq-item" data-category="fees">
+          <div class="faq-question" onclick="toggleFAQ(this)">
+            <h3>What payment methods do you accept?</h3>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p>We accept:<br>
+            • Bank transfer to FCMB (Account: 4816576009)<br>
+            • Cash payment at bursar's office<br>
+            • Mobile money transfers<br>
+            Always use student name + class as payment reference.</p>
+          </div>
+        </div>
+
+        <div class="faq-item" data-category="fees">
+          <div class="faq-question" onclick="toggleFAQ(this)">
+            <h3>Is there a discount for early payment?</h3>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p>Yes! Get 5% discount when you pay full year fees in advance. This applies to tuition fees only.</p>
+          </div>
+        </div>
+
+        <!-- Academic Questions -->
+        <div class="faq-item" data-category="academic">
+          <div class="faq-question" onclick="toggleFAQ(this)">
+            <h3>What is your curriculum?</h3>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p>We follow the Nigerian National Curriculum with enhanced programs in ICT, moral education, and skill acquisition. Our students are prepared for WAEC, NECO, and other national examinations.</p>
+          </div>
+        </div>
+
+        <div class="faq-item" data-category="academic">
+          <div class="faq-question" onclick="toggleFAQ(this)">
+            <h3>What is your class size?</h3>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p>We maintain small class sizes (maximum 25-30 students) to ensure personalized attention and effective learning.</p>
+          </div>
+        </div>
+
+        <div class="faq-item" data-category="academic">
+          <div class="faq-question" onclick="toggleFAQ(this)">
+            <h3>Do you offer extra lessons?</h3>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p>Yes! We offer after-school extra lessons for ₦10,000 per term. This includes exam preparation and subject-specific tutoring.</p>
+          </div>
+        </div>
+
+        <div class="faq-item" data-category="academic">
+          <div class="faq-question" onclick="toggleFAQ(this)">
+            <h3>When does the school year start?</h3>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p>The academic year runs from September to July, divided into three terms. Check our <a href="../CALENDAR/index.html">Academic Calendar</a> for specific dates.</p>
+          </div>
+        </div>
+
+        <!-- General Questions -->
+        <div class="faq-item" data-category="general">
+          <div class="faq-question" onclick="toggleFAQ(this)">
+            <h3>Where is the school located?</h3>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p>We are located opposite Nikton Junction, Yenagoa, Bayelsa State. <a href="../CONTACT/index.html">Get directions</a></p>
+          </div>
+        </div>
+
+        <div class="faq-item" data-category="general">
+          <div class="faq-question" onclick="toggleFAQ(this)">
+            <h3>Do you provide transportation?</h3>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p>Yes! School bus service is available for ₦30,000 per term. Routes cover major areas in Yenagoa. Contact us for specific route information.</p>
+          </div>
+        </div>
+
+        <div class="faq-item" data-category="general">
+          <div class="faq-question" onclick="toggleFAQ(this)">
+            <h3>What are your school hours?</h3>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p><strong>Monday - Friday:</strong> 8:00 AM - 3:00 PM<br>
+            <strong>Extra lessons:</strong> 3:30 PM - 5:00 PM (optional)</p>
+          </div>
+        </div>
+
+        <div class="faq-item" data-category="general">
+          <div class="faq-question" onclick="toggleFAQ(this)">
+            <h3>Do you have a student portal?</h3>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p>Yes! Students can access their results, assignments, and school information through our <a href="../PORTAL/student-login.html">Student Portal</a>. Login credentials are provided upon enrollment.</p>
+          </div>
+        </div>
+
+        <div class="faq-item" data-category="general">
+          <div class="faq-question" onclick="toggleFAQ(this)">
+            <h3>Can I schedule a school tour?</h3>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p>Absolutely! We encourage parents to visit. Contact us at +234 806 229 7002 or through our <a href="../CONTACT/index.html">Contact Page</a> to schedule a tour.</p>
+          </div>
+        </div>
+
+        <div class="faq-item" data-category="general">
+          <div class="faq-question" onclick="toggleFAQ(this)">
+            <h3>What makes your school different?</h3>
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p>We combine academic excellence with moral and spiritual development. Our qualified teachers, small class sizes, modern facilities, and values-based education create a nurturing environment where every child thrives.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Still Have Questions -->
+      <div class="contact-cta">
+        <h2>Still Have Questions?</h2>
+        <p>We're here to help! Contact us and we'll get back to you promptly.</p>
+        <div class="cta-buttons">
+          <a href="../CONTACT/index.html" class="cta-btn primary"><i class="fas fa-envelope"></i> Contact Us</a>
+          <a href="tel:+2348062297002" class="cta-btn secondary"><i class="fas fa-phone"></i> Call Now</a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-container">
+      <div class="footer-section">
+        <h3>ABOUT US</h3>
+        <p>Heavenly Wisdom International Academy - Building future leaders with knowledge and the fear of God.</p>
+      </div>
+      <div class="footer-section">
+        <h3>QUICK LINKS</h3>
+        <ul>
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../ADMISSION/public/index.html">Admission</a></li>
+          <li><a href="../FEES/index.html">Fees</a></li>
+          <li><a href="index.html">FAQ</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3>CONTACT INFO</h3>
+        <p>📍 Opposite Nikton Junction, Yenagoa</p>
+        <p>📧 adorableheavenlywisdom@gmail.com</p>
+        <p>📱 +234 806 229 7002</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Heavenly Wisdom International Academy. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
