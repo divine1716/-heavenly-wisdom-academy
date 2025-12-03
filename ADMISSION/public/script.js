@@ -1,224 +1,366 @@
-// Preview Passport Image
+// Global variables
+let currentStep = 1;
+const totalSteps = 4;
+let formData = {};
+
+// Initialize
+document.addEventListener('DOMContentLoaded', function() {
+  updateProgress();
+  
+  // Add input listeners for real-time validation
+  document.querySelectorAll('input, select, textarea').forEach(input => {
+    input.addEventListener('blur', function() {
+      validateField(this);
+    });
+  });
+});
+
+// Preview passport image
 function previewImage(event) {
-  const reader = new FileReader();
-  reader.onload = function () {
-    const output = document.getElementById('passportPreview');
-    output.src = reader.result;
-    output.style.display = 'block';
-  };
-  reader.readAsDataURL(event.target.files[0]);
+  const file = event.target.files[0];
+  if (file) {
+    // Check file size (max 2MB)
+    if (file.size > 2 * 1024 * 1024) {
+      alert('File size must be less than 2MB');
+      event.target.value = '';
+      return;
+    }
+    
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      document.getElementById('passportPreview').src = e.target.result;
+    };
+    reader.readAsDataURL(file);
+  }
 }
 
-// Handle form submission (Local Storage + Email)
+// Validate individual field
+function validateField(field) {
+  if (field.hasAttribute('required') && !field.value.trim()) {
+    field.style.borderColor = '#dc3545';
+    return false;
+  } else {
+    field.style.borderColor = '#28a745';
+    return true;
+  }
+}
+
+// Validate current step
+function validateStep(step) {
+  const currentStepElement = document.querySelector(`.form-step[data-step="${step}"]`);
+  const requiredFields = currentStepElement.querySelectorAll('[required]');
+  let isValid = true;
+  
+  requiredFields.forEach(field => {
+    if (!field.value.trim()) {
+      field.style.borderColor = '#dc3545';
+      isValid = false;
+    } else {
+      field.style.borderColor = '#28a745';
+    }
+  });
+  
+  if (!isValid) {
+    showNotification('Please fill in all required fields', 'error');
+  }
+  
+  return isValid;
+}
+
+// Next step
+function nextStep() {
+  if (!validateStep(currentStep)) {
+    return;
+  }
+  
+  // Save current step data
+  saveStepData(currentStep);
+  
+  if (currentStep < totalSteps) {
+    // Hide current step
+    document.querySelector(`.form-step[data-step="${currentStep}"]`).classList.remove('active');
+    document.querySelector(`.step[data-step="${currentStep}"]`).classList.add('completed');
+    
+    // Show next step
+    currentStep++;
+    document.querySelector(`.form-step[data-step="${currentStep}"]`).classList.add('active');
+    document.querySelector(`.step[data-step="${currentStep}"]`).classList.add('active');
+    
+    // Update progress
+    updateProgress();
+    
+    // If review step, populate review content
+    if (currentStep === 4) {
+      populateReview();
+    }
+    
+    // Scroll to top
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+}
+
+// Previous step
+function prevStep() {
+  if (currentStep > 1) {
+    // Hide current step
+    document.querySelector(`.form-step[data-step="${currentStep}"]`).classList.remove('active');
+    document.querySelector(`.step[data-step="${currentStep}"]`).classList.remove('active');
+    
+    // Show previous step
+    currentStep--;
+    document.querySelector(`.form-step[data-step="${currentStep}"]`).classList.add('active');
+    document.querySelector(`.step[data-step="${currentStep}"]`).classList.remove('completed');
+    
+    // Update progress
+    updateProgress();
+    
+    // Scroll to top
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+}
+
+// Update progress bar
+function updateProgress() {
+  const progress = (currentStep / totalSteps) * 100;
+  document.getElementById('progressFill').style.width = progress + '%';
+}
+
+// Save step data
+function saveStepData(step) {
+  const stepElement = document.querySelector(`.form-step[data-step="${step}"]`);
+  const inputs = stepElement.querySelectorAll('input, select, textarea');
+  
+  inputs.forEach(input => {
+    if (input.type === 'file') {
+      // Handle file separately
+      if (input.files[0]) {
+        formData[input.name] = input.files[0].name;
+      }
+    } else {
+      formData[input.name] = input.value;
+    }
+  });
+}
+
+// Populate review section
+function populateReview() {
+  const reviewContent = document.getElementById('reviewContent');
+  
+  const reviewHTML = `
+    <div class="review-group">
+      <h3><i class="fas fa-user-graduate"></i> Student Information</h3>
+      <div class="review-item">
+        <div class="review-label">Full Name:</div>
+        <div class="review-value">${formData.fullName || 'N/A'}</div>
+      </div>
+      <div class="review-item">
+        <div class="review-label">Date of Birth:</div>
+        <div class="review-value">${formData.dob || 'N/A'}</div>
+      </div>
+      <div class="review-item">
+        <div class="review-label">Gender:</div>
+        <div class="review-value">${formData.sex || 'N/A'}</div>
+      </div>
+      <div class="review-item">
+        <div class="review-label">Class Applying For:</div>
+        <div class="review-value">${formData.class || 'N/A'}</div>
+      </div>
+      <div class="review-item">
+        <div class="review-label">Address:</div>
+        <div class="review-value">${formData.address || 'N/A'}</div>
+      </div>
+      <div class="review-item">
+        <div class="review-label">State of Origin:</div>
+        <div class="review-value">${formData.stateOrigin || 'N/A'}</div>
+      </div>
+      <div class="review-item">
+        <div class="review-label">Previous School:</div>
+        <div class="review-value">${formData.formerSchool || 'N/A'}</div>
+      </div>
+    </div>
+
+    <div class="review-group">
+      <h3><i class="fas fa-users"></i> Parent/Guardian Information</h3>
+      <div class="review-item">
+        <div class="review-label">Guardian Name:</div>
+        <div class="review-value">${formData.guardianName || 'N/A'}</div>
+      </div>
+      <div class="review-item">
+        <div class="review-label">Phone Number:</div>
+        <div class="review-value">${formData.guardianPhone || 'N/A'}</div>
+      </div>
+      <div class="review-item">
+        <div class="review-label">Email:</div>
+        <div class="review-value">${formData.guardianEmail || 'N/A'}</div>
+      </div>
+      <div class="review-item">
+        <div class="review-label">Occupation:</div>
+        <div class="review-value">${formData.occupation || 'N/A'}</div>
+      </div>
+      <div class="review-item">
+        <div class="review-label">Next of Kin:</div>
+        <div class="review-value">${formData.nextOfKin || 'N/A'}</div>
+      </div>
+    </div>
+
+    <div class="review-group">
+      <h3><i class="fas fa-heartbeat"></i> Medical Information</h3>
+      <div class="review-item">
+        <div class="review-label">Genotype:</div>
+        <div class="review-value">${formData.genotype || 'N/A'}</div>
+      </div>
+      <div class="review-item">
+        <div class="review-label">Blood Group:</div>
+        <div class="review-value">${formData.bloodGroup || 'N/A'}</div>
+      </div>
+      <div class="review-item">
+        <div class="review-label">Any Disability:</div>
+        <div class="review-value">${formData.disability || 'N/A'}</div>
+      </div>
+    </div>
+  `;
+  
+  reviewContent.innerHTML = reviewHTML;
+}
+
+// Form submission
 document.getElementById('admissionForm').addEventListener('submit', function(e) {
   e.preventDefault();
   
-  const button = this.querySelector('button[type="submit"]');
-  button.disabled = true;
-  button.textContent = "Submitting Application...";
+  // Check terms acceptance
+  if (!document.getElementById('termsAccept').checked) {
+    showNotification('Please accept the terms and conditions', 'error');
+    return;
+  }
   
-  // Show loading message
-  const loadingMsg = document.createElement('div');
-  loadingMsg.id = 'loadingMessage';
-  loadingMsg.style.cssText = `
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: linear-gradient(135deg, #007bff, #0056b3);
-    color: white;
-    padding: 20px 30px;
-    border-radius: 10px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-    z-index: 10000;
-    text-align: center;
-    font-size: 18px;
-  `;
-  loadingMsg.innerHTML = `
-    <div style="margin-bottom: 10px;">📤 Submitting Your Application...</div>
-    <div style="font-size: 14px; opacity: 0.9;">Please wait while we process your information</div>
-  `;
-  document.body.appendChild(loadingMsg);
+  // Save final step data
+  saveStepData(currentStep);
   
-  // Collect form data
-  const formData = new FormData(this);
+  // Show loading
+  showLoading();
+  
+  // Prepare submission data
   const submissionData = {
-    id: Date.now().toString(),
+    id: 'ADM' + Date.now(),
     timestamp: new Date().toISOString(),
-    
-    // Student Information
-    fullName: formData.get('fullName') || '',
-    address: formData.get('address') || '',
-    stateOrigin: formData.get('stateOrigin') || '',
-    dob: formData.get('dob') || '',
-    birthPlace: formData.get('birthPlace') || '',
-    religion: formData.get('religion') || '',
-    sex: formData.get('sex') || '',
-    class: formData.get('class') || '',
-    disability: formData.get('disability') || '',
-    genotype: formData.get('genotype') || '',
-    bloodGroup: formData.get('bloodGroup') || '',
-    hepatitis: formData.get('hepatitis') || '',
-    formerSchool: formData.get('formerSchool') || '',
-    
-    // Guardian Information
-    guardianName: formData.get('guardianName') || '',
-    guardianAddress: formData.get('guardianAddress') || '',
-    guardianPhone: formData.get('guardianPhone') || '',
-    occupation: formData.get('occupation') || '',
-    placeOfWork: formData.get('placeOfWork') || '',
-    nextOfKin: formData.get('nextOfKin') || '',
-    kinPhone: formData.get('kinPhone') || '',
-    knowsWayHome: formData.get('knowsWayHome') || '',
-    authorizedPersons: formData.get('authorizedPersons') || '',
-    christianTraining: formData.get('christianTraining') || '',
-    attestation: formData.get('attestation') || '',
-    
-    status: 'submitted'
+    ...formData,
+    status: 'pending'
   };
   
-  // Store in localStorage for admin dashboard
+  // Save to localStorage
   const submissions = JSON.parse(localStorage.getItem('admission_submissions') || '[]');
   submissions.push(submissionData);
   localStorage.setItem('admission_submissions', JSON.stringify(submissions));
   
-  // Simulate processing time
+  // Simulate API call
   setTimeout(() => {
-    // Remove loading message
-    if (loadingMsg) loadingMsg.remove();
-    
-    // Show success message
-    const successMsg = document.createElement('div');
-    successMsg.style.cssText = `
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background: linear-gradient(135deg, #28a745, #20c997);
-      color: white;
-      padding: 30px;
-      border-radius: 15px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-      z-index: 10000;
-      text-align: center;
-      font-size: 18px;
-      max-width: 90%;
-    `;
-    successMsg.innerHTML = `
-      <div style="font-size: 50px; margin-bottom: 15px;">✅</div>
-      <div style="font-size: 24px; margin-bottom: 15px; font-weight: bold;">Application Submitted Successfully!</div>
-      <div style="margin-bottom: 20px;">Thank you ${submissionData.fullName}! Your admission application has been received.</div>
-      <div style="font-size: 14px; opacity: 0.9; margin-bottom: 20px;">
-        • Application ID: ${submissionData.id}<br>
-        • Submitted: ${new Date().toLocaleString()}<br>
-        • We'll contact you within 3-5 business days
-      </div>
-      <button onclick="this.parentElement.remove(); location.reload();" style="background: white; color: #28a745; border: none; padding: 10px 20px; border-radius: 25px; font-weight: bold; cursor: pointer;">Close</button>
-    `;
-    document.body.appendChild(successMsg);
-    
-    // Create email content for manual sending
-    const emailContent = `
-New Admission Application Received!
-
-Student Information:
-- Name: ${submissionData.fullName}
-- Class: ${submissionData.class}
-- Date of Birth: ${submissionData.dob}
-- Sex: ${submissionData.sex}
-- Address: ${submissionData.address}
-
-Guardian Information:
-- Name: ${submissionData.guardianName}
-- Phone: ${submissionData.guardianPhone}
-- Address: ${submissionData.guardianAddress}
-
-Application Details:
-- ID: ${submissionData.id}
-- Submitted: ${new Date().toLocaleString()}
-
-Please review this application and contact the family for next steps.
-
-Best regards,
-Heavenly Wisdom Academy Portal System
-    `;
-    
-    // Create mailto link for easy emailing
-    const mailtoLink = `mailto:adorableheavenlywisdom@gmail.com?subject=New Admission Application - ${submissionData.fullName}&body=${encodeURIComponent(emailContent)}`;
-    
-    // Auto-open email client (optional)
-    // window.open(mailtoLink);
-    
-    console.log('✅ Admission application saved successfully');
-    console.log('📧 Email content prepared for:', submissionData.fullName);
-    
+    hideLoading();
+    showSuccess(submissionData);
   }, 2000);
 });
 
+// Show loading overlay
+function showLoading() {
+  const overlay = document.createElement('div');
+  overlay.className = 'loading-overlay';
+  overlay.id = 'loadingOverlay';
+  overlay.innerHTML = `
+    <div class="loading-content">
+      <div class="spinner"></div>
+      <h3>Submitting Your Application...</h3>
+      <p>Please wait while we process your information</p>
+    </div>
+  `;
+  document.body.appendChild(overlay);
+}
 
-// Chat widget toggle
-const chatBtn = document.getElementById('chat-btn');
-const chatPopup = document.getElementById('chat-popup');
-const closeChatBtn = document.getElementById('close-chat');
-
-chatBtn.addEventListener('click', () => {
-  chatPopup.style.display = chatPopup.style.display === 'flex' ? 'none' : 'flex';
-});
-
-closeChatBtn.addEventListener('click', () => {
-  chatPopup.style.display = 'none';
-});
-
-// Dark mode toggle function
-function toggledarkmode() {
-  document.body.classList.toggle("darkmode");
-  // Save preference
-  if (document.body.classList.contains("darkmode")) {
-    localStorage.setItem("darkMode", "enabled");
-  } else {
-    localStorage.setItem("darkMode", "disabled");
+// Hide loading overlay
+function hideLoading() {
+  const overlay = document.getElementById('loadingOverlay');
+  if (overlay) {
+    overlay.remove();
   }
+}
+
+// Show success message
+function showSuccess(data) {
+  const overlay = document.createElement('div');
+  overlay.className = 'loading-overlay';
+  overlay.innerHTML = `
+    <div class="loading-content success-message">
+      <i class="fas fa-check-circle"></i>
+      <h2>Application Submitted Successfully!</h2>
+      <p><strong>Application ID:</strong> ${data.id}</p>
+      <p><strong>Student Name:</strong> ${data.fullName}</p>
+      <p><strong>Class:</strong> ${data.class}</p>
+      <hr style="margin: 20px 0; border: none; border-top: 1px solid rgba(255,255,255,0.3);">
+      <p>Thank you for applying to Heavenly Wisdom International Academy!</p>
+      <p>We will review your application and contact you within 3-5 business days.</p>
+      <p style="margin-top: 20px;">
+        <strong>Next Steps:</strong><br>
+        • Check your email for confirmation<br>
+        • Prepare required documents<br>
+        • Await our call for interview
+      </p>
+      <button onclick="location.href='/index.html'" style="margin-top: 25px; padding: 12px 30px; background: white; color: #28a745; border: none; border-radius: 10px; font-weight: bold; cursor: pointer; font-size: 1em;">
+        Return to Homepage
+      </button>
+    </div>
+  `;
+  document.body.appendChild(overlay);
+  
+  // Send email notification (mailto link)
+  const emailBody = `
+New Admission Application
+
+Application ID: ${data.id}
+Student Name: ${data.fullName}
+Class: ${data.class}
+Guardian: ${data.guardianName}
+Phone: ${data.guardianPhone}
+Email: ${data.guardianEmail || 'Not provided'}
+
+Submitted: ${new Date().toLocaleString()}
+
+Please review this application in the admin panel.
+  `;
+  
+  console.log('Application submitted:', data);
+  console.log('Email notification prepared');
+}
+
+// Show notification
+function showNotification(message, type = 'info') {
+  const notification = document.createElement('div');
+  notification.style.cssText = `
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 15px 25px;
+    background: ${type === 'error' ? '#dc3545' : '#667eea'};
+    color: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    z-index: 10001;
+    animation: slideIn 0.3s ease;
+  `;
+  notification.textContent = message;
+  document.body.appendChild(notification);
+  
+  setTimeout(() => {
+    notification.style.animation = 'slideOut 0.3s ease';
+    setTimeout(() => notification.remove(), 300);
+  }, 3000);
 }
 
 // Mobile menu toggle
 function toggleMobileMenu() {
-  const mobileMenu = document.getElementById('mobileMenu');
-  const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
-  
-  if (mobileMenu && mobileMenuOverlay) {
-    mobileMenu.classList.toggle('active');
-    mobileMenuOverlay.classList.toggle('active');
-    
-    // Prevent body scroll when menu is open
-    if (mobileMenu.classList.contains('active')) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-    }
-  }
+  const navLinks = document.getElementById('navLinks');
+  navLinks.classList.toggle('mobile-visible');
 }
 
-// Auto-hide mobile menu on larger screens
-window.addEventListener('resize', () => {
-  if (window.innerWidth > 768) {
-    const mobileMenu = document.getElementById('mobileMenu');
-    const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
-    
-    if (mobileMenu && mobileMenuOverlay) {
-      mobileMenu.classList.remove('active');
-      mobileMenuOverlay.classList.remove('active');
-      document.body.style.overflow = '';
-    }
-  }
-});
-
-// Load dark mode preference on page load
-document.addEventListener("DOMContentLoaded", () => {
-  if (localStorage.getItem("darkMode") === "enabled") {
-    document.body.classList.add("darkmode");
-  }
-});
-
 // Make functions globally available
+window.previewImage = previewImage;
+window.nextStep = nextStep;
+window.prevStep = prevStep;
 window.toggleMobileMenu = toggleMobileMenu;
-window.toggledarkmode = toggledarkmode;

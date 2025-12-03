@@ -1,313 +1,425 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>  
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Admission form</title>
-  <link rel="stylesheet" href="style.css" />
-
-  <!-- Font Awesome CDN -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Online Admission - Heavenly Wisdom Academy</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-
 <body>
   <!-- Top Info Bar -->
   <div class="top-bar">
     <div class="contact">
       <span>Adorableheavenlywisdom@gmail.com</span> |
-      <span>Call Us (Full time)</span> |
-      <button>
-        <i class="fa fa-user"></i>
-        <a href="#" class="dashboard-btn">Go to School Dashboard</a>
-      </button>
+      <span>Call Us: +234 806 229 7002</span>
     </div>
-
-    <!-- Top Social Icons -->
     <div class="top-social-icons">
-      <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
-      <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+      <a href="https://www.facebook.com/profile.php?id=61582386687704" target="_blank"><i class="fab fa-facebook-f"></i></a>
+      <a href="https://x.com/AdorableWi40474" target="_blank"><i class="fab fa-twitter"></i></a>
       <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
-      <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i></a>
     </div>
   </div>
 
-  <!-- Header Section -->
+  <!-- Header -->
   <header>
     <nav>
       <div class="logo">
-        <img src="/images/HEAVENLY.jpg" alt="School Logo" />
+        <img src="/images/HEAVENLY.jpg" alt="School Logo">
         <h1>HEAVENLY WISDOM INTERNATIONAL ACADEMY</h1>
       </div>
-
-      <!-- Desktop Navigation -->
-      <ul class="nav-links desktop-nav">
+      <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">☰</button>
+      <ul class="nav-links" id="navLinks">
         <li><a href="/index.html">🏠 Home</a></li>
-        <li><a href="/ADMISSION/public/index.html">📝 Admission</a></li>
-        <li><a href="/PORTAL/index.html">🔐 Portal</a></li>
+        <li><a href="/ADMISSION/public/index.html" class="active">📝 Admission</a></li>
+        <li><a href="/FEES/index.html">💰 Fees</a></li>
+        <li><a href="/PORTAL/student-login.html">🎓 Student Login</a></li>
         <li><a href="/ABOUT US/index.html">ℹ️ About</a></li>
-        <li><a href="/GALLERY/index.html">📷 Gallery</a></li>
-        <li><a href="/student result/index.html">📊 Results</a></li>
+        <li><a href="/CONTACT/index.html">📞 Contact</a></li>
       </ul>
-
-      <!-- Mobile Navigation -->
-      <div class="mobile-nav">
-        <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">☰</button>
-        <button class="dark-mode-toggle" onclick="toggledarkmode()">🌙</button>
-      </div>
     </nav>
-
-    <!-- Mobile Menu Overlay -->
-    <div class="mobile-menu-overlay" id="mobileMenuOverlay" onclick="toggleMobileMenu()"></div>
-    
-    <!-- Mobile Navigation Menu -->
-    <div class="mobile-menu" id="mobileMenu">
-      <div class="mobile-menu-header">
-        <h3>Navigation</h3>
-        <button class="close-mobile-menu" onclick="toggleMobileMenu()">×</button>
-      </div>
-      
-      <div class="mobile-nav-grid">
-        <a href="/index.html" class="mobile-nav-card home-card">
-          <div class="nav-icon">🏠</div>
-          <div class="nav-text">Home</div>
-        </a>
-        
-        <a href="/ADMISSION/public/index.html" class="mobile-nav-card admission-card active">
-          <div class="nav-icon">📝</div>
-          <div class="nav-text">Admission</div>
-        </a>
-        
-        <a href="/PORTAL/index.html" class="mobile-nav-card portal-card">
-          <div class="nav-icon">🔐</div>
-          <div class="nav-text">Portal</div>
-        </a>
-        
-        <a href="/ABOUT US/index.html" class="mobile-nav-card about-card">
-          <div class="nav-icon">ℹ️</div>
-          <div class="nav-text">About</div>
-        </a>
-        
-        <a href="/GALLERY/index.html" class="mobile-nav-card gallery-card">
-          <div class="nav-icon">📷</div>
-          <div class="nav-text">Gallery</div>
-        </a>
-        
-        <a href="/student result/index.html" class="mobile-nav-card result-card">
-          <div class="nav-icon">📊</div>
-          <div class="nav-text">Results</div>
-        </a>
-      </div>
-    </div>
   </header>
 
-  <div class="school-info">
-    <p><strong>PUPIL/STUDENT REGISTRATION FORM</strong></p>
-    <p><em>Date:</em> <input type="date" name="formDate" /></p>
-  </div>
-
-  <div class="passport">
-    <label for="passportUpload">Affix Pupil's Passport</label>
-    <input type="file" id="passportUpload" accept="image/*" onchange="previewImage(event)" />
-    <img id="passportPreview" alt="Passport Preview" />
-  </div>
-
- <form id="admissionForm" method="POST">
-  <!-- Form will be handled by JavaScript for now -->
-
-  <fieldset>
-    <legend>SECTION A: Pupil's Personal Data</legend>
-
-    <label>Full Name of Pupil:
-      <input type="text" name="fullName" required />
-    </label>
-
-    <label>Residential Address:
-      <input type="text" name="address" required />
-    </label>
-
-    <label>State of Origin:
-      <input type="text" name="stateOrigin" required />
-    </label>
-
-    <label>Date of Birth:
-      <input type="date" name="dob" required />
-    </label>
-
-    <label>Place of Birth:
-      <input type="text" name="birthPlace" required />
-    </label>
-
-    <label>Religion:
-      <input type="text" name="religion" />
-    </label>
-
-    <label>Sex:
-      <select name="sex">
-        <option value="Male">Male</option>
-        <option value="Female">Female</option>
-      </select>
-    </label>
-
-    <label>Class:
-      <input type="text" name="class" />
-    </label>
-
-    <label>Any Disability (Yes/No):
-      <input type="text" name="disability" />
-    </label>
-
-    <label>Genotype:
-      <input type="text" name="genotype" />
-    </label>
-
-    <label>Blood Group:
-      <input type="text" name="bloodGroup" />
-    </label>
-
-    <label>Hepatitis B (with date):
-      <input type="text" name="hepatitis" />
-    </label>
-
-    <label>Former School Attended:
-      <input type="text" name="formerSchool" />
-    </label>
-  </fieldset>
-
-  <fieldset>
-    <legend>SECTION B: Parent/Guardian Data</legend>
-
-    <label>Parent/Guardian Name:
-      <input type="text" name="guardianName" required />
-    </label>
-
-    <label>Residential Address:
-      <input type="text" name="guardianAddress" required />
-    </label>
-
-    <label>Phone Number:
-      <input type="tel" name="guardianPhone" required />
-    </label>
-
-    <label>Occupation:
-      <input type="text" name="occupation" />
-    </label>
-
-    <label>Place of Work:
-      <input type="text" name="placeOfWork" />
-    </label>
-
-    <label>Next of Kin:
-      <input type="text" name="nextOfKin" />
-    </label>
-
-    <label>Phone of Next of Kin:
-      <input type="tel" name="kinPhone" />
-    </label>
-
-    <label>Does child know the way home?
-      <select name="knowsWayHome">
-        <option value="Yes">Yes</option>
-        <option value="No">No</option>
-      </select>
-    </label>
-
-    <label>Names of persons allowed to pick child:
-      <input type="text" name="authorizedPersons" />
-    </label>
-
-    <label>Do you want Christian training?
-      <select name="christianTraining">
-        <option value="Yes">Yes</option>
-        <option value="No">No</option>
-      </select>
-    </label>
-
-    <label>Attestation:
-      <textarea name="attestation" rows="3"></textarea>
-    </label>
-  </fieldset>
-
-  <div class="submit-button">
-    <button type="submit">Submit Form</button>
-  </div>
-
-</form>
-
-<!-- Admission Letter Modal -->
-<div id="admissionLetter" style="display:none; border:1px solid #ccc; padding:20px; margin:20px; background:#f9f9f9;">
-  <h2>Admission Letter</h2>
-  <p>Dear <span id="admittedName"></span>,</p>
-  <p>Congratulations! Your admission has been successfully processed.</p>
-  <button id="printLetterBtn">Print Admission Letter as PDF</button>
-</div>
-
-<!-- Footer Section -->
-<footer style="background-color: #111;">
-  <div class="footer-container">
-    <div class="footer-section about">
-      <h3>ABOUT US</h3>
-      <p>Heavenly wisdom international school is a school built on a solid foundation and a name gotten from the pulpit of many colors.</p>
-      <p>Entrust your child/ward with us and we will give him the best we have. We have qualified teachers to install in them good values,
-        discipline, hardworking, morals, intergrity, honesty and lot more. We have been building this establishment with both faith, love,
-        hope, and more especially knowledge with the fear of God….</p>
-    </div>
-
-    <div class="footer-section latest-posts">
-      <h3>LATEST POSTS</h3>
-      <ul>
-        <li>
-          <strong>📌 Heavenly wisdom international Academy 2025/2026 Admission is Ongoing!</strong><br>
-        </li>
-      </ul>
-    </div>
-
-    <div class="footer-section contact-info">
-      <h3>CONTACT INFO</h3>
-      <p>📍 opposite nikton junction yenegoa, bayelsa State.</p>
-      <p>✉️Adorableheavenlywisdom@gmail.com</p>
-      <div class="social-icons">
-        <a href="#"><i class="fab fa-facebook-f"></i></a>
-        <a href="#"><i class="fab fa-twitter"></i></a>
-        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-        <a href="#"><i class="fab fa-instagram"></i></a>
+  <!-- Main Content -->
+  <main class="admission-main">
+    <!-- Hero Section -->
+    <div class="admission-hero">
+      <div class="hero-content">
+        <h1>🎓 Online Admission Portal</h1>
+        <p>Join Heavenly Wisdom International Academy - Where Excellence Meets Values</p>
+        <div class="hero-stats">
+          <div class="stat">
+            <i class="fas fa-users"></i>
+            <span>500+ Students</span>
+          </div>
+          <div class="stat">
+            <i class="fas fa-chalkboard-teacher"></i>
+            <span>Qualified Teachers</span>
+          </div>
+          <div class="stat">
+            <i class="fas fa-trophy"></i>
+            <span>Award Winning</span>
+          </div>
+        </div>
       </div>
     </div>
 
-    <div class="footer-section navigate">
-      <h3>NAVIGATE</h3>
-      <ul>
-        <li><a href="#">Our Online Classes</a></li>
-        <li><a href="#">Login</a></li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="footer-bottom">
-    <p>📞 <a href="tel:+2348162297002">Click here to Call us (Toll free)</a> &nbsp; | &nbsp; Copyright © 2025. Heavenly wisdom international Academy</p>
-    <p>knowlagde with the fear of God</p>
-  </div>
-
-  <!-- Chat Widget -->
-  <div id="chat-widget">
-    <div id="chat-message">Feel free to request a callback!</div>
-    <button id="chat-btn">💬 Chat</button>
-
-    <div id="chat-popup" class="hidden">
-      <div class="chat-header">
-        <strong>Live Support</strong>
-        <button id="close-chat">×</button>
+    <!-- Progress Indicator -->
+    <div class="progress-container">
+      <div class="progress-steps">
+        <div class="step active" data-step="1">
+          <div class="step-number">1</div>
+          <div class="step-label">Student Info</div>
+        </div>
+        <div class="step" data-step="2">
+          <div class="step-number">2</div>
+          <div class="step-label">Guardian Info</div>
+        </div>
+        <div class="step" data-step="3">
+          <div class="step-number">3</div>
+          <div class="step-label">Medical & Others</div>
+        </div>
+        <div class="step" data-step="4">
+          <div class="step-number">4</div>
+          <div class="step-label">Review & Submit</div>
+        </div>
       </div>
-      <div class="chat-body">
-        <p>Hi there! 👋 <br /> How can we help you today?</p>
-        <input type="text" placeholder="Type your message..." />
-        <button class="send-btn">Send</button>
+      <div class="progress-bar">
+        <div class="progress-fill" id="progressFill"></div>
       </div>
     </div>
-  </div>
-</footer>
 
+    <!-- Form Container -->
+    <div class="form-container">
+      <form id="admissionForm">
+        
+        <!-- Step 1: Student Information -->
+        <div class="form-step active" data-step="1">
+          <h2><i class="fas fa-user-graduate"></i> Student Information</h2>
+          
+          <div class="passport-upload-section">
+            <div class="passport-preview">
+              <img id="passportPreview" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Crect fill='%23f0f0f0' width='200' height='200'/%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dy='.3em' fill='%23999' font-size='16' font-family='Arial'%3ENo Photo%3C/text%3E%3C/svg%3E" alt="Passport">
+            </div>
+            <div class="passport-upload-btn">
+              <label for="passportUpload" class="upload-label">
+                <i class="fas fa-camera"></i>
+                <span>Upload Passport Photo</span>
+                <input type="file" id="passportUpload" accept="image/*" onchange="previewImage(event)">
+              </label>
+              <p class="upload-hint">JPG, PNG (Max 2MB)</p>
+            </div>
+          </div>
 
-<script src="/PORTAL/auth-local.js"></script>
-<script src="script.js"></script>
+          <div class="form-grid">
+            <div class="form-group full-width">
+              <label><i class="fas fa-user"></i> Full Name of Student *</label>
+              <input type="text" name="fullName" required placeholder="Enter full name as on birth certificate">
+            </div>
+
+            <div class="form-group">
+              <label><i class="fas fa-calendar"></i> Date of Birth *</label>
+              <input type="date" name="dob" required>
+            </div>
+
+            <div class="form-group">
+              <label><i class="fas fa-venus-mars"></i> Gender *</label>
+              <select name="sex" required>
+                <option value="">Select Gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label><i class="fas fa-map-marker-alt"></i> Place of Birth *</label>
+              <input type="text" name="birthPlace" required placeholder="City, State">
+            </div>
+
+            <div class="form-group">
+              <label><i class="fas fa-flag"></i> State of Origin *</label>
+              <input type="text" name="stateOrigin" required placeholder="State of origin">
+            </div>
+
+            <div class="form-group full-width">
+              <label><i class="fas fa-home"></i> Residential Address *</label>
+              <textarea name="address" required rows="2" placeholder="Full residential address"></textarea>
+            </div>
+
+            <div class="form-group">
+              <label><i class="fas fa-book-open"></i> Class Applying For *</label>
+              <select name="class" required>
+                <option value="">Select Class</option>
+                <optgroup label="Nursery">
+                  <option value="Creche">Creche</option>
+                  <option value="Pre-Nursery">Pre-Nursery</option>
+                  <option value="Nursery 1">Nursery 1</option>
+                  <option value="Nursery 2">Nursery 2</option>
+                </optgroup>
+                <optgroup label="Primary">
+                  <option value="Primary 1">Primary 1</option>
+                  <option value="Primary 2">Primary 2</option>
+                  <option value="Primary 3">Primary 3</option>
+                  <option value="Primary 4">Primary 4</option>
+                  <option value="Primary 5">Primary 5</option>
+                  <option value="Primary 6">Primary 6</option>
+                </optgroup>
+                <optgroup label="Junior Secondary">
+                  <option value="JSS 1">JSS 1</option>
+                  <option value="JSS 2">JSS 2</option>
+                  <option value="JSS 3">JSS 3</option>
+                </optgroup>
+                <optgroup label="Senior Secondary">
+                  <option value="SS 1">SS 1</option>
+                  <option value="SS 2">SS 2</option>
+                  <option value="SS 3">SS 3</option>
+                </optgroup>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label><i class="fas fa-church"></i> Religion</label>
+              <input type="text" name="religion" placeholder="Optional">
+            </div>
+
+            <div class="form-group full-width">
+              <label><i class="fas fa-school"></i> Previous School Attended</label>
+              <input type="text" name="formerSchool" placeholder="Name of previous school (if any)">
+            </div>
+          </div>
+
+          <div class="form-navigation">
+            <button type="button" class="btn-next" onclick="nextStep()">
+              Next Step <i class="fas fa-arrow-right"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Step 2: Guardian Information -->
+        <div class="form-step" data-step="2">
+          <h2><i class="fas fa-users"></i> Parent/Guardian Information</h2>
+          
+          <div class="form-grid">
+            <div class="form-group full-width">
+              <label><i class="fas fa-user"></i> Parent/Guardian Full Name *</label>
+              <input type="text" name="guardianName" required placeholder="Full name of parent/guardian">
+            </div>
+
+            <div class="form-group">
+              <label><i class="fas fa-phone"></i> Phone Number *</label>
+              <input type="tel" name="guardianPhone" required placeholder="+234 XXX XXX XXXX">
+            </div>
+
+            <div class="form-group">
+              <label><i class="fas fa-envelope"></i> Email Address</label>
+              <input type="email" name="guardianEmail" placeholder="email@example.com">
+            </div>
+
+            <div class="form-group full-width">
+              <label><i class="fas fa-home"></i> Residential Address *</label>
+              <textarea name="guardianAddress" required rows="2" placeholder="Full residential address"></textarea>
+            </div>
+
+            <div class="form-group">
+              <label><i class="fas fa-briefcase"></i> Occupation *</label>
+              <input type="text" name="occupation" required placeholder="Parent's occupation">
+            </div>
+
+            <div class="form-group">
+              <label><i class="fas fa-building"></i> Place of Work</label>
+              <input type="text" name="placeOfWork" placeholder="Employer name/location">
+            </div>
+
+            <div class="form-group full-width">
+              <h3 style="margin: 20px 0 10px 0; color: #667eea;">Emergency Contact</h3>
+            </div>
+
+            <div class="form-group">
+              <label><i class="fas fa-user-shield"></i> Next of Kin Name</label>
+              <input type="text" name="nextOfKin" placeholder="Emergency contact name">
+            </div>
+
+            <div class="form-group">
+              <label><i class="fas fa-phone-alt"></i> Next of Kin Phone</label>
+              <input type="tel" name="kinPhone" placeholder="+234 XXX XXX XXXX">
+            </div>
+
+            <div class="form-group full-width">
+              <label><i class="fas fa-user-friends"></i> Authorized Persons to Pick Child</label>
+              <input type="text" name="authorizedPersons" placeholder="Names of persons allowed to pick child">
+            </div>
+
+            <div class="form-group">
+              <label><i class="fas fa-route"></i> Does Child Know Way Home? *</label>
+              <select name="knowsWayHome" required>
+                <option value="">Select</option>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label><i class="fas fa-cross"></i> Christian Training? *</label>
+              <select name="christianTraining" required>
+                <option value="">Select</option>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-navigation">
+            <button type="button" class="btn-prev" onclick="prevStep()">
+              <i class="fas fa-arrow-left"></i> Previous
+            </button>
+            <button type="button" class="btn-next" onclick="nextStep()">
+              Next Step <i class="fas fa-arrow-right"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Step 3: Medical & Other Information -->
+        <div class="form-step" data-step="3">
+          <h2><i class="fas fa-heartbeat"></i> Medical & Additional Information</h2>
+          
+          <div class="form-grid">
+            <div class="form-group">
+              <label><i class="fas fa-dna"></i> Genotype</label>
+              <select name="genotype">
+                <option value="">Select Genotype</option>
+                <option value="AA">AA</option>
+                <option value="AS">AS</option>
+                <option value="SS">SS</option>
+                <option value="AC">AC</option>
+                <option value="SC">SC</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label><i class="fas fa-tint"></i> Blood Group</label>
+              <select name="bloodGroup">
+                <option value="">Select Blood Group</option>
+                <option value="A+">A+</option>
+                <option value="A-">A-</option>
+                <option value="B+">B+</option>
+                <option value="B-">B-</option>
+                <option value="AB+">AB+</option>
+                <option value="AB-">AB-</option>
+                <option value="O+">O+</option>
+                <option value="O-">O-</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label><i class="fas fa-syringe"></i> Hepatitis B Vaccination</label>
+              <input type="text" name="hepatitis" placeholder="Date of vaccination (if any)">
+            </div>
+
+            <div class="form-group">
+              <label><i class="fas fa-wheelchair"></i> Any Disability?</label>
+              <select name="disability">
+                <option value="No">No</option>
+                <option value="Yes">Yes (Please specify in attestation)</option>
+              </select>
+            </div>
+
+            <div class="form-group full-width">
+              <label><i class="fas fa-notes-medical"></i> Medical Conditions / Allergies</label>
+              <textarea name="medicalConditions" rows="3" placeholder="Please list any medical conditions, allergies, or special needs (Optional)"></textarea>
+            </div>
+
+            <div class="form-group full-width">
+              <label><i class="fas fa-file-signature"></i> Additional Information / Attestation</label>
+              <textarea name="attestation" rows="4" placeholder="Any additional information you'd like us to know about your child"></textarea>
+            </div>
+          </div>
+
+          <div class="form-navigation">
+            <button type="button" class="btn-prev" onclick="prevStep()">
+              <i class="fas fa-arrow-left"></i> Previous
+            </button>
+            <button type="button" class="btn-next" onclick="nextStep()">
+              Review Application <i class="fas fa-arrow-right"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Step 4: Review & Submit -->
+        <div class="form-step" data-step="4">
+          <h2><i class="fas fa-check-circle"></i> Review Your Application</h2>
+          
+          <div class="review-section" id="reviewContent">
+            <!-- Content will be populated by JavaScript -->
+          </div>
+
+          <div class="terms-section">
+            <label class="checkbox-label">
+              <input type="checkbox" id="termsAccept" required>
+              <span>I confirm that all information provided is accurate and complete. I understand that providing false information may result in application rejection.</span>
+            </label>
+          </div>
+
+          <div class="form-navigation">
+            <button type="button" class="btn-prev" onclick="prevStep()">
+              <i class="fas fa-arrow-left"></i> Previous
+            </button>
+            <button type="submit" class="btn-submit">
+              <i class="fas fa-paper-plane"></i> Submit Application
+            </button>
+          </div>
+        </div>
+
+      </form>
+    </div>
+
+    <!-- Info Cards -->
+    <div class="info-cards">
+      <div class="info-card">
+        <i class="fas fa-clock"></i>
+        <h3>Quick Process</h3>
+        <p>Application reviewed within 3-5 business days</p>
+      </div>
+      <div class="info-card">
+        <i class="fas fa-shield-alt"></i>
+        <h3>Secure & Private</h3>
+        <p>Your information is safe with us</p>
+      </div>
+      <div class="info-card">
+        <i class="fas fa-headset"></i>
+        <h3>24/7 Support</h3>
+        <p>Need help? Contact us anytime</p>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-container">
+      <div class="footer-section">
+        <h3>ABOUT US</h3>
+        <p>Heavenly Wisdom International Academy - Building future leaders with knowledge and the fear of God.</p>
+      </div>
+      <div class="footer-section">
+        <h3>QUICK LINKS</h3>
+        <ul>
+          <li><a href="/index.html">Home</a></li>
+          <li><a href="/FEES/index.html">Fees</a></li>
+          <li><a href="/FAQ/index.html">FAQ</a></li>
+          <li><a href="/CONTACT/index.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3>CONTACT INFO</h3>
+        <p>📍 Opposite Nikton Junction, Yenagoa</p>
+        <p>📧 adorableheavenlywisdom@gmail.com</p>
+        <p>📱 +234 806 229 7002</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 Heavenly Wisdom International Academy. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
