@@ -224,7 +224,7 @@ function populateReview() {
 }
 
 // Form submission
-document.getElementById('admissionForm').addEventListener('submit', function(e) {
+document.getElementById('admissionForm').addEventListener('submit', async function(e) {
   e.preventDefault();
   
   // Check terms acceptance
@@ -239,24 +239,48 @@ document.getElementById('admissionForm').addEventListener('submit', function(e) 
   // Show loading
   showLoading();
   
-  // Prepare submission data
-  const submissionData = {
-    id: 'ADM' + Date.now(),
-    timestamp: new Date().toISOString(),
-    ...formData,
-    status: 'pending'
-  };
-  
-  // Save to localStorage
-  const submissions = JSON.parse(localStorage.getItem('admission_submissions') || '[]');
-  submissions.push(submissionData);
-  localStorage.setItem('admission_submissions', JSON.stringify(submissions));
-  
-  // Simulate API call
-  setTimeout(() => {
+  try {
+    // Submit to API
+    const response = await fetch('/api/admission/submit', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(formData)
+    });
+
+    const result = await response.json();
+
+    if (response.ok && result.success) {
+      // Also save to localStorage as backup
+      const submissions = JSON.parse(localStorage.getItem('admission_submissions') || '[]');
+      submissions.push(result.data);
+      localStorage.setItem('admission_submissions', JSON.stringify(submissions));
+      
+      hideLoading();
+      showSuccess(result.data);
+    } else {
+      throw new Error(result.message || 'Submission failed');
+    }
+  } catch (error) {
+    console.error('Submission error:', error);
     hideLoading();
+    
+    // Fallback to localStorage if API fails
+    const submissionData = {
+      applicationId: 'ADM' + Date.now(),
+      submissionDate: new Date().toISOString(),
+      ...formData,
+      status: 'pending'
+    };
+    
+    const submissions = JSON.parse(localStorage.getItem('admission_submissions') || '[]');
+    submissions.push(submissionData);
+    localStorage.setItem('admission_submissions', JSON.stringify(submissions));
+    
+    showNotification('Application saved locally. Please contact the school to confirm submission.', 'warning');
     showSuccess(submissionData);
-  }, 2000);
+  }
 });
 
 // Show loading overlay
@@ -290,7 +314,7 @@ function showSuccess(data) {
     <div class="loading-content success-message">
       <i class="fas fa-check-circle"></i>
       <h2>Application Submitted Successfully!</h2>
-      <p><strong>Application ID:</strong> ${data.id}</p>
+      <p><strong>Application ID:</strong> ${data.applicationId}</p>
       <p><strong>Student Name:</strong> ${data.fullName}</p>
       <p><strong>Class:</strong> ${data.class}</p>
       <hr style="margin: 20px 0; border: none; border-top: 1px solid rgba(255,255,255,0.3);">
@@ -309,24 +333,7 @@ function showSuccess(data) {
   `;
   document.body.appendChild(overlay);
   
-  // Send email notification (mailto link)
-  const emailBody = `
-New Admission Application
-
-Application ID: ${data.id}
-Student Name: ${data.fullName}
-Class: ${data.class}
-Guardian: ${data.guardianName}
-Phone: ${data.guardianPhone}
-Email: ${data.guardianEmail || 'Not provided'}
-
-Submitted: ${new Date().toLocaleString()}
-
-Please review this application in the admin panel.
-  `;
-  
-  console.log('Application submitted:', data);
-  console.log('Email notification prepared');
+  console.log('✅ Application submitted successfully:', data);
 }
 
 // Show notification
