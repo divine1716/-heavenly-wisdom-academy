@@ -1,7 +1,23 @@
 export const students = {
-  creche: [],
-  "pre-nursery": [],
-  nursery1: [],
+  creche: [
+    "Albert Purity Amarachi",
+    "Moodness Moses Aniedi",
+    "Starry Mackenzie",
+    "Igodo Richman"
+  ],
+  "pre-nursery": [
+    "Igodo Richman"
+  ],
+  nursery1: [
+    "Force Img Glory",
+    "Zoe Justice",
+    "Priye Claye Ebizaro",
+    "Angel Melody",
+    "Reward Tari",
+    "Antoye Sunday Victory",
+    "Shilatowa Ominigod",
+    "Ukesma Rosemary"
+  ],
   nursery2: [],
   nursery3: [],
 
@@ -43,6 +59,22 @@ export const students = {
 
 // Student passwords (you can change these)
 export const studentPasswords = {
+  // Creche
+  "Albert Purity Amarachi": "albert2025",
+  "Moodness Moses Aniedi": "moodness2025",
+  "Starry Mackenzie": "starry2025",
+  "Igodo Richman": "richman2025",
+  
+  // Nursery 1
+  "Force Img Glory": "force2025",
+  "Zoe Justice": "zoe2025",
+  "Priye Claye Ebizaro": "priye2025",
+  "Angel Melody": "melody2025",
+  "Reward Tari": "reward2025",
+  "Antoye Sunday Victory": "victory2025",
+  "Shilatowa Ominigod": "shilatowa2025",
+  "Ukesma Rosemary": "ukesma2025",
+  
   // Primary 1
   "Emmanuel Angel": "angel2025",
   "Emmanuel Ejiro": "ejiro2025",

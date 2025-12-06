@@ -34,8 +34,14 @@ function getRemark(total) {
 if (studentName && studentResults[studentName]) {
   const result = studentResults[studentName];
   
-  // Check if student is JSS or SS - redirect to appropriate template
+  // Check if student is Nursery/Creche, JSS or SS - redirect to appropriate template
   const classLower = result.class.toLowerCase();
+  
+  if (classLower.includes('nursery') || classLower.includes('creche') || classLower.includes('pre-nursery')) {
+    // Redirect to Nursery/Creche result template
+    window.location.href = `result-nursery.html?name=${encodeURIComponent(studentName)}&class=${encodeURIComponent(className)}`;
+    return;
+  }
   
   if (classLower.includes('jss')) {
     // Redirect to JSS result template
