@@ -214,3 +214,78 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 });
+
+// Function to view student's own result directly
+function viewMyResult() {
+  const portalUser = sessionStorage.getItem("portal_user");
+  
+  if (!portalUser) {
+    alert("⚠️ Please login to view your result");
+    window.location.href = "index.html";
+    return;
+  }
+  
+  const userData = JSON.parse(portalUser);
+  
+  // Check if user is a student
+  if (userData.role !== "student") {
+    alert("This feature is only available for students");
+    return;
+  }
+  
+  // Get student name and class
+  const studentName = userData.name;
+  const studentClass = userData.class;
+  
+  if (!studentName) {
+    alert("⚠️ Student name not found. Please login again.");
+    return;
+  }
+  
+  // Show loading message
+  const loadingMsg = document.createElement('div');
+  loadingMsg.style.cssText = `
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 30px 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    z-index: 10000;
+    text-align: center;
+    font-size: 18px;
+  `;
+  loadingMsg.innerHTML = `
+    <div style="font-size: 40px; margin-bottom: 15px;">📊</div>
+    <div>Loading your result...</div>
+  `;
+  document.body.appendChild(loadingMsg);
+  
+  // Redirect to result page with student info
+  setTimeout(() => {
+    loadingMsg.remove();
+    
+    // Determine which result template to use based on class
+    const classLower = (studentClass || '').toLowerCase();
+    let resultPage = 'results/result.html'; // default
+    
+    if (classLower.includes('nursery') || classLower.includes('creche') || classLower.includes('pre-nursery')) {
+      resultPage = 'results/result-nursery.html';
+    } else if (classLower.includes('jss')) {
+      resultPage = 'results/result-jss.html';
+    } else if (classLower.includes('ss')) {
+      // For SS students, check department (default to science)
+      const department = userData.department || 'science';
+      resultPage = `results/result-ss-${department.toLowerCase()}.html`;
+    }
+    
+    // Redirect with student name and class
+    window.location.href = `${resultPage}?name=${encodeURIComponent(studentName)}&class=${encodeURIComponent(studentClass)}&auto=true`;
+  }, 1000);
+}
+
+// Make function globally available
+window.viewMyResult = viewMyResult;
