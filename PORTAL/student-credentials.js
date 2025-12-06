@@ -2,27 +2,103 @@
 // Each student has their own unique password to access the portal
 
 export const studentCredentials = {
+  // CRECHE
+  "Albert Purity Amarachi": {
+    password: "Alb318chi25",
+    class: "Creche",
+    studentId: "HWA/CR/001",
+    email: "albert.purity@student.heavenlywisdom.edu"
+  },
+  "Moodness Moses Aniedi": {
+    password: "Moo527edi25",
+    class: "Creche",
+    studentId: "HWA/CR/002",
+    email: "moodness.moses@student.heavenlywisdom.edu"
+  },
+  "Starry Mackenzie": {
+    password: "Sta649zie25",
+    class: "Creche",
+    studentId: "HWA/CR/003",
+    email: "starry.mackenzie@student.heavenlywisdom.edu"
+  },
+  "Igodo Richman": {
+    password: "Igo482man25",
+    class: "Pre-Nursery",
+    studentId: "HWA/PN/001",
+    email: "igodo.richman@student.heavenlywisdom.edu"
+  },
+
+  // NURSERY 1
+  "Force Img Glory": {
+    password: "For316ory25",
+    class: "Nursery 1",
+    studentId: "HWA/N1/001",
+    email: "force.img@student.heavenlywisdom.edu"
+  },
+  "Zoe Justice": {
+    password: "Zoe291ice25",
+    class: "Nursery 1",
+    studentId: "HWA/N1/002",
+    email: "zoe.justice@student.heavenlywisdom.edu"
+  },
+  "Priye Claye Ebizaro": {
+    password: "Pri374aro25",
+    class: "Nursery 1",
+    studentId: "HWA/N1/003",
+    email: "priye.claye@student.heavenlywisdom.edu"
+  },
+  "Angel Melody": {
+    password: "Ang528ody25",
+    class: "Nursery 1",
+    studentId: "HWA/N1/004",
+    email: "angel.melody@student.heavenlywisdom.edu"
+  },
+  "Reward Tari": {
+    password: "Rew643ari25",
+    class: "Nursery 1",
+    studentId: "HWA/N1/005",
+    email: "reward.tari@student.heavenlywisdom.edu"
+  },
+  "Antoye Sunday Victory": {
+    password: "Ant759ory25",
+    class: "Nursery 1",
+    studentId: "HWA/N1/006",
+    email: "antoye.sunday@student.heavenlywisdom.edu"
+  },
+  "Shilatowa Ominigod": {
+    password: "Shi814god25",
+    class: "Nursery 1",
+    studentId: "HWA/N1/007",
+    email: "shilatowa.ominigod@student.heavenlywisdom.edu"
+  },
+  "Ukesma Rosemary": {
+    password: "Uke926ary25",
+    class: "Nursery 1",
+    studentId: "HWA/N1/008",
+    email: "ukesma.rosemary@student.heavenlywisdom.edu"
+  },
+
   // PRIMARY 1
   "Emmanuel Angel": {
-    password: "angel2025",
+    password: "Emm417gel25",
     class: "Primary 1",
     studentId: "HWA/P1/001",
     email: "emmanuel.angel@student.heavenlywisdom.edu"
   },
   "Emmanuel Ejiro": {
-    password: "ejiro2025",
+    password: "Emm532iro25",
     class: "Primary 1",
     studentId: "HWA/P1/002",
     email: "emmanuel.ejiro@student.heavenlywisdom.edu"
   },
   "Augusii Bethel": {
-    password: "bethel2025",
+    password: "Aug648hel25",
     class: "Primary 1",
     studentId: "HWA/P1/003",
     email: "augusii.bethel@student.heavenlywisdom.edu"
   },
   "Trustgod Areh": {
-    password: "trust2025",
+    password: "Tru753reh25",
     class: "Primary 1",
     studentId: "HWA/P1/004",
     email: "trustgod.areh@student.heavenlywisdom.edu"
@@ -30,37 +106,37 @@ export const studentCredentials = {
 
   // PRIMARY 2
   "Prince Boniface": {
-    password: "prince2025",
+    password: "Pri869ace25",
     class: "Primary 2",
     studentId: "HWA/P2/001",
     email: "prince.boniface@student.heavenlywisdom.edu"
   },
   "Antoye Gloria": {
-    password: "gloria2025",
+    password: "Ant974ria25",
     class: "Primary 2",
     studentId: "HWA/P2/002",
     email: "antoye.gloria@student.heavenlywisdom.edu"
   },
   "Oyinnuah proyebuyeg": {
-    password: "oyinnuah2025",
+    password: "Oyi185yeg25",
     class: "Primary 2",
     studentId: "HWA/P2/003",
     email: "oyinnuah.proyebuyeg@student.heavenlywisdom.edu"
   },
   "Delight starry": {
-    password: "delight2025",
+    password: "Del296rry25",
     class: "Primary 2",
     studentId: "HWA/P2/004",
     email: "delight.starry@student.heavenlywisdom.edu"
   },
   "Goodness Ebikabowei": {
-    password: "goodness2025",
+    password: "Goo317wei25",
     class: "Primary 2",
     studentId: "HWA/P2/005",
     email: "goodness.ebikabowei@student.heavenlywisdom.edu"
   },
   "Favour Jackson": {
-    password: "favour2025",
+    password: "Fav428son25",
     class: "Primary 2",
     studentId: "HWA/P2/006",
     email: "favour.jackson@student.heavenlywisdom.edu"
@@ -68,31 +144,31 @@ export const studentCredentials = {
 
   // PRIMARY 3
   "Adura Boniface": {
-    password: "adura2025",
+    password: "Adu539ace25",
     class: "Primary 3",
     studentId: "HWA/P3/001",
     email: "adura.boniface@student.heavenlywisdom.edu"
   },
   "Azibagiri Mentor": {
-    password: "mentor2025",
+    password: "Azi641tor25",
     class: "Primary 3",
     studentId: "HWA/P3/002",
     email: "azibagiri.mentor@student.heavenlywisdom.edu"
   },
   "Igodo Tresure": {
-    password: "tresure2025",
+    password: "Igo752ure25",
     class: "Primary 3",
     studentId: "HWA/P3/003",
     email: "igodo.tresure@student.heavenlywisdom.edu"
   },
   "samuel adawgu": {
-    password: "samuel2025",
+    password: "sam863wgu25",
     class: "Primary 3",
     studentId: "HWA/P3/004",
     email: "samuel.adawgu@student.heavenlywisdom.edu"
   },
   "Ferida Monday": {
-    password: "ferida2025",
+    password: "Fer974day25",
     class: "Primary 3",
     studentId: "HWA/P3/005",
     email: "ferida.monday@student.heavenlywisdom.edu"
@@ -100,19 +176,19 @@ export const studentCredentials = {
 
   // PRIMARY 4
   "Igodo Majesty": {
-    password: "majesty2025",
+    password: "Igo185sty25",
     class: "Primary 4",
     studentId: "HWA/P4/001",
     email: "igodo.majesty@student.heavenlywisdom.edu"
   },
   "Azibagiri Godson": {
-    password: "godson2025",
+    password: "Azi296son25",
     class: "Primary 4",
     studentId: "HWA/P4/002",
     email: "azibagiri.godson@student.heavenlywisdom.edu"
   },
   "David Osei": {
-    password: "david2025",
+    password: "Dav317sei25",
     class: "Primary 4",
     studentId: "HWA/P4/003",
     email: "david.osei@student.heavenlywisdom.edu"
@@ -120,19 +196,19 @@ export const studentCredentials = {
 
   // PRIMARY 5
   "Igodo Godswill": {
-    password: "godswill2025",
+    password: "Igo428ill25",
     class: "Primary 5",
     studentId: "HWA/P5/001",
     email: "igodo.godswill@student.heavenlywisdom.edu"
   },
   "Ogaga Glorious": {
-    password: "glorious2025",
+    password: "Oga539ous25",
     class: "Primary 5",
     studentId: "HWA/P5/002",
     email: "ogaga.glorious@student.heavenlywisdom.edu"
   },
   "Perpetual": {
-    password: "perpetual2025",
+    password: "Per641ual25",
     class: "Primary 5",
     studentId: "HWA/P5/003",
     email: "perpetual@student.heavenlywisdom.edu"
@@ -140,19 +216,19 @@ export const studentCredentials = {
 
   // JSS 1
   "Piama Isikpi": {
-    password: "piama2025",
+    password: "Pia752kpi25",
     class: "JSS 1",
     studentId: "HWA/JSS1/001",
     email: "piama.isikpi@student.heavenlywisdom.edu"
   },
   "Gift Forcebray": {
-    password: "gift2025",
+    password: "Gif863ray25",
     class: "JSS 1",
     studentId: "HWA/JSS1/002",
     email: "gift.forcebray@student.heavenlywisdom.edu"
   },
   "Monday Faoziya": {
-    password: "faoziya2025",
+    password: "Mon974iya25",
     class: "JSS 1",
     studentId: "HWA/JSS1/003",
     email: "monday.faoziya@student.heavenlywisdom.edu"
@@ -160,7 +236,7 @@ export const studentCredentials = {
 
   // SS 1
   "Stanley Favour": {
-    password: "stanley2025",
+    password: "Sta185our25",
     class: "SS 1",
     studentId: "HWA/SS1/001",
     email: "stanley.favour@student.heavenlywisdom.edu"
