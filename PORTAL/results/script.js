@@ -1,4 +1,4 @@
-import { students, studentPasswords, studentDepartments } from "./student.js";
+import { students, studentDepartments } from "./student.js";
 
 // Check if user is logged in
 const portalUser = sessionStorage.getItem("portal_user");
@@ -53,26 +53,13 @@ dropdownLinks.forEach(link => {
           const studentName = studentLink.getAttribute('data-name');
           const studentClass = studentLink.getAttribute('data-class');
           
-          // Check if student has a password
-          if (studentPasswords[studentName]) {
-            // Prompt for password
-            const enteredPassword = prompt(`Enter password for ${studentName}:`);
-            
-            if (enteredPassword === studentPasswords[studentName]) {
-              // Correct password - check if student has department info
-              const department = studentDepartments[studentName] || '';
-              const url = department 
-                ? `result.html?name=${encodeURIComponent(studentName)}&class=${encodeURIComponent(studentClass)}&department=${department}`
-                : `result.html?name=${encodeURIComponent(studentName)}&class=${encodeURIComponent(studentClass)}`;
-              window.location.href = url;
-            } else if (enteredPassword !== null) {
-              // Wrong password (null means user clicked cancel)
-              alert('Incorrect password! Please contact the school administrator.');
-            }
-          } else {
-            // No password set - show message
-            alert('No result available for this student yet.');
-          }
+          // No password needed for results - just check if result exists
+          // Check if student has department info (for SS students)
+          const department = studentDepartments[studentName] || '';
+          const url = department 
+            ? `result.html?name=${encodeURIComponent(studentName)}&class=${encodeURIComponent(studentClass)}&department=${department}`
+            : `result.html?name=${encodeURIComponent(studentName)}&class=${encodeURIComponent(studentClass)}`;
+          window.location.href = url;
         });
       });
     } else {
