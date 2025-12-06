@@ -1,243 +1,107 @@
-// Nursery/Creche Result Script
+import { studentResults } from "./student.js";
 
-// Get student data from URL or localStorage
-function loadStudentData() {
-  const urlParams = new URLSearchParams(window.location.search);
-  const studentId = urlParams.get('id');
-  
-  if (studentId) {
-    // Load from localStorage or database
-    const students = JSON.parse(localStorage.getItem('nursery_students') || '[]');
-    const student = students.find(s => s.id === studentId);
-    
-    if (student) {
-      document.getElementById('studentName').textContent = student.name;
-      document.getElementById('studentSex').textContent = student.sex;
-      document.getElementById('studentClass').textContent = student.class;
-      document.getElementById('year').textContent = new Date().getFullYear();
-      document.getElementById('term').textContent = 'First Term';
-    }
-  }
+// Check if user is logged in
+const portalUser = sessionStorage.getItem("portal_user");
+if (!portalUser) {
+  alert("⚠️ Please login to the portal to access student results.");
+  window.location.href = "../index.html";
 }
 
-// Calculate individual row
-function calculateRow(row) {
-  const ca1 = parseFloat(row.querySelector('.ca1').value) || 0;
-  const ca2 = parseFloat(row.querySelector('.ca2').value) || 0;
-  const exam = parseFloat(row.querySelector('.exam').value) || 0;
-  
-  const total = ca1 + ca2 + exam;
-  row.querySelector('.total').textContent = total;
-  
-  // Calculate grade
-  const grade = getGrade(total);
-  row.querySelector('.grade').textContent = grade;
-  
-  // Calculate remark
-  const remark = getRemark(total);
-  row.querySelector('.remark').textContent = remark;
-  
-  return total;
+// Get URL parameters
+const urlParams = new URLSearchParams(window.location.search);
+const studentName = urlParams.get("name");
+const className = urlParams.get("class");
+
+// Function to calculate grade
+function calculateGrade(total) {
+  if (total >= 70) return "A";
+  if (total >= 55) return "B";
+  if (total >= 40) return "C";
+  return "F";
 }
 
-// Get grade based on score
-function getGrade(score) {
-  if (score >= 90) return 'A+';
-  if (score >= 80) return 'A';
-  if (score >= 70) return 'B';
-  if (score >= 60) return 'C';
-  if (score >= 50) return 'D';
-  if (score >= 40) return 'E';
-  return 'F';
+// Function to get remark based on total
+function getRemark(total) {
+  if (total >= 90) return "Excellent";
+  if (total >= 70) return "Very Good";
+  if (total >= 55) return "Good";
+  if (total >= 40) return "Fair";
+  return "Needs Improvement";
 }
 
-// Get remark based on score
-function getRemark(score) {
-  if (score >= 90) return 'Excellent';
-  if (score >= 80) return 'Very Good';
-  if (score >= 70) return 'Good';
-  if (score >= 60) return 'Fair';
-  if (score >= 50) return 'Pass';
-  if (score >= 40) return 'Weak';
-  return 'Fail';
-}
-
-// Calculate all results
-function calculateResults() {
-  const rows = document.querySelectorAll('#resultsBody tr');
-  let totalScore = 0;
-  let subjectCount = 0;
+// Load student result
+if (studentName && studentResults[studentName]) {
+  const result = studentResults[studentName];
   
-  rows.forEach(row => {
-    const score = calculateRow(row);
-    if (score > 0) {
-      totalScore += score;
-      subjectCount++;
-    }
+  // Calculate totals
+  let grandTotal = 0;
+  result.subjects.forEach(subject => {
+    grandTotal += subject.total;
   });
+  const average = (grandTotal / result.subjects.length).toFixed(2);
   
-  // Update summary
-  document.getElementById('totalScore').textContent = totalScore;
+  // Determine sex (you can add this to student data later)
+  const sex = ""; // Placeholder
+  const numInClass = ""; // Placeholder
+  const timesOpened = ""; // Placeholder
+  const attendance = ""; // Placeholder
   
-  const average = subjectCount > 0 ? (totalScore / subjectCount).toFixed(2) : '0.00';
-  document.getElementById('average').textContent = average;
-  
-  // Show success message
-  showNotification('Results calculated successfully!', 'success');
-}
-
-// Add input listeners for auto-calculation
-document.addEventListener('DOMContentLoaded', function() {
-  loadStudentData();
-  
-  // Add listeners to all input fields
-  const inputs = document.querySelectorAll('input[type="number"]');
-  inputs.forEach(input => {
-    input.addEventListener('input', function() {
-      const row = this.closest('tr');
-      if (row) {
-        calculateRow(row);
-        updateSummary();
-      }
-    });
-  });
-});
-
-// Update summary automatically
-function updateSummary() {
-  const rows = document.querySelectorAll('#resultsBody tr');
-  let totalScore = 0;
-  let subjectCount = 0;
-  
-  rows.forEach(row => {
-    const total = parseFloat(row.querySelector('.total').textContent) || 0;
-    if (total > 0) {
-      totalScore += total;
-      subjectCount++;
-    }
-  });
-  
-  document.getElementById('totalScore').textContent = totalScore;
-  
-  const average = subjectCount > 0 ? (totalScore / subjectCount).toFixed(2) : '0.00';
-  document.getElementById('average').textContent = average;
-}
-
-// Save result
-function saveResult() {
-  const urlParams = new URLSearchParams(window.location.search);
-  const studentId = urlParams.get('id');
-  
-  if (!studentId) {
-    showNotification('No student ID found!', 'error');
-    return;
-  }
-  
-  // Collect all data
-  const resultData = {
-    studentId: studentId,
-    studentName: document.getElementById('studentName').textContent,
-    class: document.getElementById('studentClass').textContent,
-    term: document.getElementById('term').textContent,
-    year: document.getElementById('year').textContent,
-    subjects: [],
-    totalScore: document.getElementById('totalScore').textContent,
-    average: document.getElementById('average').textContent,
-    position: document.getElementById('position').textContent,
-    teacherComment: document.getElementById('teacherComment').value,
-    headComment: document.getElementById('headComment').value,
-    savedDate: new Date().toISOString()
-  };
-  
-  // Collect subject scores
-  const rows = document.querySelectorAll('#resultsBody tr');
-  rows.forEach(row => {
-    const subject = row.cells[0].textContent;
-    const ca1 = row.querySelector('.ca1').value;
-    const ca2 = row.querySelector('.ca2').value;
-    const exam = row.querySelector('.exam').value;
-    const total = row.querySelector('.total').textContent;
-    const grade = row.querySelector('.grade').textContent;
-    const remark = row.querySelector('.remark').textContent;
-    
-    resultData.subjects.push({
-      name: subject,
-      ca1: ca1,
-      ca2: ca2,
-      exam: exam,
-      total: total,
-      grade: grade,
-      remark: remark
-    });
-  });
-  
-  // Save to localStorage
-  const results = JSON.parse(localStorage.getItem('nursery_results') || '[]');
-  
-  // Check if result already exists
-  const existingIndex = results.findIndex(r => r.studentId === studentId);
-  if (existingIndex >= 0) {
-    results[existingIndex] = resultData;
-  } else {
-    results.push(resultData);
-  }
-  
-  localStorage.setItem('nursery_results', JSON.stringify(results));
-  
-  showNotification('Result saved successfully!', 'success');
-}
-
-// Show notification
-function showNotification(message, type = 'info') {
-  const notification = document.createElement('div');
-  notification.style.cssText = `
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    padding: 15px 25px;
-    background: ${type === 'error' ? '#dc3545' : '#28a745'};
-    color: white;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-    z-index: 10000;
-    animation: slideIn 0.3s ease;
+  // Update student info with new format
+  document.querySelector(".student-info").innerHTML = `
+    <div class="info-row">
+      <span class="info-label">Name of Student:</span>
+      <span class="info-value">${studentName}</span>
+      <span class="info-label">Sex:</span>
+      <span class="info-value">${sex}</span>
+      <span class="info-label">Class:</span>
+      <span class="info-value">${result.class}</span>
+    </div>
+    <div class="info-row">
+      <span class="info-label">Number of times school opened:</span>
+      <span class="info-value">${timesOpened}</span>
+      <span class="info-label">Number of Attendance:</span>
+      <span class="info-value">${attendance}</span>
+    </div>
+    <div class="info-row">
+      <span class="info-label">Number in Class:</span>
+      <span class="info-value">${numInClass}</span>
+      <span class="info-label">Grade:</span>
+      <span class="info-value">${calculateGrade(average)}</span>
+      <span class="info-label">Year:</span>
+      <span class="info-value">${result.year}</span>
+    </div>
+    <div class="info-row">
+      <span class="info-label">Term:</span>
+      <span class="info-value">${result.term}</span>
+      <span class="info-label">Next Term Begins:</span>
+      <span class="info-value">${result.nextTermBegins}</span>
+    </div>
   `;
-  notification.textContent = message;
-  document.body.appendChild(notification);
   
-  setTimeout(() => {
-    notification.style.animation = 'slideOut 0.3s ease';
-    setTimeout(() => notification.remove(), 300);
-  }, 3000);
-}
-
-// Load saved result if exists
-function loadSavedResult() {
-  const urlParams = new URLSearchParams(window.location.search);
-  const studentId = urlParams.get('id');
+  // Update results table
+  const tbody = document.querySelector(".results-table tbody");
+  tbody.innerHTML = result.subjects.map(subject => `
+    <tr>
+      <td>${subject.name}</td>
+      <td>${subject.test1}</td>
+      <td>${subject.test2}</td>
+      <td>${subject.exam}</td>
+      <td>${subject.total}</td>
+      <td>${subject.grade}</td>
+      <td>${subject.remark}</td>
+    </tr>
+  `).join("");
   
-  if (studentId) {
-    const results = JSON.parse(localStorage.getItem('nursery_results') || '[]');
-    const savedResult = results.find(r => r.studentId === studentId);
-    
-    if (savedResult) {
-      // Populate fields with saved data
-      savedResult.subjects.forEach((subject, index) => {
-        const row = document.querySelectorAll('#resultsBody tr')[index];
-        if (row) {
-          row.querySelector('.ca1').value = subject.ca1;
-          row.querySelector('.ca2').value = subject.ca2;
-          row.querySelector('.exam').value = subject.exam;
-          calculateRow(row);
-        }
-      });
-      
-      document.getElementById('teacherComment').value = savedResult.teacherComment || '';
-      document.getElementById('headComment').value = savedResult.headComment || '';
-      document.getElementById('position').textContent = savedResult.position || '-';
-    }
-  }
+  // Update remarks section
+  document.querySelector(".remark-box").innerHTML = `
+    <p><strong>CLASS TEACHER'S REMARK:</strong> <span class="remark-line">${result.formTeacherRemark || ''}</span></p>
+    <p><strong>HEAD TEACHER'S REMARK:</strong> <span class="remark-line">${result.principalRemark || ''}</span></p>
+  `;
+} else {
+  document.querySelector(".result-container").innerHTML = `
+    <div style="text-align: center; padding: 50px;">
+      <h2>No result found for this student</h2>
+      <p><a href="index.html">Go back to student list</a></p>
+    </div>
+  `;
 }
-
-// Load saved result on page load
-window.addEventListener('load', loadSavedResult);
