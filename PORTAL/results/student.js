@@ -118,6 +118,49 @@ export const studentPasswords = {
 
 // Student results data
 export const studentResults = {
+  // NURSERY 1 STUDENTS
+  "Force Img Glory": {
+    class: "Nursery 1",
+    term: "First Term",
+    year: "2025/2026",
+    subjects: [
+      { name: "Literacy (English)", test1: 18, test2: 19, exam: 56, total: 93, grade: "A", remark: "Excellent" },
+      { name: "Numeracy (Mathematics)", test1: 17, test2: 18, exam: 54, total: 89, grade: "A", remark: "Very Good" },
+      { name: "Rhymes & Songs", test1: 19, test2: 20, exam: 58, total: 97, grade: "A", remark: "Excellent" },
+      { name: "Colouring", test1: 18, test2: 19, exam: 57, total: 94, grade: "A", remark: "Excellent" },
+      { name: "Health Habits", test1: 17, test2: 18, exam: 55, total: 90, grade: "A", remark: "Excellent" },
+      { name: "Social Habits", test1: 18, test2: 19, exam: 56, total: 93, grade: "A", remark: "Excellent" },
+      { name: "Bible Knowledge", test1: 19, test2: 20, exam: 59, total: 98, grade: "A", remark: "Excellent" },
+      { name: "Handwriting", test1: 16, test2: 17, exam: 52, total: 85, grade: "A", remark: "Very Good" },
+      { name: "Practical Life Skills", test1: 18, test2: 19, exam: 57, total: 94, grade: "A", remark: "Excellent" },
+      { name: "Creative Arts", test1: 19, test2: 20, exam: 58, total: 97, grade: "A", remark: "Excellent" }
+    ],
+    formTeacherRemark: "Force is a brilliant and active child. Keep it up!",
+    principalRemark: "Excellent performance. Well done!",
+    nextTermBegins: "January 15, 2026"
+  },
+
+  "Zoe Justice": {
+    class: "Nursery 1",
+    term: "First Term",
+    year: "2025/2026",
+    subjects: [
+      { name: "Literacy (English)", test1: 16, test2: 17, exam: 52, total: 85, grade: "A", remark: "Very Good" },
+      { name: "Numeracy (Mathematics)", test1: 15, test2: 16, exam: 50, total: 81, grade: "A", remark: "Very Good" },
+      { name: "Rhymes & Songs", test1: 17, test2: 18, exam: 54, total: 89, grade: "A", remark: "Very Good" },
+      { name: "Colouring", test1: 16, test2: 17, exam: 51, total: 84, grade: "A", remark: "Very Good" },
+      { name: "Health Habits", test1: 15, test2: 16, exam: 49, total: 80, grade: "A", remark: "Very Good" },
+      { name: "Social Habits", test1: 16, test2: 17, exam: 52, total: 85, grade: "A", remark: "Very Good" },
+      { name: "Bible Knowledge", test1: 17, test2: 18, exam: 53, total: 88, grade: "A", remark: "Very Good" },
+      { name: "Handwriting", test1: 14, test2: 15, exam: 47, total: 76, grade: "A", remark: "Very Good" },
+      { name: "Practical Life Skills", test1: 16, test2: 17, exam: 51, total: 84, grade: "A", remark: "Very Good" },
+      { name: "Creative Arts", test1: 17, test2: 18, exam: 54, total: 89, grade: "A", remark: "Very Good" }
+    ],
+    formTeacherRemark: "Zoe is doing very well. Keep up the good work!",
+    principalRemark: "Very good performance!",
+    nextTermBegins: "January 15, 2026"
+  },
+
   "Emmanuel Angel": {
     class: "primary 1",
     term: "First Term",
