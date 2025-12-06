@@ -57,62 +57,63 @@ export const students = {
   ss3: []
 };
 
-// Student passwords (you can change these)
+// Student passwords - Format: FirstLetters + Numbers + LastLetters
+// Example: "Emmanuel Angel" = "EmAn2025gel"
 export const studentPasswords = {
   // Creche
-  "Albert Purity Amarachi": "albert2025",
-  "Moodness Moses Aniedi": "moodness2025",
-  "Starry Mackenzie": "starry2025",
-  "Igodo Richman": "richman2025",
+  "Albert Purity Amarachi": "AlPu2025mar",
+  "Moodness Moses Aniedi": "MoMo2025edi",
+  "Starry Mackenzie": "StMa2025zie",
+  "Igodo Richman": "IgRi2025man",
   
   // Nursery 1
-  "Force Img Glory": "force2025",
-  "Zoe Justice": "zoe2025",
-  "Priye Claye Ebizaro": "priye2025",
-  "Angel Melody": "melody2025",
-  "Reward Tari": "reward2025",
-  "Antoye Sunday Victory": "victory2025",
-  "Shilatowa Ominigod": "shilatowa2025",
-  "Ukesma Rosemary": "ukesma2025",
+  "Force Img Glory": "FoIm2025ory",
+  "Zoe Justice": "ZoJu2025ice",
+  "Priye Claye Ebizaro": "PrCl2025aro",
+  "Angel Melody": "AnMe2025ody",
+  "Reward Tari": "ReTa2025ari",
+  "Antoye Sunday Victory": "AnSu2025ory",
+  "Shilatowa Ominigod": "ShOm2025god",
+  "Ukesma Rosemary": "UkRo2025ary",
   
   // Primary 1
-  "Emmanuel Angel": "angel2025",
-  "Emmanuel Ejiro": "ejiro2025",
-  "Augusii Bethel": "bethel2025",
-  "Trustgod Areh": "trust2025",
+  "Emmanuel Angel": "EmAn2025gel",
+  "Emmanuel Ejiro": "EmEj2025iro",
+  "Augusii Bethel": "AuBe2025hel",
+  "Trustgod Areh": "TrAr2025reh",
   
   // Primary 2
-  "Prince Boniface": "prince2025",
-  "Antoye Gloria": "gloria2025",
-  "Oyinnuah proyebuyeg": "oyinnuah2025",
-  "Delight starry": "delight2025",
-  "Goodness Ebikabowei": "goodness2025",
-  "Favour Jackson": "favour2025",
+  "Prince Boniface": "PrBo2025ace",
+  "Antoye Gloria": "AnGl2025ria",
+  "Oyinnuah proyebuyeg": "OyPr2025yeg",
+  "Delight starry": "DeSt2025rry",
+  "Goodness Ebikabowei": "GoEb2025wei",
+  "Favour Jackson": "FaJa2025son",
   
   // Primary 3
-  "Adura Boniface": "adura2025",
-  "Azibagiri Mentor": "mentor2025",
-  "Igodo Tresure": "tresure2025",
-  "samuel adawgu": "samuel2025",
-  "Ferida Monday": "ferida2025",
+  "Adura Boniface": "AdBo2025ace",
+  "Azibagiri Mentor": "AzMe2025tor",
+  "Igodo Tresure": "IgTr2025ure",
+  "samuel adawgu": "SaAd2025wgu",
+  "Ferida Monday": "FeMo2025day",
   
   // Primary 4
-  "Igodo Majesty": "majesty2025",
-  "Azibagiri Godson": "godson2025",
-  "David Osei": "david2025",
+  "Igodo Majesty": "IgMa2025sty",
+  "Azibagiri Godson": "AzGo2025son",
+  "David Osei": "DaOs2025sei",
   
   // Primary 5
-  "Igodo Godswill": "godswill2025",
-  "Ogaga Glorious": "glorious2025",
-  "Perpetual": "perpetual2025",
+  "Igodo Godswill": "IgGo2025ill",
+  "Ogaga Glorious": "OgGl2025ous",
+  "Perpetual": "Pe2025tual",
   
   // JSS 1
-  "Piama Isikpi": "piama2025",
-  "Gift Forcebray": "gift2025",
-  "Monday Faoziya": "faoziya2025",
+  "Piama Isikpi": "PiIs2025kpi",
+  "Gift Forcebray": "GiFo2025ray",
+  "Monday Faoziya": "MoFa2025iya",
   
   // SS 1
-  "Stanley Favour": "stanley2025"
+  "Stanley Favour": "StFa2025our"
 };
 
 // Student results data
