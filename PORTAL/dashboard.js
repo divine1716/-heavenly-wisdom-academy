@@ -55,17 +55,43 @@ document.addEventListener("DOMContentLoaded", async () => {
     if (role === "student") {
       document.getElementById("studentSection").style.display = "block";
       document.getElementById("welcomeText").innerText = `Welcome, ${user.fullName || user.name} 🎓`;
+      // For students, results link goes directly to their result
+      const resultsLink = document.getElementById("resultsLink");
+      if (resultsLink) {
+        resultsLink.onclick = function(e) {
+          e.preventDefault();
+          viewMyResult();
+        };
+      }
     } else if (role === "parent") {
       document.getElementById("parentSection").style.display = "block";
       document.getElementById("welcomeText").innerText = `Welcome, ${user.fullName || user.name} 👪`;
+      // For non-students, results link goes to student list
+      const resultsLink = document.getElementById("resultsLink");
+      if (resultsLink) {
+        resultsLink.href = "results/index.html";
+        resultsLink.onclick = null;
+      }
     } else if (role === "teacher" || role === "staff") {
       document.getElementById("teacherSection").style.display = "block";
       document.getElementById("welcomeText").innerText = `Welcome, ${user.fullName || user.name} 📘`;
+      // For non-students, results link goes to student list
+      const resultsLink = document.getElementById("resultsLink");
+      if (resultsLink) {
+        resultsLink.href = "results/index.html";
+        resultsLink.onclick = null;
+      }
     } else if (role === "admin") {
       document.getElementById("adminSection").style.display = "block";
       document.getElementById("welcomeText").innerText = `Welcome, ${user.fullName || user.name} ⚙️`;
       // Load user count for admin
       loadUserCount();
+      // For non-students, results link goes to student list
+      const resultsLink = document.getElementById("resultsLink");
+      if (resultsLink) {
+        resultsLink.href = "results/index.html";
+        resultsLink.onclick = null;
+      }
     }
 
   } else {
