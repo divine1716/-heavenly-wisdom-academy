@@ -14,15 +14,12 @@ const className = urlParams.get("class");
 
 // Function to calculate grade for SS (WAEC grading system)
 function calculateGrade(total) {
-  if (total >= 75) return "A1";
-  if (total >= 70) return "B2";
-  if (total >= 65) return "B3";
-  if (total >= 60) return "C4";
-  if (total >= 55) return "C5";
-  if (total >= 50) return "C6";
-  if (total >= 45) return "D7";
-  if (total >= 40) return "E8";
-  return "F9";
+  if (total >= 90) return "A1";
+  if (total >= 80) return "A2";
+  if (total >= 70) return "B";
+  if (total >= 60) return "C";
+  if (total >= 50) return "D";
+  return "F";
 }
 
 // Function to get remark based on total for SS

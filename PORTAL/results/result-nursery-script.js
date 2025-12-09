@@ -14,9 +14,11 @@ const className = urlParams.get("class");
 
 // Function to calculate grade
 function calculateGrade(total) {
-  if (total >= 70) return "A";
-  if (total >= 55) return "B";
-  if (total >= 40) return "C";
+  if (total >= 90) return "A1";
+  if (total >= 80) return "A2";
+  if (total >= 70) return "B";
+  if (total >= 60) return "C";
+  if (total >= 50) return "D";
   return "F";
 }
 

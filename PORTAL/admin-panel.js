@@ -463,3 +463,8 @@ showTab = function(tabName) {
     loadAdmissions();
   }
 };
+
+/
+/ ===== ENHANCED ADMISSION REVIEW WITH EMAIL =====
+
+async function reviewAdmission(index,
