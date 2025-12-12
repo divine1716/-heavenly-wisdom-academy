@@ -95,29 +95,25 @@ document.addEventListener("DOMContentLoaded", () => {
     if (msg) msg.style.display = 'none';
     }, 5000);
 
-// Mobile menu toggle - Enhanced version
+// Mobile menu toggle - Simplified and reliable
 function toggleMobileMenu() {
+  alert('Button clicked!'); // Test if button is working
+  
   const navLinks = document.getElementById('navLinks');
   const toggleBtn = document.querySelector('.mobile-menu-toggle');
   
-  console.log('Toggle clicked, current classes:', navLinks.className);
+  console.log('Toggle clicked!');
   
-  // Remove any conflicting classes first
-  navLinks.classList.remove('mobile-hidden', 'mobile-visible');
-  
-  // Toggle the active class
-  navLinks.classList.toggle('active');
-  
-  // Update button appearance
+  // Simple toggle
   if (navLinks.classList.contains('active')) {
-    toggleBtn.innerHTML = '✕';
-    toggleBtn.style.transform = 'rotate(90deg)';
-  } else {
+    navLinks.classList.remove('active');
     toggleBtn.innerHTML = '☰';
-    toggleBtn.style.transform = 'rotate(0deg)';
+  } else {
+    navLinks.classList.add('active');
+    toggleBtn.innerHTML = '✕';
   }
   
-  console.log('After toggle, classes:', navLinks.className);
+  console.log('Menu is now:', navLinks.classList.contains('active') ? 'OPEN' : 'CLOSED');
 }
 
 // Auto-hide mobile menu on larger screens and ensure proper setup
