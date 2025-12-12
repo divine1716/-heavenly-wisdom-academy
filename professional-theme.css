@@ -499,19 +499,21 @@ tbody td {
 .rounded-xl { border-radius: var(--radius-xl); }
 .rounded-full { border-radius: var(--radius-full); }
 
-/* Mobile Menu Toggle */
+/* Mobile Menu Toggle - Override original styles */
 .mobile-menu-toggle {
-  display: none;
-  background: rgba(255, 255, 255, 0.2);
-  color: white;
-  border: 2px solid rgba(255, 255, 255, 0.3);
-  padding: 0.75rem;
-  border-radius: var(--radius-md);
-  font-size: 1.25rem;
-  cursor: pointer;
-  transition: all var(--transition-base);
-  box-shadow: var(--shadow-sm);
-  backdrop-filter: blur(10px);
+  display: none !important;
+  background: rgba(255, 255, 255, 0.2) !important;
+  color: white !important;
+  border: 2px solid rgba(255, 255, 255, 0.3) !important;
+  padding: 0.75rem !important;
+  border-radius: var(--radius-md) !important;
+  font-size: 1.25rem !important;
+  cursor: pointer !important;
+  transition: all var(--transition-base) !important;
+  box-shadow: var(--shadow-sm) !important;
+  backdrop-filter: blur(10px) !important;
+  position: relative !important;
+  z-index: 1002 !important;
 }
 
 .mobile-menu-toggle:hover {
@@ -521,12 +523,26 @@ tbody td {
 }
 
 /* Responsive Design */
+/* Force mobile menu toggle to show on mobile - Override everything */
 @media (max-width: 768px) {
   .mobile-menu-toggle {
     display: block !important;
-    z-index: 1001;
-    position: relative;
+    z-index: 1002 !important;
+    position: relative !important;
   }
+  
+  /* Hide desktop navigation on mobile */
+  .nav-links:not(.active) {
+    display: none !important;
+  }
+}
+
+/* Ensure mobile toggle is visible on small screens */
+@media screen and (max-width: 768px) {
+  button.mobile-menu-toggle {
+    display: block !important;
+  }
+}
   
   header nav {
     flex-wrap: wrap;
@@ -627,10 +643,11 @@ tbody td {
     font-size: 0.9rem;
   }
   
-  /* Override conflicting mobile styles */
+  /* Override ALL conflicting mobile styles */
   .nav-links.mobile-hidden,
   .nav-links.mobile-visible {
     display: flex !important;
+    flex-direction: column !important;
   }
   
   .nav-links.mobile-hidden {
@@ -638,6 +655,16 @@ tbody td {
     opacity: 0 !important;
     visibility: hidden !important;
     max-height: 0 !important;
+  }
+  
+  /* Ensure desktop nav is hidden on mobile when not active */
+  .nav-links:not(.active) {
+    display: none !important;
+  }
+  
+  .nav-links.active {
+    display: flex !important;
+    flex-direction: column !important;
   }
 }
 

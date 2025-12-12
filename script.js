@@ -95,19 +95,57 @@ document.addEventListener("DOMContentLoaded", () => {
     if (msg) msg.style.display = 'none';
     }, 5000);
 
-// Mobile menu toggle
+// Mobile menu toggle - Enhanced version
 function toggleMobileMenu() {
   const navLinks = document.getElementById('navLinks');
+  const toggleBtn = document.querySelector('.mobile-menu-toggle');
+  
   console.log('Toggle clicked, current classes:', navLinks.className);
+  
+  // Remove any conflicting classes first
+  navLinks.classList.remove('mobile-hidden', 'mobile-visible');
+  
+  // Toggle the active class
   navLinks.classList.toggle('active');
+  
+  // Update button appearance
+  if (navLinks.classList.contains('active')) {
+    toggleBtn.innerHTML = '✕';
+    toggleBtn.style.transform = 'rotate(90deg)';
+  } else {
+    toggleBtn.innerHTML = '☰';
+    toggleBtn.style.transform = 'rotate(0deg)';
+  }
+  
   console.log('After toggle, classes:', navLinks.className);
 }
 
-// Auto-hide mobile menu on larger screens
+// Auto-hide mobile menu on larger screens and ensure proper setup
 window.addEventListener('resize', () => {
   const navLinks = document.getElementById('navLinks');
+  const toggleBtn = document.querySelector('.mobile-menu-toggle');
+  
   if (window.innerWidth > 768) {
-    navLinks.classList.remove('mobile-hidden', 'mobile-visible');
+    // Desktop view
+    navLinks.classList.remove('mobile-hidden', 'mobile-visible', 'active');
+    navLinks.style.display = 'flex';
+    if (toggleBtn) toggleBtn.innerHTML = '☰';
+  } else {
+    // Mobile view
+    if (!navLinks.classList.contains('active')) {
+      navLinks.style.display = 'none';
+    }
+  }
+});
+
+// Ensure proper setup on page load
+document.addEventListener('DOMContentLoaded', () => {
+  const navLinks = document.getElementById('navLinks');
+  const toggleBtn = document.querySelector('.mobile-menu-toggle');
+  
+  if (window.innerWidth <= 768) {
+    navLinks.style.display = 'none';
+    if (toggleBtn) toggleBtn.innerHTML = '☰';
   }
 });
 
