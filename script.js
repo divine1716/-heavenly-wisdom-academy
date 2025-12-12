@@ -98,13 +98,7 @@ document.addEventListener("DOMContentLoaded", () => {
 // Mobile menu toggle
 function toggleMobileMenu() {
   const navLinks = document.getElementById('navLinks');
-  if (navLinks.classList.contains('mobile-hidden')) {
-    navLinks.classList.remove('mobile-hidden');
-    navLinks.classList.add('mobile-visible');
-  } else {
-    navLinks.classList.add('mobile-hidden');
-    navLinks.classList.remove('mobile-visible');
-  }
+  navLinks.classList.toggle('active');
 }
 
 // Auto-hide mobile menu on larger screens
