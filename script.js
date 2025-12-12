@@ -98,7 +98,9 @@ document.addEventListener("DOMContentLoaded", () => {
 // Mobile menu toggle
 function toggleMobileMenu() {
   const navLinks = document.getElementById('navLinks');
+  console.log('Toggle clicked, current classes:', navLinks.className);
   navLinks.classList.toggle('active');
+  console.log('After toggle, classes:', navLinks.className);
 }
 
 // Auto-hide mobile menu on larger screens
