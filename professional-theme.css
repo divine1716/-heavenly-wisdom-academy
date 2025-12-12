@@ -499,20 +499,28 @@ tbody td {
 .rounded-xl { border-radius: var(--radius-xl); }
 .rounded-full { border-radius: var(--radius-full); }
 
-/* Mobile Menu Toggle - Override original styles */
+/* FORCE MOBILE MENU BUTTON TO WORK - NUCLEAR OPTION */
 .mobile-menu-toggle {
-  background: rgba(255, 255, 255, 0.2) !important;
+  position: fixed !important;
+  top: 20px !important;
+  right: 20px !important;
+  width: 50px !important;
+  height: 50px !important;
+  background: #ff0000 !important; /* Red so we can see it */
   color: white !important;
-  border: 2px solid rgba(255, 255, 255, 0.3) !important;
-  padding: 0.75rem !important;
-  border-radius: var(--radius-md) !important;
-  font-size: 1.25rem !important;
+  border: none !important;
+  border-radius: 50% !important;
+  font-size: 20px !important;
   cursor: pointer !important;
-  transition: all var(--transition-base) !important;
-  box-shadow: var(--shadow-sm) !important;
-  backdrop-filter: blur(10px) !important;
-  position: relative !important;
-  z-index: 1002 !important;
+  z-index: 9999 !important;
+  display: none !important;
+}
+
+/* Show ONLY on mobile */
+@media (max-width: 768px) {
+  .mobile-menu-toggle {
+    display: block !important;
+  }
 }
 
 /* Hide on desktop */
