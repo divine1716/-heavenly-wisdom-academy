@@ -43,7 +43,31 @@
         <h1>HEAVENLY WISDOM INTERNATIONAL ACADEMY</h1>
       </div>
 
-      <button class="mobile-menu-toggle" id="mobileToggle" onclick="toggleMobileMenu();">☰</button>
+      <!-- Simple Mobile Menu Button -->
+      <button id="mobileMenuBtn" style="display: none; position: fixed; top: 20px; right: 20px; z-index: 9999; background: #7c6aef; color: white; border: none; padding: 15px; border-radius: 10px; font-size: 20px; cursor: pointer;" onclick="
+        var menu = document.getElementById('mobileNav');
+        if (menu.style.display === 'block') {
+          menu.style.display = 'none';
+          this.innerHTML = '☰';
+        } else {
+          menu.style.display = 'block';
+          this.innerHTML = '✕';
+        }
+      ">☰</button>
+      
+      <!-- Mobile Navigation Menu -->
+      <div id="mobileNav" style="display: none; position: fixed; top: 80px; left: 0; right: 0; background: linear-gradient(135deg, #7c6aef 0%, #14b8a6 100%); z-index: 9998; padding: 20px 0; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
+        <a href="index.html" style="display: block; color: white; text-decoration: none; padding: 15px 30px; border-bottom: 1px solid rgba(255,255,255,0.1); font-size: 18px;">🏠 Home</a>
+        <a href="ADMISSION/public/index.html" style="display: block; color: white; text-decoration: none; padding: 15px 30px; border-bottom: 1px solid rgba(255,255,255,0.1); font-size: 18px;">📝 Admission</a>
+        <a href="FEES/index.html" style="display: block; color: white; text-decoration: none; padding: 15px 30px; border-bottom: 1px solid rgba(255,255,255,0.1); font-size: 18px;">💰 Fees</a>
+        <a href="PORTAL/student-login.html" style="display: block; color: white; text-decoration: none; padding: 15px 30px; border-bottom: 1px solid rgba(255,255,255,0.1); font-size: 18px;">🎓 Student Login</a>
+        <a href="ABOUT US/index.html" style="display: block; color: white; text-decoration: none; padding: 15px 30px; border-bottom: 1px solid rgba(255,255,255,0.1); font-size: 18px;">ℹ️ About</a>
+        <a href="GALLERY/index.html" style="display: block; color: white; text-decoration: none; padding: 15px 30px; border-bottom: 1px solid rgba(255,255,255,0.1); font-size: 18px;">📷 Gallery</a>
+        <a href="NEWS/index.html" style="display: block; color: white; text-decoration: none; padding: 15px 30px; border-bottom: 1px solid rgba(255,255,255,0.1); font-size: 18px;">📰 News</a>
+        <a href="FAQ/index.html" style="display: block; color: white; text-decoration: none; padding: 15px 30px; border-bottom: 1px solid rgba(255,255,255,0.1); font-size: 18px;">❓ FAQ</a>
+        <a href="CALENDAR/index.html" style="display: block; color: white; text-decoration: none; padding: 15px 30px; border-bottom: 1px solid rgba(255,255,255,0.1); font-size: 18px;">📅 Calendar</a>
+        <a href="CONTACT/index.html" style="display: block; color: white; text-decoration: none; padding: 15px 30px; font-size: 18px;">📞 Contact</a>
+      </div>
       
       <ul class="nav-links" id="navLinks">
         <li><a href="index.html">🏠 Home</a></li>

@@ -95,35 +95,33 @@ document.addEventListener("DOMContentLoaded", () => {
     if (msg) msg.style.display = 'none';
     }, 5000);
 
-// Mobile menu toggle - Working version
-function toggleMobileMenu() {
-  const navLinks = document.getElementById('navLinks');
-  const toggleBtn = document.getElementById('mobileToggle');
-  
-  console.log('Toggle clicked!');
-  
-  // Toggle visibility
-  if (navLinks.style.display === 'block') {
-    // Close menu
-    navLinks.style.display = 'none';
-    toggleBtn.innerHTML = '☰';
-    console.log('Menu CLOSED');
-  } else {
-    // Open menu
-    navLinks.style.display = 'block';
-    navLinks.style.position = 'fixed';
-    navLinks.style.top = '120px';
-    navLinks.style.left = '0';
-    navLinks.style.right = '0';
-    navLinks.style.background = 'linear-gradient(135deg, rgba(124, 106, 239, 0.98) 0%, rgba(20, 184, 166, 0.98) 100%)';
-    navLinks.style.zIndex = '1000';
-    navLinks.style.padding = '20px 0';
-    navLinks.style.boxShadow = '0 10px 25px rgba(0,0,0,0.3)';
-    navLinks.style.borderRadius = '0 0 15px 15px';
-    toggleBtn.innerHTML = '✕';
-    console.log('Menu OPENED');
+// Simple mobile menu functions
+function closeMobileMenu() {
+  const menu = document.getElementById('mobileNav');
+  const btn = document.getElementById('mobileMenuBtn');
+  if (menu && btn) {
+    menu.style.display = 'none';
+    btn.innerHTML = '☰';
   }
 }
+
+// Close mobile menu when clicking on links
+document.addEventListener('DOMContentLoaded', function() {
+  const mobileNavLinks = document.querySelectorAll('#mobileNav a');
+  mobileNavLinks.forEach(link => {
+    link.addEventListener('click', closeMobileMenu);
+  });
+  
+  // Close menu when clicking outside
+  document.addEventListener('click', function(e) {
+    const menu = document.getElementById('mobileNav');
+    const btn = document.getElementById('mobileMenuBtn');
+    
+    if (menu && btn && !menu.contains(e.target) && !btn.contains(e.target)) {
+      closeMobileMenu();
+    }
+  });
+});
 
 // Auto-hide mobile menu on larger screens and ensure proper setup
 window.addEventListener('resize', () => {
