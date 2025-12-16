@@ -47,11 +47,22 @@
     <div id="studentSection" class="role-section">
       <h2>🎓 Student Dashboard</h2>
       
+      <!-- Inline Result Viewer -->
+      <div id="inlineResultViewer" class="inline-result-viewer" style="display: none;">
+        <div class="result-header">
+          <h3>📊 My Academic Result</h3>
+          <button onclick="closeInlineResult()" class="close-result-btn">✕</button>
+        </div>
+        <div id="resultContent" class="result-content">
+          <!-- Result will be loaded here -->
+        </div>
+      </div>
+      
       <div class="dashboard-grid">
         <div class="dashboard-card highlight-card">
           <h3>📊 My Results</h3>
           <p>View your academic performance and grades</p>
-          <button onclick="viewMyResult()" class="card-btn primary-btn">🎯 View My Result</button>
+          <button onclick="viewMyResultInline()" class="card-btn primary-btn">🎯 View My Result</button>
           <a href="results/index.html" class="card-btn secondary-btn">Browse All Results</a>
         </div>
 

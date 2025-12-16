@@ -55,12 +55,12 @@ document.addEventListener("DOMContentLoaded", async () => {
     if (role === "student") {
       document.getElementById("studentSection").style.display = "block";
       document.getElementById("welcomeText").innerText = `Welcome, ${user.fullName || user.name} 🎓`;
-      // For students, results link goes directly to their result
+      // For students, results link goes directly to their result (inline)
       const resultsLink = document.getElementById("resultsLink");
       if (resultsLink) {
         resultsLink.onclick = function(e) {
           e.preventDefault();
-          viewMyResult();
+          viewMyResultInline();
         };
       }
     } else if (role === "parent") {
@@ -241,7 +241,154 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 
-// Function to view student's own result directly
+// Function to view student's own result inline (NEW)
+function viewMyResultInline() {
+  const portalUser = sessionStorage.getItem("portal_user");
+  
+  if (!portalUser) {
+    alert("⚠️ Please login to view your result");
+    window.location.href = "index.html";
+    return;
+  }
+  
+  const userData = JSON.parse(portalUser);
+  
+  // Check if user is a student
+  if (userData.role !== "student") {
+    alert("This feature is only available for students");
+    return;
+  }
+  
+  // Get student name and class
+  const studentName = userData.name;
+  const studentClass = userData.class;
+  
+  if (!studentName) {
+    alert("⚠️ Student name not found. Please login again.");
+    return;
+  }
+  
+  // Show the inline result viewer
+  const resultViewer = document.getElementById('inlineResultViewer');
+  const resultContent = document.getElementById('resultContent');
+  
+  if (!resultViewer || !resultContent) {
+    alert("Result viewer not available. Please try again.");
+    return;
+  }
+  
+  // Show loading state
+  resultContent.innerHTML = `
+    <div class="result-loading">
+      <div class="spinner"></div>
+      <h3>Loading Your Result...</h3>
+      <p>Please wait while we fetch your academic performance data.</p>
+    </div>
+  `;
+  
+  // Show the result viewer
+  resultViewer.style.display = 'block';
+  
+  // Scroll to result viewer
+  resultViewer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  
+  // Determine which result template to use based on class
+  const classLower = (studentClass || '').toLowerCase();
+  let resultPage = 'results/result.html'; // default
+  
+  if (classLower.includes('nursery') || classLower.includes('creche') || classLower.includes('pre-nursery')) {
+    resultPage = 'results/result-nursery.html';
+  } else if (classLower.includes('jss')) {
+    resultPage = 'results/result-jss.html';
+  } else if (classLower.includes('ss')) {
+    // For SS students, check department (default to science)
+    const department = userData.department || 'science';
+    resultPage = `results/result-ss-${department.toLowerCase()}.html`;
+  }
+  
+  // Load result in iframe after a short delay
+  setTimeout(() => {
+    try {
+      const resultUrl = `${resultPage}?name=${encodeURIComponent(studentName)}&class=${encodeURIComponent(studentClass)}&auto=true&inline=true`;
+      
+      resultContent.innerHTML = `
+        <iframe 
+          src="${resultUrl}" 
+          class="result-iframe"
+          onload="handleResultLoad(this)"
+          onerror="handleResultError()"
+          title="Student Result">
+        </iframe>
+      `;
+    } catch (error) {
+      console.error('Error loading result:', error);
+      handleResultError();
+    }
+  }, 1500);
+}
+
+// Function to handle successful result load
+function handleResultLoad(iframe) {
+  console.log('Result loaded successfully');
+  
+  // Try to adjust iframe height based on content
+  try {
+    const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+    const height = Math.max(
+      iframeDoc.body.scrollHeight,
+      iframeDoc.body.offsetHeight,
+      iframeDoc.documentElement.clientHeight,
+      iframeDoc.documentElement.scrollHeight,
+      iframeDoc.documentElement.offsetHeight
+    );
+    
+    // Set minimum height but allow content to expand
+    iframe.style.height = Math.max(600, height + 50) + 'px';
+  } catch (e) {
+    // Cross-origin restrictions - use default height
+    iframe.style.height = '700px';
+  }
+}
+
+// Function to handle result loading error
+function handleResultError() {
+  const resultContent = document.getElementById('resultContent');
+  if (resultContent) {
+    resultContent.innerHTML = `
+      <div class="result-error">
+        <div class="error-icon">⚠️</div>
+        <h3>Unable to Load Result</h3>
+        <p>We're having trouble loading your result right now.</p>
+        <p>This could be because:</p>
+        <ul style="text-align: left; display: inline-block;">
+          <li>Your result hasn't been published yet</li>
+          <li>There's a temporary system issue</li>
+          <li>Your class information needs to be updated</li>
+        </ul>
+        <div style="margin-top: 20px;">
+          <button onclick="viewMyResultInline()" class="card-btn" style="margin-right: 10px;">🔄 Try Again</button>
+          <a href="results/index.html" class="card-btn secondary-btn">📊 Browse All Results</a>
+        </div>
+      </div>
+    `;
+  }
+}
+
+// Function to close inline result viewer
+function closeInlineResult() {
+  const resultViewer = document.getElementById('inlineResultViewer');
+  if (resultViewer) {
+    resultViewer.style.display = 'none';
+    
+    // Clear content to free memory
+    const resultContent = document.getElementById('resultContent');
+    if (resultContent) {
+      resultContent.innerHTML = '';
+    }
+  }
+}
+
+// Function to view student's own result directly (LEGACY - for external links)
 function viewMyResult() {
   const portalUser = sessionStorage.getItem("portal_user");
   
@@ -313,5 +460,9 @@ function viewMyResult() {
   }, 1000);
 }
 
-// Make function globally available
+// Make functions globally available
 window.viewMyResult = viewMyResult;
+window.viewMyResultInline = viewMyResultInline;
+window.closeInlineResult = closeInlineResult;
+window.handleResultLoad = handleResultLoad;
+window.handleResultError = handleResultError;
