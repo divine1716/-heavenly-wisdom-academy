@@ -319,6 +319,29 @@ export const studentResults = {
     guidanceCounsellorRemark: "Continue to improve.",
     principalRemark: "Well done!",
     nextTermBegins: "January 15, 2026"
+  },
+
+  // SS1 STUDENTS
+  "Stanley Favour": {
+    class: "SS 1",
+    term: "First Term",
+    year: "2025/2026",
+    department: "Science",
+    subjects: [
+      { name: "Mathematics", test1: 18, test2: 19, exam: 58, total: 95, grade: "A1", remark: "Excellent" },
+      { name: "English Language", test1: 17, test2: 18, exam: 55, total: 90, grade: "A1", remark: "Excellent" },
+      { name: "Physics", test1: 16, test2: 17, exam: 52, total: 85, grade: "A2", remark: "Very Good" },
+      { name: "Chemistry", test1: 17, test2: 18, exam: 54, total: 89, grade: "A1", remark: "Very Good" },
+      { name: "Biology", test1: 18, test2: 19, exam: 56, total: 93, grade: "A1", remark: "Excellent" },
+      { name: "Further Mathematics", test1: 15, test2: 16, exam: 49, total: 80, grade: "A2", remark: "Very Good" },
+      { name: "Geography", test1: 16, test2: 17, exam: 51, total: 84, grade: "A2", remark: "Very Good" },
+      { name: "Computer Studies", test1: 19, test2: 20, exam: 59, total: 98, grade: "A1", remark: "Excellent" },
+      { name: "Civic Education", test1: 17, test2: 18, exam: 53, total: 88, grade: "A1", remark: "Very Good" },
+      { name: "C.R.S", test1: 18, test2: 19, exam: 57, total: 94, grade: "A1", remark: "Excellent" }
+    ],
+    formTeacherRemark: "Stanley is an exceptional student with outstanding performance in all subjects. Keep up the excellent work!",
+    principalRemark: "Excellent performance across all subjects. A model student. Well done!",
+    nextTermBegins: "January 15, 2026"
   }
 };
 
