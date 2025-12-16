@@ -1,5 +1,6 @@
+// Removed alert to prevent blocking page load
 window.onload = function() {
-      alert("welcome to heavenly wisdom intl academy!");
+      console.log("Welcome to Heavenly Wisdom International Academy!");
 };
 
 function toggledarkmode() {
@@ -102,7 +103,58 @@ function closeMobileMenu() {
   if (menu && btn) {
     menu.style.display = 'none';
     btn.innerHTML = '☰';
+    btn.setAttribute('aria-expanded', 'false');
   }
+}
+
+// Keyboard navigation support
+function setupKeyboardNavigation() {
+  // Handle keyboard navigation for mobile menu button
+  const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+  if (mobileMenuBtn) {
+    mobileMenuBtn.addEventListener('keydown', function(e) {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        this.click();
+      }
+    });
+  }
+
+  // Handle keyboard navigation for navigation links
+  const navLinks = document.querySelectorAll('#navLinks a, #mobileNav a');
+  navLinks.forEach((link, index) => {
+    link.addEventListener('keydown', function(e) {
+      if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+        e.preventDefault();
+        const nextIndex = (index + 1) % navLinks.length;
+        navLinks[nextIndex].focus();
+      } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+        e.preventDefault();
+        const prevIndex = (index - 1 + navLinks.length) % navLinks.length;
+        navLinks[prevIndex].focus();
+      } else if (e.key === 'Escape') {
+        e.preventDefault();
+        closeMobileMenu();
+        if (mobileMenuBtn) mobileMenuBtn.focus();
+      }
+    });
+  });
+
+  // Handle keyboard navigation for social media links
+  const socialLinks = document.querySelectorAll('.top-social-icons a');
+  socialLinks.forEach((link, index) => {
+    link.addEventListener('keydown', function(e) {
+      if (e.key === 'ArrowRight') {
+        e.preventDefault();
+        const nextIndex = (index + 1) % socialLinks.length;
+        socialLinks[nextIndex].focus();
+      } else if (e.key === 'ArrowLeft') {
+        e.preventDefault();
+        const prevIndex = (index - 1 + socialLinks.length) % socialLinks.length;
+        socialLinks[prevIndex].focus();
+      }
+    });
+  });
 }
 
 // Close mobile menu when clicking on links
@@ -121,49 +173,81 @@ document.addEventListener('DOMContentLoaded', function() {
       closeMobileMenu();
     }
   });
+
+  // Initialize keyboard navigation
+  setupKeyboardNavigation();
 });
 
 // Auto-hide mobile menu on larger screens and ensure proper setup
 window.addEventListener('resize', () => {
   const navLinks = document.getElementById('navLinks');
-  const toggleBtn = document.getElementById('mobileToggle');
+  const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+  const mobileNav = document.getElementById('mobileNav');
   
   if (window.innerWidth > 768) {
-    // Desktop view - reset styles
-    navLinks.style.display = 'flex';
-    navLinks.style.position = 'static';
-    navLinks.style.background = 'none';
-    navLinks.style.boxShadow = 'none';
-    navLinks.style.padding = '0';
-    if (toggleBtn) toggleBtn.innerHTML = '☰';
+    // Desktop view - show desktop navigation
+    if (navLinks) {
+      navLinks.style.display = 'flex';
+      navLinks.style.position = 'static';
+      navLinks.style.background = 'none';
+      navLinks.style.boxShadow = 'none';
+      navLinks.style.padding = '0';
+    }
+    // Hide mobile menu and reset button
+    if (mobileNav) mobileNav.style.display = 'none';
+    if (mobileMenuBtn) {
+      mobileMenuBtn.innerHTML = '☰';
+      mobileMenuBtn.setAttribute('aria-expanded', 'false');
+    }
   } else {
-    // Mobile view - hide menu by default
-    navLinks.style.display = 'none';
-    if (toggleBtn) toggleBtn.innerHTML = '☰';
+    // Mobile view - hide desktop navigation, ensure mobile menu is ready
+    if (navLinks) {
+      navLinks.style.display = 'none';
+    }
+    if (mobileNav) mobileNav.style.display = 'none';
+    if (mobileMenuBtn) {
+      mobileMenuBtn.innerHTML = '☰';
+      mobileMenuBtn.setAttribute('aria-expanded', 'false');
+    }
   }
 });
 
 // Setup on page load
 document.addEventListener('DOMContentLoaded', () => {
   const navLinks = document.getElementById('navLinks');
-  const toggleBtn = document.getElementById('mobileToggle');
+  const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+  const mobileNav = document.getElementById('mobileNav');
   
   // Set initial state based on screen size
-  if (window.innerWidth <= 768) {
-    navLinks.style.display = 'none';
-    if (toggleBtn) toggleBtn.innerHTML = '☰';
+  if (window.innerWidth > 768) {
+    // Desktop - show desktop navigation
+    if (navLinks) navLinks.style.display = 'flex';
+    if (mobileNav) mobileNav.style.display = 'none';
+  } else {
+    // Mobile - hide desktop navigation
+    if (navLinks) navLinks.style.display = 'none';
+    if (mobileNav) mobileNav.style.display = 'none';
+    if (mobileMenuBtn) {
+      mobileMenuBtn.innerHTML = '☰';
+      mobileMenuBtn.setAttribute('aria-expanded', 'false');
+    }
   }
   
-  // Close menu when clicking on nav links (mobile)
-  const navLinkItems = navLinks.querySelectorAll('a');
-  navLinkItems.forEach(link => {
-    link.addEventListener('click', () => {
-      if (window.innerWidth <= 768) {
-        navLinks.style.display = 'none';
-        if (toggleBtn) toggleBtn.innerHTML = '☰';
-      }
+  // Close mobile menu when clicking on nav links
+  if (mobileNav) {
+    const mobileNavLinks = mobileNav.querySelectorAll('a');
+    mobileNavLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        if (window.innerWidth <= 768) {
+          mobileNav.style.display = 'none';
+          if (mobileMenuBtn) {
+            mobileMenuBtn.innerHTML = '☰';
+            mobileMenuBtn.setAttribute('aria-expanded', 'false');
+          }
+        }
+      });
     });
-  });
+  }
 });
 
 // Hom

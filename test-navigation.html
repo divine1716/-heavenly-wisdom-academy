@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navigation Test</title>
+    <link rel="stylesheet" href="professional-theme.css" />
+    <link rel="stylesheet" href="style.css" />
+    <style>
+        body { margin: 0; padding: 20px; }
+        .test-info {
+            background: #f0f0f0;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        .viewport-info {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background: rgba(0,0,0,0.8);
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="viewport-info">
+        Viewport: <span id="viewport-width"></span>px
+    </div>
+    
+    <div class="test-info">
+        <h2>Desktop Navigation Test</h2>
+        <p><strong>Instructions:</strong></p>
+        <ul>
+            <li>On desktop (>768px): You should see horizontal navigation links below</li>
+            <li>On mobile (≤768px): You should see a hamburger menu button</li>
+            <li>Resize your browser window to test responsive behavior</li>
+        </ul>
+    </div>
+
+    <!-- Top Info Bar --> 
+    <div class="top-bar" role="banner" aria-label="Contact information and social media links">
+        <div class="contact">
+            <span aria-label="Email address">Adorableheavenlywisdom@gmail.com</span> |
+            <span aria-label="Phone availability"> Call Us (Full time) </span>
+        </div>
+        <div class="top-social-icons" role="navigation" aria-label="Social media links">
+            <a href="#" target="_blank" aria-label="Visit our Facebook page (opens in new tab)">📘 Facebook</a>
+            <a href="#" target="_blank" aria-label="Visit our Twitter page (opens in new tab)">🐦 Twitter</a>
+        </div>
+    </div>
+
+    <!-- Header Section -->
+    <header>
+        <nav role="navigation" aria-label="Main navigation">
+            <div class="logo">
+                <h1>HEAVENLY WISDOM INTERNATIONAL ACADEMY</h1>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button id="mobileMenuBtn" 
+                    aria-label="Toggle mobile navigation menu" 
+                    aria-expanded="false" 
+                    aria-controls="mobileNav"
+                    style="display: none; position: fixed; top: 20px; right: 20px; z-index: 9999; background: #7c6aef; color: white; border: none; padding: 15px; border-radius: 10px; font-size: 20px; cursor: pointer;" 
+                    onclick="
+                var menu = document.getElementById('mobileNav');
+                var isExpanded = this.getAttribute('aria-expanded') === 'true';
+                if (menu.style.display === 'block') {
+                    menu.style.display = 'none';
+                    this.innerHTML = '☰';
+                    this.setAttribute('aria-expanded', 'false');
+                } else {
+                    menu.style.display = 'block';
+                    this.innerHTML = '✕';
+                    this.setAttribute('aria-expanded', 'true');
+                }
+            ">☰</button>
+            
+            <!-- Mobile Navigation Menu -->
+            <div id="mobileNav" 
+                 role="menu" 
+                 aria-label="Mobile navigation menu"
+                 style="display: none; position: fixed; top: 80px; left: 0; right: 0; background: linear-gradient(135deg, #7c6aef 0%, #14b8a6 100%); z-index: 9998; padding: 20px 0; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
+                <a href="#" role="menuitem" tabindex="0" style="display: block; color: white; text-decoration: none; padding: 15px 30px; border-bottom: 1px solid rgba(255,255,255,0.1); font-size: 18px;">🏠 Home</a>
+                <a href="#" role="menuitem" tabindex="0" style="display: block; color: white; text-decoration: none; padding: 15px 30px; border-bottom: 1px solid rgba(255,255,255,0.1); font-size: 18px;">📝 Admission</a>
+                <a href="#" role="menuitem" tabindex="0" style="display: block; color: white; text-decoration: none; padding: 15px 30px; border-bottom: 1px solid rgba(255,255,255,0.1); font-size: 18px;">💰 Fees</a>
+                <a href="#" role="menuitem" tabindex="0" style="display: block; color: white; text-decoration: none; padding: 15px 30px; font-size: 18px;">📞 Contact</a>
+            </div>
+            
+            <!-- Desktop Navigation -->
+            <ul class="nav-links" id="navLinks" role="menubar" aria-label="Desktop navigation menu">
+                <li role="none"><a href="#" role="menuitem" tabindex="0">🏠 Home</a></li>
+                <li role="none"><a href="#" role="menuitem" tabindex="0">📝 Admission</a></li>
+                <li role="none"><a href="#" role="menuitem" tabindex="0">💰 Fees</a></li>
+                <li role="none"><a href="#" role="menuitem" tabindex="0">🎓 Student Login</a></li>
+                <li role="none"><a href="#" role="menuitem" tabindex="0">ℹ️ About</a></li>
+                <li role="none"><a href="#" role="menuitem" tabindex="0">📷 Gallery</a></li>
+                <li role="none"><a href="#" role="menuitem" tabindex="0">📰 News</a></li>
+                <li role="none"><a href="#" role="menuitem" tabindex="0">❓ FAQ</a></li>
+                <li role="none"><a href="#" role="menuitem" tabindex="0">📅 Calendar</a></li>
+                <li role="none"><a href="#" role="menuitem" tabindex="0">📞 Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main style="padding: 20px;">
+        <h2>Navigation Status</h2>
+        <div id="status"></div>
+    </main>
+
+    <script src="script.js"></script>
+    <script>
+        function updateViewportInfo() {
+            document.getElementById('viewport-width').textContent = window.innerWidth;
+            
+            const navLinks = document.getElementById('navLinks');
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const status = document.getElementById('status');
+            
+            let statusText = '';
+            statusText += `<p><strong>Current viewport:</strong> ${window.innerWidth}px</p>`;
+            statusText += `<p><strong>Desktop navigation (.nav-links) display:</strong> ${getComputedStyle(navLinks).display}</p>`;
+            statusText += `<p><strong>Mobile menu button display:</strong> ${getComputedStyle(mobileMenuBtn).display}</p>`;
+            
+            if (window.innerWidth > 768) {
+                statusText += `<p style="color: green;"><strong>Expected:</strong> Desktop mode - navigation should be visible</p>`;
+            } else {
+                statusText += `<p style="color: blue;"><strong>Expected:</strong> Mobile mode - hamburger menu should be visible</p>`;
+            }
+            
+            status.innerHTML = statusText;
+        }
+        
+        // Update on load and resize
+        updateViewportInfo();
+        window.addEventListener('resize', updateViewportInfo);
+    </script>
+</body>
+</html>

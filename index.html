@@ -11,75 +11,217 @@
 
   <!-- Font Awesome CDN -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <!-- CRITICAL FIX: Ensure desktop navigation is visible -->
+  <style>
+    /* Force desktop navigation to be visible on desktop screens */
+    @media screen and (min-width: 769px) {
+      ul.nav-links#navLinks {
+        display: flex !important;
+        position: static !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+        justify-content: center !important;
+        flex-wrap: wrap !important;
+        gap: 15px !important;
+        padding: 20px 0 !important;
+        margin: 0 auto !important;
+        list-style: none !important;
+        background: transparent !important;
+        box-shadow: none !important;
+        top: auto !important;
+        left: auto !important;
+        right: auto !important;
+        width: auto !important;
+        height: auto !important;
+        z-index: 10 !important;
+      }
+      
+      ul.nav-links#navLinks li {
+        display: list-item !important;
+        margin: 0 !important;
+      }
+      
+      ul.nav-links#navLinks li a {
+        display: inline-block !important;
+        padding: 12px 20px !important;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+        color: white !important;
+        text-decoration: none !important;
+        border-radius: 8px !important;
+        font-weight: 600 !important;
+        font-size: 14px !important;
+        transition: all 0.3s ease !important;
+        border: 2px solid transparent !important;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1) !important;
+      }
+      
+      ul.nav-links#navLinks li a:hover {
+        transform: translateY(-3px) !important;
+        box-shadow: 0 6px 20px rgba(0,0,0,0.2) !important;
+        background: linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%) !important;
+        border-color: rgba(255,255,255,0.3) !important;
+      }
+      
+      /* Hide mobile elements on desktop */
+      button#mobileMenuBtn,
+      div#mobileNav {
+        display: none !important;
+        visibility: hidden !important;
+        position: static !important;
+        z-index: -1 !important;
+      }
+    }
+    
+    /* Ensure proper layout flow */
+    body {
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+    
+    .top-bar {
+      position: relative !important;
+      z-index: 50 !important;
+    }
+    
+    /* Show mobile elements on mobile screens */
+    @media screen and (max-width: 768px) {
+      button#mobileMenuBtn {
+        display: block !important;
+        position: fixed !important;
+        top: 20px !important;
+        right: 20px !important;
+        z-index: 9999 !important;
+        background: #7c6aef !important;
+        color: white !important;
+        border: none !important;
+        padding: 15px !important;
+        border-radius: 10px !important;
+        font-size: 20px !important;
+        cursor: pointer !important;
+      }
+      
+      ul.nav-links#navLinks {
+        display: none !important;
+      }
+    }
+    
+    /* CRITICAL FIX: Prevent navigation from covering content */
+    header {
+      position: relative !important;
+      z-index: 100 !important;
+    }
+    
+    main {
+      display: block !important;
+      visibility: visible !important;
+      opacity: 1 !important;
+      position: relative !important;
+      z-index: 1 !important;
+      margin-top: 0 !important; /* Ensure no overlap */
+      clear: both !important;
+    }
+    
+    .hero-slider {
+      display: block !important;
+      visibility: visible !important;
+      opacity: 1 !important;
+      height: 70vh !important;
+      background: #f0f0f0 !important;
+      position: relative !important;
+      z-index: 1 !important;
+    }
+    
+    .content {
+      display: block !important;
+      visibility: visible !important;
+      opacity: 1 !important;
+      padding: 20px !important;
+      background: #fff !important;
+      margin: 0 !important;
+      position: relative !important;
+      z-index: 1 !important;
+    }
+  </style>
 </head>
 
 <body>
   <!-- Top Info Bar --> 
-  <div class="top-bar">
+  <div class="top-bar" role="banner" aria-label="Contact information and social media links">
     <div class="contact">
-      <span>Adorableheavenlywisdom@gmail.com</span> |
-       <span> Call Us (Full time) </span> |
-      <button>
-        <i class="fa fa-user"></i>
+      <span aria-label="Email address">Adorableheavenlywisdom@gmail.com</span> |
+       <span aria-label="Phone availability"> Call Us (Full time) </span> |
+      <button aria-label="Access school dashboard">
+        <i class="fa fa-user" aria-hidden="true"></i>
         <a href="#" class="dashboard-btn">Go to School Dashboard</a>
       </button>
     </div>
 
     <!-- Top Social Icons -->
-    <div class="top-social-icons">
-     <a href="https://www.facebook.com/profile.php?id=61582386687704" target="_blank"><i class="fab fa-facebook-f"></i></a>
+    <div class="top-social-icons" role="navigation" aria-label="Social media links">
+     <a href="https://www.facebook.com/profile.php?id=61582386687704" target="_blank" aria-label="Visit our Facebook page (opens in new tab)"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
 
-      <a href="https://x.com/AdorableWi40474" target="_blank"><i class="fab fa-twitter"></i></a>
-      <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
-      <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+      <a href="https://x.com/AdorableWi40474" target="_blank" aria-label="Visit our Twitter page (opens in new tab)"><i class="fab fa-twitter" aria-hidden="true"></i></a>
+      <a href="https://instagram.com" target="_blank" aria-label="Visit our Instagram page (opens in new tab)"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+      <a href="https://linkedin.com" target="_blank" aria-label="Visit our LinkedIn page (opens in new tab)"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a>
     </div>
   </div>
 
   <!-- Header Section -->
   <header>
-    <nav>
+    <nav role="navigation" aria-label="Main navigation">
       <div class="logo">
         <img src="images/HEAVENLY.jpg" alt="School Logo" />
         <h1>HEAVENLY WISDOM INTERNATIONAL ACADEMY</h1>
       </div>
 
       <!-- Simple Mobile Menu Button -->
-      <button id="mobileMenuBtn" style="display: none; position: fixed; top: 20px; right: 20px; z-index: 9999; background: #7c6aef; color: white; border: none; padding: 15px; border-radius: 10px; font-size: 20px; cursor: pointer;" onclick="
+      <button id="mobileMenuBtn" 
+              aria-label="Toggle mobile navigation menu" 
+              aria-expanded="false" 
+              aria-controls="mobileNav"
+              tabindex="0"
+              onclick="
         var menu = document.getElementById('mobileNav');
+        var isExpanded = this.getAttribute('aria-expanded') === 'true';
         if (menu.style.display === 'block') {
           menu.style.display = 'none';
           this.innerHTML = '☰';
+          this.setAttribute('aria-expanded', 'false');
         } else {
           menu.style.display = 'block';
           this.innerHTML = '✕';
+          this.setAttribute('aria-expanded', 'true');
         }
       ">☰</button>
       
       <!-- Mobile Navigation Menu -->
-      <div id="mobileNav" style="display: none; position: fixed; top: 80px; left: 0; right: 0; background: linear-gradient(135deg, #7c6aef 0%, #14b8a6 100%); z-index: 9998; padding: 20px 0; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
-        <a href="index.html" style="display: block; color: white; text-decoration: none; padding: 15px 30px; border-bottom: 1px solid rgba(255,255,255,0.1); font-size: 18px;">🏠 Home</a>
-        <a href="ADMISSION/public/index.html" style="display: block; color: white; text-decoration: none; padding: 15px 30px; border-bottom: 1px solid rgba(255,255,255,0.1); font-size: 18px;">📝 Admission</a>
-        <a href="FEES/index.html" style="display: block; color: white; text-decoration: none; padding: 15px 30px; border-bottom: 1px solid rgba(255,255,255,0.1); font-size: 18px;">💰 Fees</a>
-        <a href="PORTAL/student-login.html" style="display: block; color: white; text-decoration: none; padding: 15px 30px; border-bottom: 1px solid rgba(255,255,255,0.1); font-size: 18px;">🎓 Student Login</a>
-        <a href="ABOUT US/index.html" style="display: block; color: white; text-decoration: none; padding: 15px 30px; border-bottom: 1px solid rgba(255,255,255,0.1); font-size: 18px;">ℹ️ About</a>
-        <a href="GALLERY/index.html" style="display: block; color: white; text-decoration: none; padding: 15px 30px; border-bottom: 1px solid rgba(255,255,255,0.1); font-size: 18px;">📷 Gallery</a>
-        <a href="NEWS/index.html" style="display: block; color: white; text-decoration: none; padding: 15px 30px; border-bottom: 1px solid rgba(255,255,255,0.1); font-size: 18px;">📰 News</a>
-        <a href="FAQ/index.html" style="display: block; color: white; text-decoration: none; padding: 15px 30px; border-bottom: 1px solid rgba(255,255,255,0.1); font-size: 18px;">❓ FAQ</a>
-        <a href="CALENDAR/index.html" style="display: block; color: white; text-decoration: none; padding: 15px 30px; border-bottom: 1px solid rgba(255,255,255,0.1); font-size: 18px;">📅 Calendar</a>
-        <a href="CONTACT/index.html" style="display: block; color: white; text-decoration: none; padding: 15px 30px; font-size: 18px;">📞 Contact</a>
+      <div id="mobileNav" 
+           role="menu" 
+           aria-label="Mobile navigation menu">
+        <a href="index.html" role="menuitem" tabindex="0" aria-current="page">🏠 Home</a>
+        <a href="ADMISSION/public/index.html" role="menuitem" tabindex="0">📝 Admission</a>
+        <a href="FEES/index.html" role="menuitem" tabindex="0">💰 Fees</a>
+        <a href="PORTAL/student-login.html" role="menuitem" tabindex="0">🎓 Student Login</a>
+        <a href="ABOUT US/index.html" role="menuitem" tabindex="0">ℹ️ About</a>
+        <a href="GALLERY/index.html" role="menuitem" tabindex="0">📷 Gallery</a>
+        <a href="NEWS/index.html" role="menuitem" tabindex="0">📰 News</a>
+        <a href="FAQ/index.html" role="menuitem" tabindex="0">❓ FAQ</a>
+        <a href="CALENDAR/index.html" role="menuitem" tabindex="0">📅 Calendar</a>
+        <a href="CONTACT/index.html" role="menuitem" tabindex="0">📞 Contact</a>
       </div>
       
-      <ul class="nav-links" id="navLinks">
-        <li><a href="index.html">🏠 Home</a></li>
-        <li><a href="ADMISSION/public/index.html">📝 Admission</a></li>
-        <li><a href="FEES/index.html">💰 Fees</a></li>
-        <li><a href="PORTAL/student-login.html">🎓 Student Login</a></li>
-        <li><a href="ABOUT US/index.html">ℹ️ About</a></li>
-        <li><a href="GALLERY/index.html">📷 Gallery</a></li>
-        <li><a href="NEWS/index.html">📰 News</a></li>
-        <li><a href="FAQ/index.html">❓ FAQ</a></li>
-        <li><a href="CALENDAR/index.html">📅 Calendar</a></li>
-        <li><a href="CONTACT/index.html">📞 Contact</a></li>
+      <ul class="nav-links" id="navLinks" role="menubar" aria-label="Desktop navigation menu">
+        <li role="none"><a href="index.html" role="menuitem" tabindex="0" aria-current="page">🏠 Home</a></li>
+        <li role="none"><a href="ADMISSION/public/index.html" role="menuitem" tabindex="0">📝 Admission</a></li>
+        <li role="none"><a href="FEES/index.html" role="menuitem" tabindex="0">💰 Fees</a></li>
+        <li role="none"><a href="PORTAL/student-login.html" role="menuitem" tabindex="0">🎓 Student Login</a></li>
+        <li role="none"><a href="ABOUT US/index.html" role="menuitem" tabindex="0">ℹ️ About</a></li>
+        <li role="none"><a href="GALLERY/index.html" role="menuitem" tabindex="0">📷 Gallery</a></li>
+        <li role="none"><a href="NEWS/index.html" role="menuitem" tabindex="0">📰 News</a></li>
+        <li role="none"><a href="FAQ/index.html" role="menuitem" tabindex="0">❓ FAQ</a></li>
+        <li role="none"><a href="CALENDAR/index.html" role="menuitem" tabindex="0">📅 Calendar</a></li>
+        <li role="none"><a href="CONTACT/index.html" role="menuitem" tabindex="0">📞 Contact</a></li>
       </ul>
       <button onclick="toggledarkmode()">🌙 Toggle Dark Mode</button>
     </nav>

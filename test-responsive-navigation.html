@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Responsive Navigation Test</title>
+  <link rel="stylesheet" href="professional-theme.css" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+    
+    .test-info {
+      position: fixed;
+      bottom: 10px;
+      left: 10px;
+      background: rgba(0,0,0,0.8);
+      color: white;
+      padding: 15px;
+      border-radius: 8px;
+      font-family: monospace;
+      font-size: 14px;
+      z-index: 10000;
+      max-width: 300px;
+    }
+    
+    .content-area {
+      margin-top: 200px;
+      padding: 20px;
+      text-align: center;
+    }
+    
+    .resize-instructions {
+      background: #f0f8ff;
+      padding: 20px;
+      margin: 20px;
+      border-radius: 8px;
+      border-left: 4px solid #007bff;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav role="navigation" aria-label="Main navigation">
+      <div class="logo">
+        <h1>HEAVENLY WISDOM INTERNATIONAL ACADEMY</h1>
+      </div>
+
+      <button id="mobileMenuBtn" 
+              aria-label="Toggle mobile navigation menu" 
+              aria-expanded="false" 
+              aria-controls="mobileNav"
+              tabindex="0"
+              onclick="
+        var menu = document.getElementById('mobileNav');
+        var isExpanded = this.getAttribute('aria-expanded') === 'true';
+        if (menu.style.display === 'block') {
+          menu.style.display = 'none';
+          this.innerHTML = '☰';
+          this.setAttribute('aria-expanded', 'false');
+        } else {
+          menu.style.display = 'block';
+          this.innerHTML = '✕';
+          this.setAttribute('aria-expanded', 'true');
+        }
+      ">☰</button>
+      
+      <div id="mobileNav" 
+           role="menu" 
+           aria-label="Mobile navigation menu">
+        <a href="#" role="menuitem" tabindex="0">🏠 Home</a>
+        <a href="#" role="menuitem" tabindex="0">📝 Admission</a>
+        <a href="#" role="menuitem" tabindex="0">💰 Fees</a>
+        <a href="#" role="menuitem" tabindex="0">🎓 Student Login</a>
+        <a href="#" role="menuitem" tabindex="0">ℹ️ About</a>
+        <a href="#" role="menuitem" tabindex="0">📷 Gallery</a>
+        <a href="#" role="menuitem" tabindex="0">📰 News</a>
+        <a href="#" role="menuitem" tabindex="0">❓ FAQ</a>
+        <a href="#" role="menuitem" tabindex="0">📅 Calendar</a>
+        <a href="#" role="menuitem" tabindex="0">📞 Contact</a>
+      </div>
+      
+      <ul class="nav-links" id="navLinks" role="menubar" aria-label="Desktop navigation menu">
+        <li role="none"><a href="#" role="menuitem" tabindex="0">🏠 Home</a></li>
+        <li role="none"><a href="#" role="menuitem" tabindex="0">📝 Admission</a></li>
+        <li role="none"><a href="#" role="menuitem" tabindex="0">💰 Fees</a></li>
+        <li role="none"><a href="#" role="menuitem" tabindex="0">🎓 Student Login</a></li>
+        <li role="none"><a href="#" role="menuitem" tabindex="0">ℹ️ About</a></li>
+        <li role="none"><a href="#" role="menuitem" tabindex="0">📷 Gallery</a></li>
+        <li role="none"><a href="#" role="menuitem" tabindex="0">📰 News</a></li>
+        <li role="none"><a href="#" role="menuitem" tabindex="0">❓ FAQ</a></li>
+        <li role="none"><a href="#" role="menuitem" tabindex="0">📅 Calendar</a></li>
+        <li role="none"><a href="#" role="menuitem" tabindex="0">📞 Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="content-area">
+    <div class="resize-instructions">
+      <h2>🔧 Responsive Navigation Test</h2>
+      <p><strong>Instructions:</strong></p>
+      <ul style="text-align: left;">
+        <li><strong>Desktop (≥769px):</strong> You should see horizontal navigation links below the logo</li>
+        <li><strong>Mobile (≤768px):</strong> You should see a hamburger menu button (☰) in the top-right corner</li>
+        <li><strong>Test:</strong> Resize your browser window to see the navigation switch between modes</li>
+        <li><strong>Mobile Test:</strong> Click the hamburger button to open/close the mobile menu</li>
+      </ul>
+    </div>
+    
+    <h2>Navigation Status</h2>
+    <p>Check the bottom-left corner for real-time navigation status information.</p>
+  </div>
+
+  <div class="test-info" id="testInfo">
+    Loading navigation status...
+  </div>
+
+  <script>
+    function updateNavigationStatus() {
+      const navLinks = document.querySelector('.nav-links');
+      const mobileMenuBtn = document.querySelector('#mobileMenuBtn');
+      const mobileNav = document.querySelector('#mobileNav');
+      
+      const testInfo = document.getElementById('testInfo');
+      
+      const navLinksStyle = window.getComputedStyle(navLinks);
+      const mobileMenuBtnStyle = window.getComputedStyle(mobileMenuBtn);
+      const mobileNavStyle = window.getComputedStyle(mobileNav);
+      
+      const viewportWidth = window.innerWidth;
+      const expectedMode = viewportWidth <= 768 ? 'Mobile' : 'Desktop';
+      
+      testInfo.innerHTML = `
+        <strong>Viewport:</strong> ${viewportWidth}px<br>
+        <strong>Expected Mode:</strong> ${expectedMode}<br><br>
+        <strong>Desktop Nav (.nav-links):</strong><br>
+        Display: ${navLinksStyle.display}<br>
+        Visible: ${navLinksStyle.display !== 'none'}<br><br>
+        <strong>Mobile Button (#mobileMenuBtn):</strong><br>
+        Display: ${mobileMenuBtnStyle.display}<br>
+        Visible: ${mobileMenuBtnStyle.display !== 'none'}<br><br>
+        <strong>Mobile Nav (#mobileNav):</strong><br>
+        Display: ${mobileNavStyle.display}<br>
+        Available: ${mobileNav ? 'Yes' : 'No'}
+      `;
+    }
+
+    // Update on load and resize
+    window.addEventListener('load', updateNavigationStatus);
+    window.addEventListener('resize', updateNavigationStatus);
+    
+    // Update every 500ms to catch any changes
+    setInterval(updateNavigationStatus, 500);
+  </script>
+</body>
+</html>
