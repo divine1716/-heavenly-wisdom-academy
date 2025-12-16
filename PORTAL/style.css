@@ -54,6 +54,7 @@ body {
 /* Input fields */
 .input-box {
   margin: 15px 0;
+  position: relative;
 }
 
 .input-box input,
@@ -67,13 +68,15 @@ body {
   box-sizing: border-box;
 }
 
-.password-box input {
-  padding-right: 40px; /* Make room for eye icon */
+.password-box input,
+.input-box input[type="password"] {
+  padding-right: 45px; /* Make room for eye icon */
 }
 
 .input-box input:focus,
 .input-box select:focus {
   border-color: #4a1dbd;
+  box-shadow: 0 0 5px rgba(74, 29, 189, 0.3);
 }
 
 /* Forgot password */
@@ -131,19 +134,64 @@ body {
   position: relative;
 }
 
-.toggle-password {
+.toggle-password,
+.password-toggle-icon {
   position: absolute;
-  right: 12px;
+  right: 15px;
   top: 50%;
   transform: translateY(-50%);
   cursor: pointer;
   color: #666;
   font-size: 16px;
   user-select: none;
+  z-index: 10;
+  padding: 5px;
+  border-radius: 3px;
+  transition: all 0.3s ease;
 }
 
-.toggle-password:hover {
+.toggle-password:hover,
+.password-toggle-icon:hover {
   color: #4a1dbd;
+  background-color: rgba(74, 29, 189, 0.1);
+}
+
+.toggle-password:active,
+.password-toggle-icon:active {
+  transform: translateY(-50%) scale(0.95);
+}
+
+/* Enhanced password input styling */
+.input-box.password-input {
+  position: relative;
+}
+
+.input-box.password-input input {
+  padding-right: 45px;
+}
+
+.input-box.password-input .password-eye {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #666;
+  font-size: 16px;
+  user-select: none;
+  z-index: 10;
+  padding: 5px;
+  border-radius: 3px;
+  transition: all 0.3s ease;
+}
+
+.input-box.password-input .password-eye:hover {
+  color: #4a1dbd;
+  background-color: rgba(74, 29, 189, 0.1);
+}
+
+.input-box.password-input .password-eye:active {
+  transform: translateY(-50%) scale(0.95);
 }
 
 .password-hint {
@@ -153,6 +201,60 @@ body {
   margin-top: -10px;
   margin-bottom: 10px;
   text-align: left;
+}
+
+/* Password strength indicator */
+.password-strength {
+  height: 3px;
+  background: #e0e0e0;
+  border-radius: 2px;
+  margin-top: 5px;
+  overflow: hidden;
+}
+
+.password-strength-bar {
+  height: 100%;
+  transition: all 0.3s ease;
+  border-radius: 2px;
+}
+
+.strength-weak { background: #ff4444; width: 33%; }
+.strength-medium { background: #ffaa00; width: 66%; }
+.strength-strong { background: #00aa00; width: 100%; }
+
+/* Enhanced input focus states */
+.input-box input:focus {
+  border-color: #4a1dbd;
+  box-shadow: 0 0 8px rgba(74, 29, 189, 0.3);
+  transform: translateY(-1px);
+}
+
+/* Password visibility animation */
+.password-eye.fa-eye-slash {
+  color: #4a1dbd;
+}
+
+/* Tooltip for password toggle */
+.password-eye::after {
+  content: attr(title);
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #333;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  z-index: 1000;
+}
+
+.password-eye:hover::after {
+  opacity: 1;
 }
 /* ===== MOBILE RESPONSIVE STYLES ===== */
 @media (max-width: 768px) {
