@@ -348,6 +348,34 @@ function handleResultLoad(iframe) {
     // Cross-origin restrictions - use default height
     iframe.style.height = '700px';
   }
+
+  // Post the student's result to the iframe as a fallback (so iframe doesn't need to import modules)
+  try {
+    const iframeWin = iframe.contentWindow;
+    import('./results/student.js').then(mod => {
+      const sr = mod.studentResults;
+      // Prefer session student name
+      let effName = null;
+      try { const pu = sessionStorage.getItem('portal_user'); if (pu) effName = JSON.parse(pu).name; } catch(e){}
+      effName = (effName || '').replace(/\s+/g,' ').trim();
+      let key = null;
+      if (effName) {
+        key = Object.keys(sr).find(k => k.toLowerCase() === effName.toLowerCase());
+      }
+      // fallback: try includes match
+      if (!key && effName) {
+        key = Object.keys(sr).find(k => k.toLowerCase().includes(effName.toLowerCase()));
+      }
+      if (key) {
+        iframeWin.postMessage({ type: 'studentResult', name: key, payload: sr[key] }, window.location.origin);
+      }
+    }).catch(err => {
+      // Don't block on errors - log for debugging
+      console.warn('Could not import student results to post to iframe:', err);
+    });
+  } catch (err) {
+    console.warn('PostMessage to iframe failed', err);
+  }
 }
 
 // Function to handle result loading error

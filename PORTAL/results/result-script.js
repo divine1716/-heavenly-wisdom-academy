@@ -185,4 +185,74 @@ function getRemark(total) {
     <p><strong>CLASS TEACHER'S REMARK:</strong> <span class="remark-line">${result.formTeacherRemark || ''}</span></p>
     <p><strong>HEAD TEACHER'S REMARK:</strong> <span class="remark-line">${result.principalRemark || ''}</span></p>
   `;
+
+// Listen for student data posted from parent (fallback for inline viewer)
+window.addEventListener('message', (event) => {
+  try {
+    if (!event.data || event.data.type !== 'studentResult') return;
+    if (event.origin !== window.location.origin) return; // ensure same-origin
+
+    const payload = event.data.payload;
+    const matchedKey = event.data.name || '';
+
+    if (!payload) return;
+
+    // Render the received result object (same rendering logic)
+    const res = payload;
+    let grandTotal = 0;
+    (res.subjects || []).forEach(subject => { grandTotal += subject.total || 0; });
+    const avg = ((res.subjects && res.subjects.length) ? (grandTotal / res.subjects.length).toFixed(2) : '0.00');
+
+    document.querySelector(".student-info").innerHTML = `
+      <div class="info-row">
+        <span class="info-label">Name of Student:</span>
+        <span class="info-value">${matchedKey}</span>
+        <span class="info-label">Sex:</span>
+        <span class="info-value">${res.sex || ''}</span>
+        <span class="info-label">Class:</span>
+        <span class="info-value">${res.class || ''}</span>
+      </div>
+      <div class="info-row">
+        <span class="info-label">Number of times school opened:</span>
+        <span class="info-value">${res.timesOpened || ''}</span>
+        <span class="info-label">Number of Attendance:</span>
+        <span class="info-value">${res.attendance || ''}</span>
+      </div>
+      <div class="info-row">
+        <span class="info-label">Number in Class:</span>
+        <span class="info-value">${res.numInClass || ''}</span>
+        <span class="info-label">Grade:</span>
+        <span class="info-value">${calculateGrade(avg)}</span>
+        <span class="info-label">Year:</span>
+        <span class="info-value">${res.year || ''}</span>
+      </div>
+      <div class="info-row">
+        <span class="info-label">Term:</span>
+        <span class="info-value">${res.term || ''}</span>
+        <span class="info-label">Next Term Begins:</span>
+        <span class="info-value">${res.nextTermBegins || ''}</span>
+      </div>
+    `;
+
+    const tbody = document.querySelector('.results-table tbody');
+    tbody.innerHTML = (res.subjects || []).map(subject => `
+      <tr>
+        <td>${subject.name}</td>
+        <td>${subject.test1 || ''}</td>
+        <td>${subject.test2 || ''}</td>
+        <td>${subject.exam || ''}</td>
+        <td>${subject.total || ''}</td>
+        <td>${subject.grade || ''}</td>
+        <td>${subject.remark || ''}</td>
+      </tr>
+    `).join('');
+
+    document.querySelector('.remark-box').innerHTML = `
+      <p><strong>CLASS TEACHER'S REMARK:</strong> <span class="remark-line">${res.formTeacherRemark || ''}</span></p>
+      <p><strong>HEAD TEACHER'S REMARK:</strong> <span class="remark-line">${res.principalRemark || ''}</span></p>
+    `;
+  } catch (err) {
+    console.warn('Failed to render result from parent message:', err);
+  }
+});
 })();
