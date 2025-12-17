@@ -41,6 +41,8 @@ if (studentName && studentResults[studentName]) {
     grandTotal += subject.total;
   });
   const average = (grandTotal / result.subjects.length).toFixed(2);
+  const grandDisplay = typeof result.grandTotal === 'number' ? result.grandTotal : grandTotal;
+  const avgDisplay = result.average ? result.average : average;
   
   // Determine sex (you can add this to student data later)
   const sex = ""; // Placeholder
@@ -67,8 +69,10 @@ if (studentName && studentResults[studentName]) {
     <div class="info-row">
       <span class="info-label">Number in Class:</span>
       <span class="info-value">${numInClass}</span>
-      <span class="info-label">Grade:</span>
-      <span class="info-value">${calculateGrade(average)}</span>
+      <span class="info-label">Grand Total:</span>
+      <span class="info-value">${grandDisplay}</span>
+      <span class="info-label">Average:</span>
+      <span class="info-value">${avgDisplay}</span>
       <span class="info-label">Year:</span>
       <span class="info-value">${result.year}</span>
     </div>
