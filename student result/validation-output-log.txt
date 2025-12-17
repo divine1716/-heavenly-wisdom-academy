@@ -1,0 +1,17 @@
+﻿--- BEGIN OBJECT TEXT PREVIEW ---
+{
+  // NURSERY 1 STUDENTS
+  "Force Img Glory": {
+    class: "Nursery 1",
+    term: "First Term",
+    year: "2025/2026",
+    subjects: [
+      { name: "Literacy (English)", test1: 18, test2: 19, exam: 56, total: 93, grade: "A", remark: "Excellent" },
+      { name: "Numeracy (Mathematics)", test1: 17, test2: 18, exam: 54, total: 89, grade: "A", remark: "Very Good" },
+      { name: "Rhymes & Songs", test1: 19, test2: 20, exam: 58, total: 97, grade: "A", remark: "Excellent" },
+      { name: "Colouring", test1: 18, test2: 19, exam: 57, total: 94, grade: "A", remark: "Excellent" },
+      { name: "Health Habits", test1: 17, test2: 18, exam: 55, total: 90, grade: "A", remark: "Excellent" },
+      { name: "Social Habits", test1: 18, test2: 19, exam: 56, total: 93, grade: "A", remark: "Excellent" },
+      { name: "Bible Knowledge", test1: 19, test2: 20, exam: 59, total: 98, grade: "A", remark: "Excellent" },
+      { name: "Handwriting", test1: 16, test2: 17, exam: 52, total: 85, gr
+--- END OBJECT TEXT PREVIEW ---
