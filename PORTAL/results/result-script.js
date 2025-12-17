@@ -127,6 +127,8 @@ function getRemark(total) {
     grandTotal += subject.total;
   });
   const average = (grandTotal / result.subjects.length).toFixed(2);
+  const grandDisplay = typeof result.grandTotal === 'number' ? result.grandTotal : grandTotal;
+  const avgDisplay = result.average ? result.average : average;
   
   // Determine sex (you can add this to student data later)
   const sex = ""; // Placeholder
@@ -153,16 +155,18 @@ function getRemark(total) {
     <div class="info-row">
       <span class="info-label">Number in Class:</span>
       <span class="info-value">${numInClass}</span>
-      <span class="info-label">Grade:</span>
-      <span class="info-value">${calculateGrade(average)}</span>
-      <span class="info-label">Year:</span>
-      <span class="info-value">${result.year}</span>
+      <span class="info-label">Grand Total:</span>
+      <span class="info-value">${grandDisplay}</span>
+      <span class="info-label">Average:</span>
+      <span class="info-value">${avgDisplay}</span>
     </div>
     <div class="info-row">
       <span class="info-label">Term:</span>
       <span class="info-value">${result.term}</span>
       <span class="info-label">Next Term Begins:</span>
       <span class="info-value">${result.nextTermBegins}</span>
+      <span class="info-label">Year:</span>
+      <span class="info-value">${result.year}</span>
     </div>
   `;
   
@@ -202,6 +206,8 @@ window.addEventListener('message', (event) => {
     let grandTotal = 0;
     (res.subjects || []).forEach(subject => { grandTotal += subject.total || 0; });
     const avg = ((res.subjects && res.subjects.length) ? (grandTotal / res.subjects.length).toFixed(2) : '0.00');
+    const grandDisplay = typeof res.grandTotal === 'number' ? res.grandTotal : grandTotal;
+    const avgDisplay = res.average ? res.average : avg;
 
     document.querySelector(".student-info").innerHTML = `
       <div class="info-row">
@@ -221,16 +227,18 @@ window.addEventListener('message', (event) => {
       <div class="info-row">
         <span class="info-label">Number in Class:</span>
         <span class="info-value">${res.numInClass || ''}</span>
-        <span class="info-label">Grade:</span>
-        <span class="info-value">${calculateGrade(avg)}</span>
-        <span class="info-label">Year:</span>
-        <span class="info-value">${res.year || ''}</span>
+        <span class="info-label">Grand Total:</span>
+        <span class="info-value">${grandDisplay}</span>
+        <span class="info-label">Average:</span>
+        <span class="info-value">${avgDisplay}</span>
       </div>
       <div class="info-row">
         <span class="info-label">Term:</span>
         <span class="info-value">${res.term || ''}</span>
         <span class="info-label">Next Term Begins:</span>
         <span class="info-value">${res.nextTermBegins || ''}</span>
+        <span class="info-label">Year:</span>
+        <span class="info-value">${res.year || ''}</span>
       </div>
     `;
 

@@ -275,26 +275,28 @@ export const studentResults = {
     class: "primary 2",
     term: "First Term",
     year: "2025/2026",
+    grandTotal: 1148,
+    average: "82.00",
     subjects: [
-      { name: "English Language", test1: 15, test2: 12, exam: 27, total: 54, grade: "D", remark: "pass" },
-      { name: "Mathematics", test1: 20, test2: 20, exam: 60, total: 100, grade: "A", remark: "Excellent" },
-      { name: "Basic Science & tech", test1: 20, test2: 20, exam: 45, total: 85, grade: "A", remark: "Very Good" },
-      { name: "National Values", test1: 20, test2: 20, exam: 60, total: 100, grade: "A", remark: "Excellent" },
-      { name: "P.H.E", test1: 14, test2: 18, exam: 42, total: 74, grade: "A", remark: "Excellent" },
-      { name: "Computer Studies", test1: 19, test2: 16, exam: 48, total: 83, grade: "A", remark: "Very Good" },
-      { name: "Pre-vocational Studies", test1: 20, test2: 20, exam: 40, total: 80, grade: "A", remark: "Very Good" },
-      { name: "History", test1: 13, test2: 16, exam: 38, total: 67, grade: "B", remark: "Good" },
-      { name: "C.C.A", test1: 16, test2: 19, exam: 47, total: 82, grade: "A", remark: "Very good" },
-      { name: "Quantitative reasoning", test1: 17, test2: 20, exam: 50, total: 87, grade: "A", remark: "Very Good" },
-      { name: "Verbal reasoning", test1: 20, test2: 19, exam: 57, total: 96, grade: "A", remark: "Excellent" },
-      { name: "Hand-writing", test1: 20, test2: 19, exam: 55, total: 94, grade: "A", remark: "Excellent" },
-      { name: "C.R.S", test1: 18, test2: 20, exam: 54, total: 92, grade: "A", remark: "Excellent" },
-      { name: "Phonics", test1: 15, test2: 11, exam: 33, total: 59, grade: "D", remark: "pass" }
+      { name: "English Language", test1: 11, test2: 15, exam: 35, total: 61, grade: "C", remark: "Credit" },
+      { name: "Mathematics", test1: 20, test2: 20, exam: 60, total: 100, grade: "A1", remark: "Excellent" },
+      { name: "Basic Science & tech", test1: 20, test2: 20, exam: 45, total: 85, grade: "A2", remark: "Very Good" },
+      { name: "National Values", test1: 20, test2: 20, exam: 60, total: 100, grade: "A1", remark: "Excellent" },
+      { name: "P.H.E", test1: 14, test2: 18, exam: 42, total: 74, grade: "B", remark: "Good" },
+      { name: "Computer Studies", test1: 19, test2: 16, exam: 48, total: 83, grade: "A2", remark: "Very Good" },
+      { name: "Pre-vocational Studies", test1: 20, test2: 20, exam: 40, total: 80, grade: "A2", remark: "Very Good" },
+      { name: "History", test1: 16, test2: 18, exam: 38, total: 67, grade: "C", remark: "Credit" },
+      { name: "C.C.A", test1: 16, test2: 19, exam: 47, total: 82, grade: "A2", remark: "Very Good" },
+      { name: "Quantitative reasoning", test1: 17, test2: 20, exam: 50, total: 87, grade: "A2", remark: "Very Good" },
+      { name: "Verbal reasoning", test1: 20, test2: 19, exam: 57, total: 96, grade: "A1", remark: "Excellent" },
+      { name: "Hand-writing", test1: 20, test2: 19, exam: 55, total: 94, grade: "A1", remark: "Excellent" },
+      { name: "C.R.S", test1: 18, test2: 20, exam: 54, total: 92, grade: "A1", remark: "Excellent" },
+      { name: "Phonics", test1: 15, test2: 11, exam: 33, total: 59, grade: "D", remark: "Pass" }
     ],
-    formTeacherRemark: "Excellent student. Keep up the good work!",
+    formTeacherRemark: "Excellent performance. Keep it up!",
     hostelMasterRemark: "–",
-    guidanceCounsellorRemark: "You are doing very well.",
-    principalRemark: "Outstanding performance!",
+    guidanceCounsellorRemark: "You are doing great. Stay focused.",
+    principalRemark: "Outstanding result. Well done!",
     nextTermBegins: "January 15, 2026"
   },
 
@@ -302,22 +304,23 @@ export const studentResults = {
     class: "primary 2",
     term: "First Term",
     year: "2025/2026",
+    grandTotal: 1022,
+    average: "73.00",
     subjects: [
-      { name: "English Language", test1: 16, test2: 19, exam: 35, total: 83, grade: "A", remark: "Very Good" },
-      { name: "Mathematics", test1: 18, test2: 15, exam: 45, total: 78, grade: "A", remark: "Very Good" },
-      { name: "Basic Science & tech", test1: 15, test2: 16, exam: 48, total: 79, grade: "A", remark: "Very Good" },
-      { name: "Quantitative reasoning", test1: 15, test2: 18, exam: 45, total: 78, grade: "A", remark: "Very Good" },
-      { name: "National Values", test1: 20, test2: 20, exam: 40, total: 80, grade: "A", remark: "Very Good" },
-      { name: "P.H.E", test1: 16, test2: 17, exam: 50, total: 83, grade: "A", remark: "Very Good" },
-      { name: "Computer Studies", test1: 15, test2: 10, exam: 30, total: 55, grade: "B", remark: "Good" },
-      { name: "Pre-vocational Studies", test1: 20, test2: 20, exam: 31, total: 71, grade: "A", remark: "Very Good" },
-      { name: "History", test1: 5, test2: 10, exam: 16, total: 31, grade: "F", remark: "Fair" },
-      { name: "C.C.A", test1: 20, test2: 13, exam: 41, total: 74, grade: "A", remark: "Very Good" },
-      { name: "Quantitative reasoning", test1: 15, test2: 18, exam: 45, total: 78, grade: "A", remark: "Very Good" },
-      { name: "Verbal reasoning", test1: 19, test2: 18, exam: 48, total: 85, grade: "A", remark: "Very Good" },
-      { name: "Hand-writing", test1: 14, test2: 18, exam: 40, total: 72, grade: "A", remark: "Very Good" },
-      { name: "C.R.S", test1: 16, test2: 17, exam: 49, total: 82, grade: "A", remark: "Very Good" },
-      { name: "Phonics", test1: 15, test2: 16, exam: 47, total: 78, grade: "A", remark: "Very Good" }
+      { name: "English Language", test1: 13, test2: 16, exam: 40, total: 69, grade: "C", remark: "Credit" },
+      { name: "Mathematics", test1: 18, test2: 16, exam: 42, total: 76, grade: "B", remark: "Good" },
+      { name: "Basic Science & tech", test1: 15, test2: 16, exam: 48, total: 79, grade: "B", remark: "Good" },
+      { name: "National Values", test1: 20, test2: 20, exam: 60, total: 100, grade: "A1", remark: "Excellent" },
+      { name: "P.H.E", test1: 18, test2: 12, exam: 45, total: 75, grade: "B", remark: "Good" },
+      { name: "Computer Studies", test1: 15, test2: 10, exam: 30, total: 55, grade: "D", remark: "Pass" },
+      { name: "Pre-vocational Studies", test1: 20, test2: 20, exam: 60, total: 100, grade: "A1", remark: "Excellent" },
+      { name: "History", test1: 5, test2: 10, exam: 16, total: 31, grade: "F", remark: "Fail" },
+      { name: "C.C.A", test1: 7, test2: 19, exam: 21, total: 47, grade: "F", remark: "Fail" },
+      { name: "Quantitative reasoning", test1: 15, test2: 18, exam: 45, total: 78, grade: "B", remark: "Good" },
+      { name: "Verbal reasoning", test1: 20, test2: 20, exam: 60, total: 100, grade: "A1", remark: "Excellent" },
+      { name: "Hand-writing", test1: 14, test2: 18, exam: 40, total: 72, grade: "B", remark: "Good" },
+      { name: "C.R.S", test1: 16, test2: 17, exam: 49, total: 82, grade: "A2", remark: "Very Good" },
+      { name: "Phonics", test1: 15, test2: 16, exam: 47, total: 78, grade: "B", remark: "Good" }
     ],
     formTeacherRemark: "Good performance. Keep working hard.",
     hostelMasterRemark: "–",
@@ -450,7 +453,7 @@ export const studentResults = {
     ],
     formTeacherRemark: "Rosemary is doing well. Keep up the good work!",
     principalRemark: "Good performance. Well done!",
-    nextTermBegins: "January 15, 2026"
+    nextTermBegins: "January 5, 2026"
   },
 
   // REMAINING PRIMARY 2 STUDENTS
@@ -458,109 +461,116 @@ export const studentResults = {
     class: "primary 2",
     term: "First Term",
     year: "2025/2026",
+    grandTotal: 1043,
+    average: "74.50",
     subjects: [
-      { name: "English Language", test1: 15, test2: 18, exam: 44, total: 77, grade: "A", remark: "Very Good" },
-      { name: "Mathematics", test1: 18, test2: 20, exam: 55, total: 93, grade: "A", remark: "Excellent" },
-      { name: "Basic Science & tech", test1: 16, test2: 17, exam: 49, total: 82, grade: "A", remark: "Very Good" },
-      { name: "Quantitative reasoning", test1: 18, test2: 20, exam: 55, total: 83, grade: "A", remark: "Very Good" },
-      { name: "National Values", test1: 20, test2: 20, exam: 36, total: 76, grade: "A", remark: "Very Good" },
-      { name: "P.H.E", test1: 17, test2: 18, exam: 51, total: 86, grade: "A", remark: "Very Good" },
-      { name: "Computer Studies", test1: 14, test2: 8, exam: 24, total: 46, grade: "C", remark: "Fair" },
-      { name: "Pre-vocational Studies", test1: 15, test2: 15, exam: 30, total: 60, grade: "B", remark: "Good" },
-      { name: "History", test1: 10, test2: 5, exam: 15, total: 30, grade: "F", remark: "Fair" },
-      { name: "C.C.A", test1: 17, test2: 18, exam: 50, total: 85, grade: "A", remark: "Very Good" },
-      { name: "Quantitative reasoning", test1: 14, test2: 15, exam: 43, total: 72, grade: "A", remark: "Very Good" },
-      { name: "Verbal reasoning", test1: 17, test2: 20, exam: 51, total: 88, grade: "A", remark: "Very Good" },
-      { name: "Hand-writing", test1: 14, test2: 18, exam: 40, total: 72, grade: "A", remark: "Very Good" },
-      { name: "C.R.S", test1: 17, test2: 18, exam: 50, total: 85, grade: "A", remark: "Very Good" },
-      { name: "Phonics", test1: 10, test2: 6, exam: 16, total: 32, grade: "F", remark: "Fair" }
+      { name: "English Language", test1: 15, test2: 18, exam: 55, total: 88, grade: "A2", remark: "Very Good" },
+      { name: "Mathematics", test1: 18, test2: 20, exam: 55, total: 93, grade: "A1", remark: "Excellent" },
+      { name: "Basic Science & tech", test1: 16, test2: 17, exam: 49, total: 82, grade: "A2", remark: "Very Good" },
+      { name: "Quantitative reasoning", test1: 18, test2: 20, exam: 55, total: 93, grade: "A1", remark: "Excellent" },
+      { name: "National Values", test1: 20, test2: 20, exam: 60, total: 100, grade: "A1", remark: "Excellent" },
+      { name: "P.H.E", test1: 10, test2: 18, exam: 28, total: 56, grade: "D", remark: "Pass" },
+      { name: "Computer Studies", test1: 14, test2: 8, exam: 24, total: 46, grade: "F", remark: "Fail" },
+      { name: "Pre-vocational Studies", test1: 20, test2: 20, exam: 60, total: 100, grade: "A1", remark: "Excellent" },
+      { name: "History", test1: 10, test2: 15, exam: 15, total: 40, grade: "F", remark: "Fail" },
+      { name: "C.C.A", test1: 11, test2: 13, exam: 32, total: 56, grade: "D", remark: "Pass" },
+      { name: "Verbal reasoning", test1: 20, test2: 20, exam: 60, total: 100, grade: "A1", remark: "Excellent" },
+      { name: "Hand-writing", test1: 14, test2: 18, exam: 40, total: 72, grade: "B", remark: "Good" },
+      { name: "C.R.S", test1: 17, test2: 18, exam: 50, total: 85, grade: "A2", remark: "Very Good" },
+      { name: "Phonics", test1: 10, test2: 6, exam: 16, total: 32, grade: "F", remark: "Fail" }
     ],
     formTeacherRemark: "Good performance. Keep working hard.",
     hostelMasterRemark: "–",
     guidanceCounsellorRemark: "Continue to improve.",
     principalRemark: "Well done!",
-    nextTermBegins: "January 15, 2026"
+    nextTermBegins: "January 5, 2026"
   },
 
   "Delight starry": {
     class: "primary 2",
     term: "First Term",
     year: "2025/2026",
+    grandTotal: 1038,
+    average: "74.14",
     subjects: [
-      { name: "English Language", test1: 8, test2: 11, exam: 22, total: 41, grade: "C", remark: "Fair" },
-      { name: "Mathematics", test1: 15, test2: 18, exam: 45, total: 78, grade: "A", remark: "Very Good" },
-      { name: "Basic Science & tech", test1: 12, test2: 12, exam: 30, total: 54, grade: "C", remark: "Fair" },
-      { name: "National Values", test1: 16, test2: 16, exam: 36, total: 68, grade: "B", remark: "Good" },
-      { name: "P.H.E", test1: 18, test2: 19, exam: 54, total: 91, grade: "A", remark: "Excellent" },
-      { name: "Computer Studies", test1: 10, test2: 13, exam: 28, total: 51, grade: "C", remark: "Fair" },
-      { name: "Pre-vocational Studies", test1: 20, test2: 20, exam: 20, total: 60, grade: "B", remark: "Good" },
-      { name: "History", test1: 6, test2: 10, exam: 18, total: 34, grade: "F", remark: "Fair" },
-      { name: "C.C.A", test1: 18, test2: 16, exam: 58, total: 92, grade: "A", remark: "Excellent" },
-      { name: "Quantitative reasoning", test1: 10, test2: 13, exam: 30, total: 53, grade: "C", remark: "Fair" },
-      { name: "Verbal reasoning", test1: 20, test2: 18, exam: 54, total: 92, grade: "A", remark: "Excellent" },
-      { name: "Hand-writing", test1: 18, test2: 14, exam: 40, total: 72, grade: "A", remark: "Very Good" },
-      { name: "C.R.S", test1: 18, test2: 19, exam: 53, total: 90, grade: "A", remark: "Excellent" },
-      { name: "Phonics", test1: 17, test2: 18, exam: 51, total: 86, grade: "A", remark: "Very Good" }
+      { name: "English Language", test1: 8, test2: 19, exam: 45, total: 72, grade: "B", remark: "Good" },
+      { name: "Mathematics", test1: 18, test2: 18, exam: 45, total: 81, grade: "A2", remark: "Very Good" },
+      { name: "Basic Science & tech", test1: 12, test2: 12, exam: 30, total: 54, grade: "D", remark: "Pass" },
+      { name: "National Values", test1: 20, test2: 20, exam: 60, total: 100, grade: "A1", remark: "Excellent" },
+      { name: "P.H.E", test1: 14, test2: 17, exam: 42, total: 73, grade: "B", remark: "Good" },
+      { name: "Computer Studies", test1: 10, test2: 13, exam: 28, total: 51, grade: "D", remark: "Pass" },
+      { name: "Pre-vocational Studies", test1: 20, test2: 20, exam: 60, total: 100, grade: "A1", remark: "Excellent" },
+      { name: "History", test1: 6, test2: 10, exam: 18, total: 34, grade: "F", remark: "Fail" },
+      { name: "C.C.A", test1: 14, test2: 18, exam: 40, total: 72, grade: "B", remark: "Good" },
+      { name: "Quantitative reasoning", test1: 10, test2: 13, exam: 30, total: 53, grade: "D", remark: "Pass" },
+      { name: "Verbal reasoning", test1: 20, test2: 20, exam: 60, total: 100, grade: "A1", remark: "Excellent" },
+      { name: "Hand-writing", test1: 18, test2: 14, exam: 40, total: 72, grade: "B", remark: "Good" },
+      { name: "C.R.S", test1: 18, test2: 19, exam: 53, total: 90, grade: "A1", remark: "Excellent" },
+      { name: "Phonics", test1: 17, test2: 18, exam: 51, total: 86, grade: "A2", remark: "Very Good" }
     ],
     formTeacherRemark: "Delight is a bright student. Excellent work!",
     hostelMasterRemark: "–",
     guidanceCounsellorRemark: "Keep up the excellent performance.",
     principalRemark: "Outstanding work!",
-    nextTermBegins: "January 15, 2026"
+    nextTermBegins: "January 5, 2026"
   },
 
   "Goodness Ebikabowei": {
     class: "primary 2",
     term: "First Term",
     year: "2025/2026",
+    grandTotal: 963,
+    average: "68.79",
     subjects: [
-      { name: "English Language", test1: 11, test2: 15, exam: 35, total: 61, grade: "B", remark: "Good" },
-      { name: "Mathematics", test1: 15, test2: 18, exam: 46, total: 79, grade: "A", remark: "Very Good" },
-      { name: "Basic Science & tech", test1: 8, test2: 8, exam: 32, total: 48, grade: "C", remark: "Fair" },
-      { name: "National Values", test1: 20, test2: 20, exam: 36, total: 76, grade: "A", remark: "Very Good" },
-      { name: "P.H.E", test1: 19, test2: 20, exam: 57, total: 96, grade: "A", remark: "Excellent" },
-      { name: "Computer Studies", test1: 6, test2: 10, exam: 16, total: 32, grade: "F", remark: "Fair" },
-      { name: "Pre-vocational Studies", test1: 20, test2: 20, exam: 31, total: 71, grade: "A", remark: "Very Good" },
-      { name: "History", test1: 16, test2: 13, exam: 9, total: 38, grade: "F", remark: "Fair" },
-      { name: "C.C.A", test1: 17, test2: 20, exam: 55, total: 92, grade: "A", remark: "Excellent" },
-      { name: "Quantitative reasoning", test1: 9, test2: 12, exam: 25, total: 46, grade: "C", remark: "Fair" },
-      { name: "Verbal reasoning", test1: 15, test2: 18, exam: 45, total: 78, grade: "A", remark: "Very Good" },
-      { name: "Hand-writing", test1: 19, test2: 20, exam: 55, total: 94, grade: "A", remark: "Excellent" },
-      { name: "C.R.S", test1: 19, test2: 20, exam: 56, total: 95, grade: "A", remark: "Excellent" },
-      { name: "Phonics", test1: 12, test2: 8, exam: 23, total: 43, grade: "C", remark: "Fair" }
+      { name: "English Language", test1: 11, test2: 18, exam: 44, total: 73, grade: "B", remark: "Good" },
+      { name: "Mathematics", test1: 15, test2: 18, exam: 46, total: 79, grade: "B", remark: "Good" },
+      { name: "Basic Science & tech", test1: 8, test2: 8, exam: 32, total: 48, grade: "F", remark: "Fail" },
+      { name: "National Values", test1: 20, test2: 20, exam: 60, total: 100, grade: "A1", remark: "Excellent" },
+      { name: "P.H.E", test1: 7, test2: 11, exam: 20, total: 38, grade: "F", remark: "Fail" },
+      { name: "Computer Studies", test1: 6, test2: 10, exam: 16, total: 32, grade: "F", remark: "Fail" },
+      { name: "Pre-vocational Studies", test1: 20, test2: 20, exam: 60, total: 100, grade: "A1", remark: "Excellent" },
+      { name: "History", test1: 16, test2: 13, exam: 9, total: 38, grade: "F", remark: "Fail" },
+      { name: "C.C.A", test1: 17, test2: 15, exam: 45, total: 77, grade: "B", remark: "Good" },
+      { name: "Quantitative reasoning", test1: 9, test2: 12, exam: 25, total: 46, grade: "F", remark: "Fail" },
+      { name: "Verbal reasoning", test1: 20, test2: 20, exam: 60, total: 100, grade: "A1", remark: "Excellent" },
+      { name: "Hand-writing", test1: 19, test2: 20, exam: 55, total: 94, grade: "A1", remark: "Excellent" },
+      { name: "C.R.S", test1: 19, test2: 20, exam: 56, total: 95, grade: "A1", remark: "Excellent" },
+      { name: "Phonics", test1: 12, test2: 8, exam: 23, total: 43, grade: "F", remark: "Fail" }
     ],
     formTeacherRemark: "Goodness is an exceptional student with outstanding performance!",
     hostelMasterRemark: "–",
     guidanceCounsellorRemark: "Excellent work. Keep it up!",
     principalRemark: "Outstanding performance!",
-    nextTermBegins: "January 15, 2026"
+    nextTermBegins: "January 5, 2026"
   },
 
   "Favour Jackson": {
     class: "primary 2",
     term: "First Term",
     year: "2025/2026",
+    grandTotal: 1131,
+    average: "80.79",
     subjects: [
-      { name: "English Language", test1: 13, test2: 16, exam: 40, total: 69, grade: "B", remark: "Good" },
-      { name: "Mathematics", test1: 14, test2: 17, exam: 42, total: 73, grade: "A", remark: "Very Good" },
-      { name: "Basic Science & tech", test1: 15, test2: 16, exam: 46, total: 77, grade: "A", remark: "Very Good" },
-      { name: "National Values", test1: 20, test2: 20, exam: 40, total: 80, grade: "A", remark: "Very Good" },
-      { name: "P.H.E", test1: 16, test2: 17, exam: 48, total: 81, grade: "A", remark: "Very Good" },
-      { name: "Computer Studies", test1: 12, test2: 15, exam: 36, total: 63, grade: "B", remark: "Good" },
-      { name: "Pre-vocational Studies", test1: 20, test2: 20, exam: 50, total: 90, grade: "A", remark: "Excellent" },
-      { name: "History", test1: 13, test2: 17, exam: 39, total: 69, grade: "B", remark: "Good" },
-      { name: "C.C.A", test1: 14, test2: 18, exam: 27, total: 59, grade: "B", remark: "Good" },
-      { name: "Quantitative reasoning", test1: 20, test2: 17, exam: 50, total: 87, grade: "A", remark: "Very Good" },
-      { name: "Verbal reasoning", test1: 18, test2: 19, exam: 48, total: 85, grade: "A", remark: "Very Good" },
-      { name: "Hand-writing", test1: 15, test2: 18, exam: 45, total: 78, grade: "A", remark: "Very Good" },
-      { name: "C.R.S", test1: 16, test2: 17, exam: 47, total: 80, grade: "A", remark: "Very Good" },
-      { name: "Phonics", test1: 15, test2: 16, exam: 45, total: 76, grade: "A", remark: "Very Good" }
+      { name: "English Language", test1: 13, test2: 16, exam: 50, total: 79, grade: "B", remark: "Good" },
+      { name: "Mathematics", test1: 14, test2: 17, exam: 34, total: 65, grade: "C", remark: "Credit" },
+      { name: "Basic Science & tech", test1: 15, test2: 16, exam: 46, total: 77, grade: "B", remark: "Good" },
+      { name: "National Values", test1: 20, test2: 20, exam: 60, total: 100, grade: "A1", remark: "Excellent" },
+      { name: "P.H.E", test1: 16, test2: 20, exam: 47, total: 83, grade: "A2", remark: "Very Good" },
+      { name: "Computer Studies", test1: 12, test2: 15, exam: 36, total: 63, grade: "C", remark: "Credit" },
+      { name: "Pre-vocational Studies", test1: 20, test2: 20, exam: 60, total: 100, grade: "A1", remark: "Excellent" },
+      { name: "History", test1: 13, test2: 17, exam: 39, total: 69, grade: "C", remark: "Credit" },
+      { name: "C.C.A", test1: 18, test2: 16, exam: 40, total: 74, grade: "B", remark: "Good" },
+      { name: "Quantitative reasoning", test1: 20, test2: 17, exam: 50, total: 87, grade: "A2", remark: "Very Good" },
+      { name: "Verbal reasoning", test1: 20, test2: 20, exam: 60, total: 100, grade: "A1", remark: "Excellent" },
+      { name: "Hand-writing", test1: 15, test2: 18, exam: 45, total: 78, grade: "B", remark: "Good" },
+      { name: "C.R.S", test1: 16, test2: 17, exam: 47, total: 80, grade: "A2", remark: "Very Good" },
+      { name: "Phonics", test1: 15, test2: 16, exam: 45, total: 76, grade: "B", remark: "Good" }
     ],
     formTeacherRemark: "Favour is making good progress. Keep working hard!",
     hostelMasterRemark: "–",
     guidanceCounsellorRemark: "Continue to improve your study habits.",
     principalRemark: "Good work. Aim higher next term!",
-    nextTermBegins: "January 15, 2026"
+    nextTermBegins: "January 5, 2026"
   },
 
   // PRIMARY 3 STUDENTS
@@ -588,7 +598,7 @@ export const studentResults = {
     hostelMasterRemark: "–",
     guidanceCounsellorRemark: "Keep up the excellent work.",
     principalRemark: "Outstanding performance!",
-    nextTermBegins: "January 15, 2026"
+    nextTermBegins: "January 5, 2026"
   },
 
   "Azibagiri Mentor": {
@@ -615,7 +625,7 @@ export const studentResults = {
     hostelMasterRemark: "–",
     guidanceCounsellorRemark: "Outstanding performance. Keep it up!",
     principalRemark: "Excellent results!",
-    nextTermBegins: "January 15, 2026"
+    nextTermBegins: "January 5, 2026"
   },
 
   "Igodo Tresure": {
@@ -669,7 +679,7 @@ export const studentResults = {
     hostelMasterRemark: "–",
     guidanceCounsellorRemark: "Focus on improving your study habits.",
     principalRemark: "Good effort. Aim higher next term!",
-    nextTermBegins: "January 15, 2026"
+    nextTermBegins: "January 5, 2026"
   },
 
   "Ferida Monday": {
@@ -696,7 +706,7 @@ export const studentResults = {
     hostelMasterRemark: "–",
     guidanceCounsellorRemark: "Keep up the excellent work.",
     principalRemark: "Outstanding performance!",
-    nextTermBegins: "January 15, 2026"
+    nextTermBegins: "January 5, 2026"
   },
 
   // PRIMARY 4 STUDENTS
