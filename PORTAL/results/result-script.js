@@ -1,14 +1,15 @@
 import { studentResults } from "./student.js";
 
-// Check if user is logged in
+// Check if user is logged in or this is an automated inline view
+const urlParams = new URLSearchParams(window.location.search);
+const autoView = urlParams.get('auto') === 'true' || urlParams.get('auto') === '1';
 const portalUser = sessionStorage.getItem("portal_user");
-if (!portalUser) {
+if (!portalUser && !autoView) {
   alert("⚠️ Please login to the portal to access student results.");
   window.location.href = "../index.html";
 }
 
-// Get URL parameters
-const urlParams = new URLSearchParams(window.location.search);
+// Get URL parameters (we parse them at top for inline/auto view)
 const studentName = urlParams.get("name");
 const className = urlParams.get("class");
 const department = urlParams.get("department");
