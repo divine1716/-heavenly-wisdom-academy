@@ -35,6 +35,22 @@ function getRemark(total) {
 if (studentName && studentResults[studentName]) {
   const result = studentResults[studentName];
   
+  // Subject name normalization for Creche/Pre-Nursery/Nursery
+  const subjectNameMap = {
+    "Numeracy (Mathematics)": "Number Concept",
+    "Literacy (English)": "Language Art / Literacy",
+    "Rhymes & Songs": "Rhymes and Songs",
+    "Health Habits": "Health Habit",
+    "Social Habits": "Social Habit",
+    "Bible Knowledge": "C.R.K",
+    "Practical Life Skills": "Moral Instruction / Child Development",
+    "Colouring": "Fine Art",
+    "Creative Arts": "Fine Art",
+    "Computer Studies": "Computer",
+    "Basic Science": "Nursery Science",
+    "Phonics": "Phonics"
+  };
+  
   // Calculate totals
   let grandTotal = 0;
   result.subjects.forEach(subject => {
@@ -88,7 +104,7 @@ if (studentName && studentResults[studentName]) {
   const tbody = document.querySelector(".results-table tbody");
   tbody.innerHTML = result.subjects.map(subject => `
     <tr>
-      <td>${subject.name}</td>
+      <td>${subjectNameMap[subject.name] || subject.name}</td>
       <td>${subject.test1}</td>
       <td>${subject.test2}</td>
       <td>${subject.exam}</td>

@@ -1,22 +1,21 @@
 export const students = {
   creche: [
     "Albert Purity Amarachi",
-    "Moodness Moses Aniedi",
-    "Starry Mackenzie",
+    "Good News Moses",
     "Igodo Richman"
   ],
   "pre-nursery": [
-    "Igodo Richman"
+    "Angel Melody",
+    "Antony Victory",
+    "Starry Mackenzie"
   ],
   nursery1: [
-    "Force Img Glory",
+    "Forcebray Glory",
     "Zoe Justice",
-    "Priye Claye Ebizaro",
-    "Angel Melody",
+    "Preye Duye Ebiakpo",
     "Reward Tari",
-    "Antoye Sunday Victory",
-    "Shilatowa Ominigod",
-    "Ukesma Rosemary"
+    "Lukesman Rosemary",
+    "Ebirabwel Greatness"
   ],
   nursery2: [],
   nursery3: [],
@@ -45,8 +44,8 @@ export const students = {
     "Ferida Monday"
   ],
 
-  primary4: ["Igodo Majesty", "Azibagiri Godson", "David Osei"],
-  primary5: ["Igodo Godswill", "Ogaga Glorious", "Perpetual"],
+  primary4: ["Majesty Jonathan Igodo", "Azibagiri Godson"],
+  primary5: ["Godswill Jonathan Igodo", "Oweilayefa Perpetual", "Emmanuel George", "Ogaga Glorious"],
 
   jss1: ["Piama Isikpi", "Gift Forcebray", "Monday Faoziya"],
   jss2: [],
@@ -62,19 +61,17 @@ export const students = {
 export const studentPasswords = {
   // Creche
   "Albert Purity Amarachi": "AlPu2025mar",
-  "Moodness Moses Aniedi": "MoMo2025edi",
-  "Starry Mackenzie": "StMa2025zie",
+  "Good News Moses": "GoNe2025ses",
   "Igodo Richman": "IgRi2025man",
   
   // Nursery 1
-  "Force Img Glory": "FoIm2025ory",
+  "Forcebray Glory": "Foce2025ory",
   "Zoe Justice": "ZoJu2025ice",
-  "Priye Claye Ebizaro": "PrCl2025aro",
-  "Angel Melody": "AnMe2025ody",
+  "Preye Duye Ebiakpo": "Pre2025akpo",
   "Reward Tari": "ReTa2025ari",
   "Antoye Sunday Victory": "AnSu2025ory",
-  "Shilatowa Ominigod": "ShOm2025god",
-  "Ukesma Rosemary": "UkRo2025ary",
+  "Lukesman Rosemary": "LuRo2025ary",
+  "Ebirabwel Greatness": "EbGr2025ess",
   
   // Primary 1
   "Emmanuel Angel": "EmAn2025gel",
@@ -364,7 +361,7 @@ export const studentResults = {
   },
 
   // REMAINING NURSERY 1 STUDENTS
-  "Priye Claye Ebizaro": {
+  "Preye Duye Ebiakpo": {
     class: "Nursery 1",
     term: "First Term",
     year: "2025/2026",
@@ -386,7 +383,7 @@ export const studentResults = {
   },
 
   "Angel Melody": {
-    class: "Nursery 1",
+    class: "Pre-Nursery",
     term: "First Term",
     year: "2025/2026",
     subjects: [
@@ -428,7 +425,7 @@ export const studentResults = {
   },
 
   "Antoye Sunday Victory": {
-    class: "Nursery 1",
+    class: "Pre-Nursery",
     term: "First Term",
     year: "2025/2026",
     subjects: [
@@ -469,8 +466,8 @@ export const studentResults = {
     nextTermBegins: "January 15, 2026"
   },
 
-  "Ukesma Rosemary": {
-    class: "Nursery 1",
+  "lukesman Rosemary": {
+    class: "Pre-Nursery 1",
     term: "First Term",
     year: "2025/2026",
     subjects: [
@@ -1007,7 +1004,7 @@ export const studentResults = {
     nextTermBegins: "January 15, 2026"
   },
 
-  "Moodness Moses Aniedi": {
+  "Good News Moses": {
     class: "Creche",
     term: "First Term",
     year: "2025/2026",
