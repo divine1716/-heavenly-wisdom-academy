@@ -34,28 +34,90 @@ function getRemark(total) {
 }
 
 // Load student result
-if (studentName && studentResults[studentName]) {
-  const result = studentResults[studentName];
-  
+(function(){
+  // Normalize helper
+  function normalizeName(s){
+    if (!s) return '';
+    return s.replace(/\s+/g,' ').trim();
+  }
+
+  const requestedName = normalizeName(studentName || '');
+  // Prefer session user when available (students viewing their own result)
+  let effectiveName = requestedName;
+  try {
+    if (portalUser) {
+      const userData = JSON.parse(portalUser);
+      if (userData && userData.role === 'student' && userData.name) {
+        effectiveName = normalizeName(userData.name);
+        console.log('Using session student name for lookup:', effectiveName);
+      }
+    }
+  } catch (e) {
+    console.warn('Failed to parse portal_user from sessionStorage:', e.message || e);
+  }
+
+  // Try direct match, then case-insensitive key match
+  let matchedKey = null;
+  if (effectiveName && studentResults[effectiveName]) {
+    matchedKey = effectiveName;
+  } else if (effectiveName) {
+    const lower = effectiveName.toLowerCase();
+    for (const key of Object.keys(studentResults)) {
+      if (key.toLowerCase() === lower) {
+        matchedKey = key;
+        break;
+      }
+    }
+  }
+
+  if (!matchedKey && requestedName) {
+    // Attempt fuzzy includes match (helps with small typos)
+    const lowerReq = requestedName.toLowerCase();
+    const possible = Object.keys(studentResults).filter(k => k.toLowerCase().includes(lowerReq)).slice(0,5);
+    console.warn('No exact match for student name:', requestedName, 'possible matches:', possible);
+    document.querySelector('.result-container').innerHTML = `
+      <div style="text-align: center; padding: 50px;">
+        <h2>No result found for "${requestedName}"</h2>
+        <p>We tried a few close matches: ${possible.length ? possible.join(', ') : 'none'}. Please ensure you used the exact registered name.</p>
+        <p><a href="index.html">Go back to student list</a></p>
+      </div>
+    `;
+    return;
+  }
+
+  if (!matchedKey) {
+    // No student specified and no session - show message
+    document.querySelector('.result-container').innerHTML = `
+      <div style="text-align: center; padding: 50px;">
+        <h2>No student specified</h2>
+        <p>Please access this page via the portal or provide a student name.</p>
+        <p><a href="index.html">Back</a></p>
+      </div>
+    `;
+    return;
+  }
+
+  const result = studentResults[matchedKey];
+
   // Check if student is Nursery/Creche, JSS or SS - redirect to appropriate template
-  const classLower = result.class.toLowerCase();
+  const classLower = (result.class || '').toLowerCase();
   
   if (classLower.includes('nursery') || classLower.includes('creche') || classLower.includes('pre-nursery')) {
     // Redirect to Nursery/Creche result template
-    window.location.href = `result-nursery.html?name=${encodeURIComponent(studentName)}&class=${encodeURIComponent(className)}`;
+    window.location.href = `result-nursery.html?name=${encodeURIComponent(matchedKey)}&class=${encodeURIComponent(result.class)}`;
     return;
   }
   
   if (classLower.includes('jss')) {
     // Redirect to JSS result template
-    window.location.href = `result-jss.html?name=${encodeURIComponent(studentName)}&class=${encodeURIComponent(className)}`;
+    window.location.href = `result-jss.html?name=${encodeURIComponent(matchedKey)}&class=${encodeURIComponent(result.class)}`;
     return;
   }
   
   if (classLower.includes('ss')) {
     // For SS students, check department from URL or result data (default to science if not specified)
     const studentDepartment = department || result.department || 'science';
-    window.location.href = `result-ss-${studentDepartment.toLowerCase()}.html?name=${encodeURIComponent(studentName)}&class=${encodeURIComponent(className)}`;
+    window.location.href = `result-ss-${studentDepartment.toLowerCase()}.html?name=${encodeURIComponent(matchedKey)}&class=${encodeURIComponent(result.class)}`;
     return;
   }
   
@@ -76,7 +138,7 @@ if (studentName && studentResults[studentName]) {
   document.querySelector(".student-info").innerHTML = `
     <div class="info-row">
       <span class="info-label">Name of Student:</span>
-      <span class="info-value">${studentName}</span>
+      <span class="info-value">${matchedKey}</span>
       <span class="info-label">Sex:</span>
       <span class="info-value">${sex}</span>
       <span class="info-label">Class:</span>
@@ -123,11 +185,4 @@ if (studentName && studentResults[studentName]) {
     <p><strong>CLASS TEACHER'S REMARK:</strong> <span class="remark-line">${result.formTeacherRemark || ''}</span></p>
     <p><strong>HEAD TEACHER'S REMARK:</strong> <span class="remark-line">${result.principalRemark || ''}</span></p>
   `;
-} else {
-  document.querySelector(".result-container").innerHTML = `
-    <div style="text-align: center; padding: 50px;">
-      <h2>No result found for this student</h2>
-      <p><a href="index.html">Go back to student list</a></p>
-    </div>
-  `;
-}
+})();
