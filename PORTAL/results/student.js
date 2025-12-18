@@ -400,7 +400,7 @@ export const studentResults = {
     ],
     formTeacherRemark: "Priye is a dedicated student with good performance. Keep improving!",
     principalRemark: "Very good work. Continue to excel!",
-    nextTermBegins: "January 15, 2026"
+    nextTermBegins: "January 5, 2026"
   },
 
   "Angel Melody": {
@@ -425,7 +425,7 @@ export const studentResults = {
     ],
     formTeacherRemark: "Angel is doing well. Keep up the good work!",
     principalRemark: "Good performance. Well done!",
-    nextTermBegins: "January 15, 2026"
+    nextTermBegins: "January 5, 2026"
   },
 
   "Reward Tari": {
@@ -451,7 +451,7 @@ export const studentResults = {
     ],
     formTeacherRemark: "Reward is an excellent student with outstanding abilities!",
     principalRemark: "Excellent performance. Keep it up!",
-    nextTermBegins: "January 15, 2026"
+    nextTermBegins: "January 5, 2026"
   },
 
   "Antony Victory": {
@@ -478,7 +478,7 @@ export const studentResults = {
     ],
     formTeacherRemark: "Victory is making good progress. Keep working hard!",
     principalRemark: "Good work. Continue to improve!",
-    nextTermBegins: "January 15, 2026"
+    nextTermBegins: "January 5, 2026"
   },
 
   "Ebirabwel Greatness": {
@@ -501,7 +501,7 @@ export const studentResults = {
     ],
     formTeacherRemark: "Great effort in Numeracy.",
     principalRemark: "Good performance. Keep it up!",
-    nextTermBegins: "January 15, 2026"
+    nextTermBegins: "January 5, 2026"
   },
 
   "Lukesman Rosemary": {
@@ -523,7 +523,7 @@ export const studentResults = {
     ],
     formTeacherRemark: "Shows strong ability in Numeracy.",
     principalRemark: "Very good performance.",
-    nextTermBegins: "January 15, 2026"
+    nextTermBegins: "January 5, 2026"
   },
 
   "Shilatowa Ominigod": {
@@ -546,7 +546,7 @@ export const studentResults = {
     ],
     formTeacherRemark: "Shilatowa is a bright student with great potential!",
     principalRemark: "Very good performance. Keep it up!",
-    nextTermBegins: "January 15, 2026"
+    nextTermBegins: "January 5, 2026"
   },
 
   "lukesman Rosemary": {
@@ -777,7 +777,7 @@ export const studentResults = {
     hostelMasterRemark: "–",
     guidanceCounsellorRemark: "Continue to improve.",
     principalRemark: "Good work!",
-    nextTermBegins: "January 15, 2026"
+    nextTermBegins: "January 5, 2026"
   },
 
   "samuel adawgu": {
@@ -957,7 +957,7 @@ export const studentResults = {
     hostelMasterRemark: "–",
     guidanceCounsellorRemark: "Exceptional work. Keep it up!",
     principalRemark: "Excellent results!",
-    nextTermBegins: "January 15, 2026"
+    nextTermBegins: "January 5, 2026"
   },
 
   "Azibagiri Godson": {
@@ -986,7 +986,7 @@ export const studentResults = {
     hostelMasterRemark: "–",
     guidanceCounsellorRemark: "Keep up the good work.",
     principalRemark: "Well done!",
-    nextTermBegins: "January 15, 2026"
+    nextTermBegins: "January 5, 2026"
   },
 
   "David Osei": {
@@ -1015,7 +1015,7 @@ export const studentResults = {
     hostelMasterRemark: "–",
     guidanceCounsellorRemark: "Continue to improve.",
     principalRemark: "Good work!",
-    nextTermBegins: "January 15, 2026"
+    nextTermBegins: "January 5, 2026"
   },
 
   // PRIMARY 5 STUDENTS
@@ -1045,7 +1045,7 @@ export const studentResults = {
     hostelMasterRemark: "–",
     guidanceCounsellorRemark: "Excellent work. You are a role model!",
     principalRemark: "Outstanding performance! Keep it up!",
-    nextTermBegins: "January 15, 2026"
+    nextTermBegins: "January 5, 2026"
   },
 
   "Ogaga Glorious": {
@@ -1074,7 +1074,7 @@ export const studentResults = {
     hostelMasterRemark: "–",
     guidanceCounsellorRemark: "Keep up the excellent work.",
     principalRemark: "Very good performance!",
-    nextTermBegins: "January 15, 2026"
+    nextTermBegins: "January 5, 2026"
   },
 
   "Perpetual": {
@@ -1103,7 +1103,7 @@ export const studentResults = {
     hostelMasterRemark: "–",
     guidanceCounsellorRemark: "Exceptional work. Keep it up!",
     principalRemark: "Excellent results!",
-    nextTermBegins: "January 15, 2026"
+    nextTermBegins: "January 5, 2026"
   },
 
   // JSS1 STUDENTS
@@ -1133,7 +1133,7 @@ export const studentResults = {
     ],
     formTeacherRemark: "Piama is an excellent student with outstanding performance!",
     principalRemark: "Excellent results across all subjects!",
-    nextTermBegins: "January 15, 2026"
+    nextTermBegins: "January 5, 2026"
   },
 
   "Gift Forcebray": {
@@ -1191,7 +1191,7 @@ export const studentResults = {
     ],
     formTeacherRemark: "Monday is making good progress. Keep working hard!",
     principalRemark: "Good work. Continue to improve!",
-    nextTermBegins: "January 15, 2026"
+    nextTermBegins: "January 5, 2026"
   },
 
   // CRECHE STUDENTS
@@ -1244,7 +1244,7 @@ export const studentResults = {
     ],
     formTeacherRemark: "Moses is doing very well. Keep up the good work!",
     principalRemark: "Very good performance!",
-    nextTermBegins: "January 15, 2026"
+    nextTermBegins: "January 5, 2026"
   },
 
   "Starry Mackenzie": {
@@ -1270,7 +1270,7 @@ export const studentResults = {
     ],
     formTeacherRemark: "Starry is a bright child with great potential!",
     principalRemark: "Excellent work. Keep it up!",
-    nextTermBegins: "January 15, 2026"
+    nextTermBegins: "January 5, 2026"
   },
 
   "Igodo Richman": {
@@ -1295,7 +1295,7 @@ export const studentResults = {
     ],
     formTeacherRemark: "Richman is making good progress. Keep working!",
     principalRemark: "Good work. Continue to improve!",
-    nextTermBegins: "January 15, 2026"
+    nextTermBegins: "January 5, 2026"
   },
 
   // SS1 STUDENTS
@@ -1323,7 +1323,7 @@ export const studentResults = {
     ],
     formTeacherRemark: "Stanley is an exceptional student with outstanding performance in all subjects. Keep up the excellent work!",
     principalRemark: "Excellent performance across all subjects. A model student. Well done!",
-    nextTermBegins: "January 15, 2026"
+    nextTermBegins: "January 5, 2026"
   }
 };
 
