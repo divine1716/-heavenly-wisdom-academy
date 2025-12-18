@@ -13,7 +13,7 @@
 | Student Name | Password |
 |-------------|----------|
 | Albert Purity Amarachi | `Alb318chi25` |
-| Moodness Moses Aniedi | `Moo527edi25` |
+| Goodnews Moses Aniedi | `Moo527edi25` |
 | Starry Mackenzie | `Sta649zie25` |
 | Igodo Richman | `Igo482man25` |
 

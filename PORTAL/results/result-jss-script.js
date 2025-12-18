@@ -1,4 +1,4 @@
-import { studentResults } from "../student.js";
+import { studentResults } from "./student.js";
 
 // Check if user is logged in
 const portalUser = sessionStorage.getItem("portal_user");

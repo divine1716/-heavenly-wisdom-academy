@@ -1,4 +1,4 @@
-import { studentResults } from "../student.js" 
+import { studentResults } from "./student.js"; 
 
 // Check if user is logged in or this is an automated inline view
 const urlParams = new URLSearchParams(window.location.search);
