@@ -40,15 +40,20 @@ if (studentName && studentResults[studentName]) {
     "Numeracy (Mathematics)": "Number Concept",
     "Literacy (English)": "Language Art / Literacy",
     "Rhymes & Songs": "Rhymes and Songs",
+    "Songs & Rhymes": "Rhymes and Songs",
     "Health Habits": "Health Habit",
     "Social Habits": "Social Habit",
+    "Social Skills": "Social Habit",
     "Bible Knowledge": "C.R.K",
     "Practical Life Skills": "Moral Instruction / Child Development",
     "Colouring": "Fine Art",
     "Creative Arts": "Fine Art",
     "Computer Studies": "Computer",
     "Basic Science": "Nursery Science",
-    "Phonics": "Phonics"
+    "Phonics": "Phonics",
+    "Play Activities": "Rhymes and Songs",
+    "Basic Recognition": "Number Concept",
+    "Motor Skills": "Handwriting"
   };
   
   // Calculate totals
