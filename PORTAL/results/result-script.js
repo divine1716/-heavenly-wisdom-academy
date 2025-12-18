@@ -172,17 +172,21 @@ function getRemark(total) {
   
   // Update results table
   const tbody = document.querySelector(".results-table tbody");
-  tbody.innerHTML = result.subjects.map(subject => `
+  tbody.innerHTML = result.subjects.map(subject => {
+    const computedGrade = calculateGrade(subject.total);
+    const computedRemark = getRemark(subject.total);
+    return `
     <tr>
       <td>${subject.name}</td>
       <td>${subject.test1}</td>
       <td>${subject.test2}</td>
       <td>${subject.exam}</td>
       <td>${subject.total}</td>
-      <td>${subject.grade}</td>
-      <td>${subject.remark}</td>
+      <td>${computedGrade}</td>
+      <td>${computedRemark}</td>
     </tr>
-  `).join("");
+  `;
+  }).join("");
   
   // Update remarks section
   document.querySelector(".remark-box").innerHTML = `
@@ -243,17 +247,21 @@ window.addEventListener('message', (event) => {
     `;
 
     const tbody = document.querySelector('.results-table tbody');
-    tbody.innerHTML = (res.subjects || []).map(subject => `
+    tbody.innerHTML = (res.subjects || []).map(subject => {
+      const g = calculateGrade(subject.total || 0);
+      const r = getRemark(subject.total || 0);
+      return `
       <tr>
         <td>${subject.name}</td>
         <td>${subject.test1 || ''}</td>
         <td>${subject.test2 || ''}</td>
         <td>${subject.exam || ''}</td>
         <td>${subject.total || ''}</td>
-        <td>${subject.grade || ''}</td>
-        <td>${subject.remark || ''}</td>
+        <td>${g}</td>
+        <td>${r}</td>
       </tr>
-    `).join('');
+    `;
+    }).join('');
 
     document.querySelector('.remark-box').innerHTML = `
       <p><strong>CLASS TEACHER'S REMARK:</strong> <span class="remark-line">${res.formTeacherRemark || ''}</span></p>

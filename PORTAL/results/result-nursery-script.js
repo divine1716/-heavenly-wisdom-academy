@@ -107,17 +107,21 @@ if (studentName && studentResults[studentName]) {
   
   // Update results table
   const tbody = document.querySelector(".results-table tbody");
-  tbody.innerHTML = result.subjects.map(subject => `
+  tbody.innerHTML = result.subjects.map(subject => {
+    const grade = calculateGrade(subject.total);
+    const remark = getRemark(subject.total);
+    return `
     <tr>
       <td>${subjectNameMap[subject.name] || subject.name}</td>
       <td>${subject.test1}</td>
       <td>${subject.test2}</td>
       <td>${subject.exam}</td>
       <td>${subject.total}</td>
-      <td>${subject.grade}</td>
-      <td>${subject.remark}</td>
+      <td>${grade}</td>
+      <td>${remark}</td>
     </tr>
-  `).join("");
+  `;
+  }).join("");
   
   // Update remarks section
   document.querySelector(".remark-box").innerHTML = `
