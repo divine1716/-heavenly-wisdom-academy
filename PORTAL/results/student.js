@@ -688,6 +688,8 @@ export const studentResults = {
     class: "primary 3",
     term: "First Term",
     year: "2025/2026",
+    grandTotal: 1195,
+    average: "85.36",
     subjects: [
       { name: "English Language", test1: 16, test2: 17, exam: 51, total: 84, grade: "A", remark: "Very Good" },
       { name: "Mathematics", test1: 15, test2: 16, exam: 49, total: 80, grade: "A", remark: "Very Good" },
@@ -715,6 +717,8 @@ export const studentResults = {
     class: "primary 3",
     term: "First Term",
     year: "2025/2026",
+    grandTotal: 1265,
+    average: "90.36",
     subjects: [
       { name: "English Language", test1: 17, test2: 18, exam: 54, total: 89, grade: "A", remark: "Very Good" },
       { name: "Mathematics", test1: 16, test2: 17, exam: 52, total: 85, grade: "A", remark: "Very Good" },
@@ -742,6 +746,8 @@ export const studentResults = {
     class: "primary 3",
     term: "First Term",
     year: "2025/2026",
+    grandTotal: 1125,
+    average: "80.36",
     subjects: [
       { name: "English Language", test1: 15, test2: 16, exam: 48, total: 79, grade: "A", remark: "Very Good" },
       { name: "Mathematics", test1: 14, test2: 15, exam: 46, total: 75, grade: "A", remark: "Very Good" },
@@ -769,6 +775,8 @@ export const studentResults = {
     class: "primary 3",
     term: "First Term",
     year: "2025/2026",
+    grandTotal: 985,
+    average: "70.36",
     subjects: [
       { name: "English Language", test1: 13, test2: 14, exam: 42, total: 69, grade: "B", remark: "Good" },
       { name: "Mathematics", test1: 12, test2: 13, exam: 40, total: 65, grade: "B", remark: "Good" },
@@ -796,6 +804,8 @@ export const studentResults = {
     class: "primary 3",
     term: "First Term",
     year: "2025/2026",
+    grandTotal: 1165,
+    average: "83.21",
     subjects: [
       { name: "English Language", test1: 16, test2: 17, exam: 50, total: 83, grade: "A", remark: "Very Good" },
       { name: "Mathematics", test1: 15, test2: 16, exam: 48, total: 79, grade: "A", remark: "Very Good" },
@@ -824,6 +834,8 @@ export const studentResults = {
     class: "primary 4",
     term: "First Term",
     year: "2025/2026",
+    grandTotal: 1280,
+    average: "91.43",
     subjects: [
       { name: "English Language", test1: 17, test2: 18, exam: 54, total: 89, grade: "A", remark: "Very Good" },
       { name: "Mathematics", test1: 20, test2: 20, exam: 60, total: 100, grade: "A", remark: "Excellent" },
@@ -851,6 +863,8 @@ export const studentResults = {
     class: "primary 4",
     term: "First Term",
     year: "2025/2026",
+    grandTotal: 1195,
+    average: "85.36",
     subjects: [
       { name: "English Language", test1: 16, test2: 17, exam: 51, total: 84, grade: "A", remark: "Very Good" },
       { name: "Mathematics", test1: 15, test2: 16, exam: 49, total: 80, grade: "A", remark: "Very Good" },
@@ -878,6 +892,8 @@ export const studentResults = {
     class: "primary 4",
     term: "First Term",
     year: "2025/2026",
+    grandTotal: 1125,
+    average: "80.36",
     subjects: [
       { name: "English Language", test1: 15, test2: 16, exam: 48, total: 79, grade: "A", remark: "Very Good" },
       { name: "Mathematics", test1: 14, test2: 15, exam: 46, total: 75, grade: "A", remark: "Very Good" },
@@ -906,6 +922,8 @@ export const studentResults = {
     class: "primary 5",
     term: "First Term",
     year: "2025/2026",
+    grandTotal: 1331,
+    average: "95.07",
     subjects: [
       { name: "English Language", test1: 18, test2: 19, exam: 57, total: 94, grade: "A", remark: "Excellent" },
       { name: "Mathematics", test1: 17, test2: 18, exam: 55, total: 90, grade: "A", remark: "Excellent" },
@@ -933,6 +951,8 @@ export const studentResults = {
     class: "primary 5",
     term: "First Term",
     year: "2025/2026",
+    grandTotal: 1203,
+    average: "85.93",
     subjects: [
       { name: "English Language", test1: 16, test2: 17, exam: 52, total: 85, grade: "A", remark: "Very Good" },
       { name: "Mathematics", test1: 15, test2: 16, exam: 50, total: 81, grade: "A", remark: "Very Good" },
@@ -960,6 +980,8 @@ export const studentResults = {
     class: "primary 5",
     term: "First Term",
     year: "2025/2026",
+    grandTotal: 1265,
+    average: "90.36",
     subjects: [
       { name: "English Language", test1: 17, test2: 18, exam: 54, total: 89, grade: "A", remark: "Very Good" },
       { name: "Mathematics", test1: 16, test2: 17, exam: 52, total: 85, grade: "A", remark: "Very Good" },
@@ -988,6 +1010,8 @@ export const studentResults = {
     class: "JSS 1",
     term: "First Term",
     year: "2025/2026",
+    grandTotal: 1412,
+    average: "88.25",
     subjects: [
       { name: "English Language", test1: 17, test2: 18, exam: 54, total: 89, grade: "A2", remark: "Very Good" },
       { name: "Mathematics", test1: 16, test2: 17, exam: 52, total: 85, grade: "A2", remark: "Very Good" },
@@ -1015,6 +1039,8 @@ export const studentResults = {
     class: "JSS 1",
     term: "First Term",
     year: "2025/2026",
+    grandTotal: 1332,
+    average: "83.25",
     subjects: [
       { name: "English Language", test1: 16, test2: 17, exam: 51, total: 84, grade: "A2", remark: "Very Good" },
       { name: "Mathematics", test1: 15, test2: 16, exam: 49, total: 80, grade: "A2", remark: "Very Good" },
@@ -1042,6 +1068,8 @@ export const studentResults = {
     class: "JSS 1",
     term: "First Term",
     year: "2025/2026",
+    grandTotal: 1252,
+    average: "78.25",
     subjects: [
       { name: "English Language", test1: 15, test2: 16, exam: 48, total: 79, grade: "A2", remark: "Very Good" },
       { name: "Mathematics", test1: 14, test2: 15, exam: 46, total: 75, grade: "B", remark: "Good" },
@@ -1175,6 +1203,8 @@ export const studentResults = {
     term: "First Term",
     year: "2025/2026",
     department: "Science",
+    grandTotal: 1140,
+    average: "87.69",
     subjects: [
       { name: "Mathematics", test1: 18, test2: 19, exam: 58, total: 95, grade: "A1", remark: "Excellent" },
       { name: "English Language", test1: 17, test2: 18, exam: 55, total: 90, grade: "A1", remark: "Excellent" },
