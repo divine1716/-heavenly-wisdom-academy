@@ -224,9 +224,12 @@ export const studentCredentials = {
     email: "ferida.monday@student.heavenlywisdom.edu"
   },
 
-"Joy Forcebray":  {
- password: "JoFo2025ray",
- class: "Primary 3",
+  "Joy Forcebray": {
+    password: "JoFo2025ray",
+    class: "Primary 3",
+    studentId: "HWA/P3/006",
+    email: "joy.forcebray@student.heavenlywisdom.edu"
+  },
 
   // PRIMARY 4
   "Igodo Majesty": {
@@ -295,7 +298,7 @@ export const studentCredentials = {
     studentId: "HWA/SS1/001",
     email: "stanley.favour@student.heavenlywisdom.edu"
   }
-};
+},
 
 // Helper function to authenticate student
 export function authenticateStudent(username, password) {
