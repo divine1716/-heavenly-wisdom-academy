@@ -9,8 +9,8 @@ export const studentCredentials = {
     studentId: "HWA/CR/001",
     email: "albert.purity@student.heavenlywisdom.edu"
   },
-  "Moodness Moses Aniedi": {
-    password: "Moo527edi25",
+  "Good News Moses": {
+    password: "Goo527edi25",
     class: "Creche",
     studentId: "HWA/CR/002",
     email: "moodness.moses@student.heavenlywisdom.edu"
@@ -29,8 +29,8 @@ export const studentCredentials = {
   },
 
   // NURSERY 1
-  "Force Img Glory": {
-    password: "For316ory25",
+  "Forcebray Glory": {
+    password: "Foce2025ory",
     class: "Nursery 1",
     studentId: "HWA/N1/001",
     email: "force.img@student.heavenlywisdom.edu"
@@ -41,11 +41,11 @@ export const studentCredentials = {
     studentId: "HWA/N1/002",
     email: "zoe.justice@student.heavenlywisdom.edu"
   },
-  "Priye Claye Ebizaro": {
-    password: "Pri374aro25",
+  "Preye Duye Ebiakpo": {
+    password: "Pre2025akpo",
     class: "Nursery 1",
     studentId: "HWA/N1/003",
-    email: "priye.claye@student.heavenlywisdom.edu"
+    email: "preye.duye@student.heavenlywisdom.edu"
   },
   "Angel Melody": {
     password: "Ang528ody25",
@@ -55,7 +55,7 @@ export const studentCredentials = {
   },
   "Reward Tari": {
     password: "Rew643ari25",
-    class: "Nursery 1",
+    class: "Nursery",
     studentId: "HWA/N1/005",
     email: "reward.tari@student.heavenlywisdom.edu"
   },
@@ -76,6 +76,56 @@ export const studentCredentials = {
     class: "Nursery 1",
     studentId: "HWA/N1/008",
     email: "ukesma.rosemary@student.heavenlywisdom.edu"
+  },
+
+  // NURSERY 3
+  "Oyinkuro": {
+    password: "Oji642oro25",
+    class: "Nursery 3",
+    studentId: "HWA/N3/001",
+    email: "ojimikoro@student.heavenlywisdom.edu"
+  },
+
+  "Joyfull Richard": {
+    password: "Joy551ard25",
+    class: "Nursery 3",
+    studentId: "HWA/N3/002",
+    email: "joyfull.richard@student.heavenlywisdom.edu"
+  },
+
+  "Monday Zara": {
+    password: "Mon874ara25",
+    class: "Nursery 3",
+    studentId: "HWA/N3/003",
+    email: "monday.zara@student.heavenlywisdom.edu"
+  },
+
+  "Alweke Godwin": {
+    password: "Alw764win25",
+    class: "Nursery 3",
+    studentId: "HWA/N3/004",
+    email: "alweke.godwin@student.heavenlywisdom.edu"
+  },
+
+  "Oweilayefa ebiarede": {
+    password: "Oweb2025rede",
+    class: "Nursery 3",
+    studentId: "HWA/N3/005",
+    email: "oweilayefa.ebiarede@student.heavenlywisdom.edu"
+  },
+
+  "Duye-preye oyinbarekemi": {
+    password: "Duoy2025emi",
+    class: "Nursery 3",
+    studentId: "HWA/N3/006",
+    email: "duye.preye.oyinbarekemi@student.heavenlywisdom.edu"
+  },
+  
+  "Desmond Amanda": {
+    password: "DesAma2025nda",
+    class: "Nursery 3",
+    studentId: "HWA/N3/007",
+    email: "desmond.amanda@student.heavenlywisdom.edu"
   },
 
   // PRIMARY 1
@@ -117,11 +167,11 @@ export const studentCredentials = {
     studentId: "HWA/P2/002",
     email: "antoye.gloria@student.heavenlywisdom.edu"
   },
-  "Oyinnuah proyebuyeg": {
-    password: "Oyi185yeg25",
+  "Duye-preye Oyinnuah": {
+    password: "DuOy2025ah",
     class: "Primary 2",
     studentId: "HWA/P2/003",
-    email: "oyinnuah.proyebuyeg@student.heavenlywisdom.edu"
+    email: "duye.preye.oyinnuah@student.heavenlywisdom.edu"
   },
   "Delight starry": {
     password: "Del296rry25",
@@ -173,6 +223,10 @@ export const studentCredentials = {
     studentId: "HWA/P3/005",
     email: "ferida.monday@student.heavenlywisdom.edu"
   },
+
+"Joy Forcebray":  {
+ password: "JoFo2025ray",
+ class: "Primary 3",
 
   // PRIMARY 4
   "Igodo Majesty": {
@@ -245,12 +299,20 @@ export const studentCredentials = {
 
 // Helper function to authenticate student
 export function authenticateStudent(username, password) {
-  const student = studentCredentials[username];
-  
-  if (!student) {
+  const norm = s => s.toLowerCase().replace(/\s+/g, ' ').trim();
+  const inputKey = norm(username);
+  let matchedKey = null;
+  for (const key in studentCredentials) {
+    if (norm(key) === inputKey) {
+      matchedKey = key;
+      break;
+    }
+  }
+  if (!matchedKey) {
     return { success: false, message: "Student not found" };
   }
   
+  const student = studentCredentials[matchedKey];
   if (student.password !== password) {
     return { success: false, message: "Incorrect password" };
   }
@@ -259,7 +321,7 @@ export function authenticateStudent(username, password) {
     success: true,
     message: "Login successful",
     data: {
-      name: username,
+      name: matchedKey,
       class: student.class,
       studentId: student.studentId,
       email: student.email,
