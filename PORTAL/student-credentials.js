@@ -298,7 +298,7 @@ export const studentCredentials = {
     studentId: "HWA/SS1/001",
     email: "stanley.favour@student.heavenlywisdom.edu"
   }
-},
+};
 
 // Helper function to authenticate student
 export function authenticateStudent(username, password) {
