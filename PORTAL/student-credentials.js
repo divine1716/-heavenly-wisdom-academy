@@ -264,7 +264,7 @@ export const studentCredentials = {
     studentId: "HWA/P5/002",
     email: "ogaga.glorious@student.heavenlywisdom.edu"
   },
-  "Perpetual": {
+  "Oweilayefa Perpetual": {
     password: "Per641ual25",
     class: "Primary 5",
     studentId: "HWA/P5/003",

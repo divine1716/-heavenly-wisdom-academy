@@ -1276,7 +1276,7 @@ export const studentResults = {
     nextTermBegins: "January 5, 2026"
   },
 
-  "Perpetual": {
+  "Oweilayefa Perpetual": {
     class: "primary 5",
     term: "First Term",
     year: "2025/2026",
