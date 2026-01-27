@@ -49,7 +49,7 @@ export const studentCredentials = {
   },
   "Angel Melody": {
     password: "Ang528ody25",
-    class: "Nursery 1",
+    class: "prenursery 1",
     studentId: "HWA/N1/004",
     email: "angel.melody@student.heavenlywisdom.edu"
   },
@@ -71,11 +71,17 @@ export const studentCredentials = {
     studentId: "HWA/N1/007",
     email: "shilatowa.ominigod@student.heavenlywisdom.edu"
   },
-  "Ukesma Rosemary": {
-    password: "Uke926ary25",
+  "Lukesman Rosemary": {
+    password: "LuRo2025ary",
     class: "Nursery 1",
     studentId: "HWA/N1/008",
     email: "ukesma.rosemary@student.heavenlywisdom.edu"
+  },
+  "Ebikabowei Greatness": {
+    password: "Ebi428ness25",
+    class: "Nursery 1",
+    studentId: "HWA/N1/009",
+    email: "ebikabowei.greatness@student.heavenlywisdom.edu"
   },
 
   // NURSERY 3
@@ -152,6 +158,13 @@ export const studentCredentials = {
     class: "Primary 1",
     studentId: "HWA/P1/004",
     email: "trustgod.areh@student.heavenlywisdom.edu"
+  },
+
+  "Forcebray Emmanuella": {
+    password: "For864ella25",
+    class: "Primary 1",
+    studentId: "HWA/P1/005",
+    email: "forcebray.emmanuella@student.heavenlywisdom.edu"
   },
 
   // PRIMARY 2
@@ -231,6 +244,19 @@ export const studentCredentials = {
     email: "joy.forcebray@student.heavenlywisdom.edu"
   },
 
+  "Faith Oweilayefa": {
+    password: "FaOw2025efa",
+    class: "Primary 3",
+    studentId: "HWA/P3/007",
+    email: "faith.oweilayefa@student.heavenlywisdom.edu"
+  },
+  "Zion Samuel": {
+    password: "ZiSa2025uel",
+    class: "Primary 3",
+    studentId: "HWA/P3/008",
+    email: "zion.samuel@student.heavenlywisdom.edu"
+  },
+
   // PRIMARY 4
   "Igodo Majesty": {
     password: "Igo185sty25",
@@ -269,6 +295,12 @@ export const studentCredentials = {
     class: "Primary 5",
     studentId: "HWA/P5/003",
     email: "perpetual@student.heavenlywisdom.edu"
+  },
+  "Emmanuel George": {
+    password: "EmGe2025rge",
+    class: "Primary 5",
+    studentId: "HWA/P5/004",
+    email: "emmanuel@student.heavenlywisdom.edu" 
   },
 
   // JSS 1

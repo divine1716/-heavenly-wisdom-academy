@@ -4,27 +4,30 @@ export const students = {
     "Good News Moses",
     "Igodo Richman"
   ],
-  "pre-nursery": [
+
+  prenursery: [
     "Angel Melody",
-    "Antony Victory",
+    "Antoye Sunday Victory",
     "Starry Mackenzie"
   ],
+
   nursery1: [
     "Forcebray Glory",
     "Zoe Justice",
     "Preye Duye Ebiakpo",
     "Reward Tari",
     "Lukesman Rosemary",
-    "Ebirabwel Greatness"
+    "Ebikabowei Greatness"
   ],
   nursery2: [],
-  nursery3: ["Oyinkuro", "Joyfull Richard", "Monday Zara", "Alweke Godwin", "Oweilayefa ebiarede"],
+  nursery3: ["Oyinkuro", "Joyfull Richard", "Monday Zara", "Alweke Godwin", "Oweilayefa ebiarede", "Duye-preye oyinbarekemi", "Desmond Amanda"],
 
   primary1: [
     "Emmanuel Angel",
     "Emmanuel Ejiro",
     "Augusii Bethel",
-    "Trustgod Areh"
+    "Trustgod Areh",
+    "Forcebray Emmanuella"
   ],
 
   primary2: [
@@ -67,14 +70,16 @@ export const studentPasswords = {
   "Good News Moses": "Goo527edi25",
   "Igodo Richman": "IgRi2025man",
   
+  //Pre-nursery
+  "Antoye Sunday Victory": "AnSu2025ory",
+
   // Nursery 1
   "Forcebray Glory": "Foce2025ory",
   "Zoe Justice": "ZoJu2025ice",
   "Preye Duye Ebiakpo": "Pre2025akpo",
   "Reward Tari": "ReTa2025ari",
-  "Antoye Sunday Victory": "AnSu2025ory",
   "Lukesman Rosemary": "LuRo2025ary",
-  "Ebirabwel Greatness": "EbGr2025ess",
+  "Ebikabowei Greatness": "EbGr2025ess",
   
   // Nursery 3
   "Oyinkuro": "Oji642oro25",
@@ -90,7 +95,7 @@ export const studentPasswords = {
   "Emmanuel Ejiro": "EmEj2025iro",
   "Augusii Bethel": "AuBe2025hel",
   "Trustgod Areh": "TrAr2025reh",
-  "Forcebray Emmanuella": "Force22lla",
+  "Forcebray Emmanuella": "For864ella25",
   
   // Primary 2
   "Prince Boniface": "PrBo2025ace",
@@ -624,7 +629,7 @@ export const studentResults = {
     nextTermBegins: "January 5, 2026"
   },
 
-  "Antony Victory": {
+  "Antoye Sunday Victory": {
     class: "Pre-Nursery",
     term: "First Term",
     year: "2025/2026",
@@ -651,7 +656,7 @@ export const studentResults = {
     nextTermBegins: "January 5, 2026"
   },
 
-  "Ebirabwel Greatness": {
+  "Ebikabowei Greatness": {
     class: "Nursery 1",
     term: "First Term",
     year: "2025/2026",
@@ -805,23 +810,23 @@ export const studentResults = {
     class: "primary 2",
     term: "First Term",
     year: "2025/2026",
-    grandTotal: 963,
-    average: "68.79",
+    grandTotal: 1069,
+    average: "76.36",
     subjects: [
-      { name: "English Language", test1: 11, test2: 18, exam: 44, total: 73, grade: "B", remark: "Good" },
-      { name: "Mathematics", test1: 15, test2: 18, exam: 46, total: 79, grade: "B", remark: "Good" },
-      { name: "Basic Science & tech", test1: 8, test2: 8, exam: 32, total: 48, grade: "F", remark: "Fail" },
+      { name: "English Language", test1: 20, test2: 20, exam: 44, total: 84, grade: "B", remark: "Good" },
+      { name: "Mathematics", test1: 15, test2: 15, exam: 46, total: 76, grade: "B", remark: "Good" },
+      { name: "Basic Science & tech", test1: 20, test2: 17, exam: 32, total: 69, grade: "C", remark: "Credit" },
       { name: "National Values", test1: 20, test2: 20, exam: 60, total: 100, grade: "A1", remark: "Excellent" },
-      { name: "P.H.E", test1: 7, test2: 11, exam: 20, total: 38, grade: "F", remark: "Fail" },
-      { name: "Computer Studies", test1: 6, test2: 10, exam: 16, total: 32, grade: "F", remark: "Fail" },
+      { name: "P.H.E", test1: 17, test2: 15, exam: 20, total: 52, grade: "P", remark: "Pass" },
+      { name: "Computer Studies", test1: 15, test2: 10, exam: 20, total: 50, grade: "P", remark: "pass" },
       { name: "Pre-vocational Studies", test1: 20, test2: 20, exam: 60, total: 100, grade: "A1", remark: "Excellent" },
-      { name: "History", test1: 16, test2: 13, exam: 9, total: 38, grade: "F", remark: "Fail" },
+      { name: "History", test1: 16, test2: 15, exam: 20, total: 51, grade: "P", remark: "Pass" },
       { name: "C.C.A", test1: 17, test2: 15, exam: 45, total: 77, grade: "B", remark: "Good" },
-      { name: "Quantitative reasoning", test1: 9, test2: 12, exam: 25, total: 46, grade: "F", remark: "Fail" },
+      { name: "Quantitative reasoning", test1: 19, test2: 20, exam: 25, total: 64, grade: "C", remark: "Credit" },
       { name: "Verbal reasoning", test1: 20, test2: 20, exam: 60, total: 100, grade: "A1", remark: "Excellent" },
       { name: "Hand-writing", test1: 19, test2: 20, exam: 55, total: 94, grade: "A1", remark: "Excellent" },
       { name: "C.R.S", test1: 19, test2: 20, exam: 56, total: 95, grade: "A1", remark: "Excellent" },
-      { name: "Phonics", test1: 12, test2: 8, exam: 23, total: 43, grade: "F", remark: "Fail" }
+      { name: "Phonics", test1: 12, test2: 15, exam: 30, total: 57, grade: "P", remark: "Pass" }
     ],
     formTeacherRemark: "Goodness is an exceptional student with outstanding performance!",
     hostelMasterRemark: "–",
