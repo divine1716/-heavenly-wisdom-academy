@@ -1,0 +1,364 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.top-bar {
+  background-color: #222;
+  color: white;
+  padding: 5px 10px;
+  text-align: center;
+}
+
+.contact span,
+.dashboard-btn {
+  margin: 0 5px;
+  color: goldenrod;
+  text-decoration: none;
+}
+
+.top-social-icons {
+  margin-top: 5px;
+}
+
+.top-social-icons a {
+  color: #ccc;
+  margin: 0 8px;
+  font-size: 16px;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.top-social-icons a:hover {
+  color: white;
+}
+
+/* Header */
+header {
+  background-color: red;
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo img {
+  height: 50px;
+  margin-right: 10px;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 0;
+}
+
+/* Ensure desktop navigation is visible on desktop screens */
+@media (min-width: 769px) {
+  .nav-links {
+    display: flex !important;
+  }
+}
+
+/* Hide desktop navigation on mobile screens */
+@media (max-width: 768px) {
+  .nav-links {
+    display: none !important;
+  }
+}
+
+.nav-links li a {
+  text-decoration: none;
+  color: blue;
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  background-color: white;
+  border-radius: 5px;
+}
+/* Hero Slider Container */
+.hero-slider {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background-color: black;
+}
+
+      /* Hide mobile elements on desktop */
+      button#mobileMenuBtn,
+      div#mobileNav {
+        display: none !important;
+        visibility: hidden !important;
+        position: static !important;
+        z-index: -1 !important;
+      }
+    
+/* ================= PAGE CONTENT ================= */
+.page-content {
+  min-height: calc(100vh - 64px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+}
+
+/* ================= AUTH CONTAINER ================= */
+.auth-container {
+  width: 100%;
+  max-width: 1000px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background: var(--card);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.6);
+  /* smoother entrance animation */
+  animation: fadeDown 2s cubic-bezier(.2,.9,.2,1) both;
+  will-change: transform, opacity;
+} 
+
+/* ================= LEFT INFO ================= */
+.auth-info {
+  padding: 60px 40px;
+  background: linear-gradient(135deg, #000000, #4f7cff);
+}
+
+.auth-info h1 {
+  font-size: 2.5rem;
+  margin-bottom: 15px;
+  color: #fff;
+}
+
+.auth-info p {
+  margin-bottom: 30px;
+  opacity: 0.95;
+  color: #fff
+}
+
+.auth-info ul li {
+  list-style: none;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  color: #fff;
+}
+
+.auth-info i {
+  margin-right: 12px;
+  color: #c33764;
+}
+
+/* ================= AUTH BOX ================= */
+.auth-box {
+  padding: 40px;
+}
+
+/* ================= TABS ================= */
+.tabs {
+  display: flex;
+  margin-bottom: 30px;
+}
+
+.tab {
+  flex: 1;
+  padding: 12px;
+  background: none;
+  border: none;
+  color: var(--text);
+  font-size: 1rem;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: 0.3s;
+}
+
+.tab.active {
+  border-bottom: 2px solid var(--primary);
+  color: var(--primary);
+  animation: tabBounce 0.36s cubic-bezier(.2,.9,.2,1);
+} 
+
+/* ================= FORMS ================= */
+.form {
+  display: none;
+}
+
+.form.active {
+  display: block;
+}
+
+.form h2 {
+  margin-bottom: 20px;
+}
+
+
+/* ================= INPUTS ================= */
+.input-group {
+  display: flex;
+  align-items: center;
+  background: var(--bg);
+  margin-bottom: 15px;
+  border-radius: 8px;
+  padding: 12px;
+  transition: box-shadow 0.25s ease, transform 0.25s ease, border-left 0.25s ease;
+}
+.input-group:focus-within {
+  box-shadow: 0 12px 30px rgba(79,124,255,0.08);
+  transform: translateY(-3px);
+  border-left: 4px solid rgba(79,124,255,0.12);
+} 
+
+.input-group i {
+  margin-right: 10px;
+  color: var(--primary);
+}
+
+.input-group input {
+  background: none;
+  border: none;
+  outline: none;
+  color: var(--text);
+  width: 100%;
+}
+
+/* ================= BUTTON ================= */
+.btn {
+  width: 100%;
+  padding: 14px;
+  margin-top: 10px;
+  border: none;
+  border-radius: 30px;
+  background: #c33764;
+  color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(195, 55, 100, 0.35);
+} 
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 768px) {
+  .auth-container {
+    grid-template-columns: 1fr;
+  }
+
+  .auth-info {
+    text-align: center;
+  }
+
+  .nav {
+    gap: 12px;
+    font-size: 0.9rem;
+  }
+}
+
+
+@keyframes fadeDown {
+  from { opacity: 0; transform: translateY(-18px) scale(.995); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes popIn {
+  from { opacity: 0; transform: translateY(6px) scale(.92); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes float {
+  0%   { transform: translateY(0); }
+  50%  { transform: translateY(-6px); }
+  100% { transform: translateY(0); }
+}
+
+@keyframes tabBounce {
+  0%   { transform: translateY(4px); opacity: .6; }
+  60%  { transform: translateY(-6px); opacity: 1; }
+  100% { transform: translateY(0); }
+}
+
+/* slow float for the left panel (subtle, only on wider screens) */
+@media (min-width: 769px) {
+  .auth-info {
+    animation: float 6s ease-in-out infinite;
+  }
+}
+
+/* respect user preference for reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .auth-container,
+  .logo-mark,
+  .tab,
+  .auth-info,
+  .input-group,
+  .btn {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+
+/* ================= NOTIFICATIONS ================= */
+.notification {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  padding: 15px 20px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+  font-weight: 500;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  z-index: 9999;
+  animation: slideIn 0.3s ease-out;
+  min-width: 300px;
+}
+
+.notification.error {
+  background: #fee;
+  color: #c00;
+  border-left: 4px solid #c00;
+}
+
+.notification.success {
+  background: #efe;
+  color: #0a0;
+  border-left: 4px solid #0a0;
+}
+
+.notification i {
+  font-size: 18px;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(400px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Mobile notification adjustments */
+@media (max-width: 768px) {
+  .notification {
+    top: 10px;
+    right: 10px;
+    left: 10px;
+    min-width: auto;
+  }
+}

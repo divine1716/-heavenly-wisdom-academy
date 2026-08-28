@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PARENT LOGIN</title>
+
+  <!-- Font Awesome -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+  />
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+
+  <!-- ================= HEADER ================= -->
+<body>
+  <!-- Top Info Bar --> 
+  <div class="top-bar" role="banner" aria-label="Contact information and social media links">
+    <div class="contact">
+      <span aria-label="Email address">Adorableheavenlywisdom@gmail.com</span> |
+       <span aria-label="Phone availability"> Call Us (Full time) </span> |
+      <button aria-label="Access school dashboard">
+        <i class="fa fa-user" aria-hidden="true"></i>
+        <a href="#" class="dashboard-btn">Go to School Dashboard</a>
+      </button>
+    </div>
+
+    <!-- Top Social Icons -->
+    <div class="top-social-icons" role="navigation" aria-label="Social media links">
+     <a href="https://www.facebook.com/profile.php?id=61582386687704" target="_blank" aria-label="Visit our Facebook page (opens in new tab)"><i class="fab fa-facebook-f" aria-hidden="true"></i></a>
+
+      <a href="https://x.com/AdorableWi40474" target="_blank" aria-label="Visit our Twitter page (opens in new tab)"><i class="fab fa-twitter" aria-hidden="true"></i></a>
+      <a href="https://instagram.com" target="_blank" aria-label="Visit our Instagram page (opens in new tab)"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+      <a href="https://linkedin.com" target="_blank" aria-label="Visit our LinkedIn page (opens in new tab)"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a>
+    </div>
+  </div>
+
+  <!-- Header Section -->
+  <header>
+    <nav role="navigation" aria-label="Main navigation">
+      <div class="logo">
+        <img src="/images/HEAVENLY.jpg" alt="School Logo" />
+        <h1>HEAVENLY WISDOM INTERNATIONAL ACADEMY</h1>
+      </div>
+
+      <!-- Simple Mobile Menu Button -->
+      <button id="mobileMenuBtn" 
+              aria-label="Toggle mobile navigation menu" 
+              aria-expanded="false" 
+              aria-controls="mobileNav"
+              tabindex="0"
+              onclick="
+        var menu = document.getElementById('mobileNav');
+        var isExpanded = this.getAttribute('aria-expanded') === 'true';
+        if (menu.style.display === 'block') {
+          menu.style.display = 'none';
+          this.innerHTML = '☰';
+          this.setAttribute('aria-expanded', 'false');
+        } else {
+          menu.style.display = 'block';
+          this.innerHTML = '✕';
+          this.setAttribute('aria-expanded', 'true');
+        }
+      ">☰</button>
+      
+      <!-- Mobile Navigation Menu -->
+      <div id="mobileNav" 
+           role="menu" 
+           aria-label="Mobile navigation menu">
+        <a href="/index.html" role="menuitem" tabindex="0" aria-current="page">🏠 Home</a>
+        <a href="../ADMISSION/public/index.html" role="menuitem" tabindex="0">📝 Admission</a>
+        <a href="FEES/index.html" role="menuitem" tabindex="0">💰 Fees</a>
+        <a href="PORTAL/student-login.html" role="menuitem" tabindex="0">🎓 Student Login</a>
+        <a href="ABOUT US/index.html" role="menuitem" tabindex="0">ℹ️ About</a>
+        <a href="GALLERY/index.html" role="menuitem" tabindex="0">📷 Gallery</a>
+        <a href="NEWS/index.html" role="menuitem" tabindex="0">📰 News</a>
+        <a href="FAQ/index.html" role="menuitem" tabindex="0">❓ FAQ</a>
+        <a href="CALENDAR/index.html" role="menuitem" tabindex="0">📅 Calendar</a>
+        <a href="CONTACT/index.html" role="menuitem" tabindex="0">📞 Contact</a>
+      </div>
+      
+      <ul class="nav-links" id="navLinks" role="menubar" aria-label="Desktop navigation menu">
+        <li role="none"><a href="/index.html" role="menuitem" tabindex="0" aria-current="page">🏠 Home</a></li>
+        <li role="none"><a href="/ADMISSION/public/index.html" role="menuitem" tabindex="0">📝 Admission</a></li>
+        <li role="none"><a href="/FEES/index.html" role="menuitem" tabindex="0">💰 Fees</a></li>
+        <li role="none"><a href="/PORTAL/student-login.html" role="menuitem" tabindex="0">🎓 Student Login</a></li>
+        <li role="none"><a href="/ABOUT US/index.html" role="menuitem" tabindex="0">ℹ️ About</a></li>
+        <li role="none"><a href="/GALLERY/index.html" role="menuitem" tabindex="0">📷 Gallery</a></li>
+        <li role="none"><a href="/NEWS/index.html" role="menuitem" tabindex="0">📰 News</a></li>
+        <li role="none"><a href="/FAQ/index.html" role="menuitem" tabindex="0">❓ FAQ</a></li>
+        <li role="none"><a href="/CALENDAR/index.html" role="menuitem" tabindex="0">📅 Calendar</a></li>
+        <li role="none"><a href="/CONTACT/index.html" role="menuitem" tabindex="0">📞 Contact</a></li>
+      </ul>
+      <button onclick="toggledarkmode()">🌙 Toggle Dark Mode</button>
+    </nav>
+  </header>
+
+
+  <!-- ================= PAGE CONTENT ================= -->
+  <main class="page-content">
+
+    <div class="auth-container">
+
+      <!-- LEFT SIDE -->
+      <div class="auth-info">
+        <h1>PARENT LOGIN</h1>
+        <p>
+         Welcome to Adorable Heavenly Wisdom 
+         This is the portal were u can check your childs result and make payment 
+        </p>
+
+        <ul>
+          <li><i class="fas fa-check-circle"></i> Pls ensure u collect pin from the principal </li>
+          <li><i class="fas fa-check-circle"></i></li>
+          <li><i class="fas fa-check-circle"></i> Reliable Support</li>
+        </ul>
+      </div>
+
+      <!-- RIGHT SIDE -->
+      <div class="auth-box">
+
+        <!-- TABS -->
+        <div class="tabs">
+          <button class="tab active" onclick="showForm('signin', this)">
+            Sign In
+          </button>
+        </div>
+
+        <!-- SIGN IN FORM -->
+        <form id="signin" class="form active">
+          <h2>Welcome Back</h2>
+
+          <div class="input-group">
+            <i class="fas fa-user"></i>
+            <input type="text" placeholder="Full Name" required />
+          </div>
+
+          <div class="input-group">
+            <i class="fas fa-lock"></i>
+            <input type="password" placeholder="Password" required />
+        </div>
+
+          </div>
+
+          <button type="submit" class="btn">Sign In</button>
+        </form>
+
+      </div>
+    </div>
+
+  </main>
+
+<!-- Load credentials first, then script -->
+<script src="/parent-portal/login/parent-credentials.js"></script>
+<script src="/parent-portal/login/script.js"></script>
+
+</body>
+</html>
+

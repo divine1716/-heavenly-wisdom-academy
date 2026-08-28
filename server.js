@@ -8,6 +8,9 @@ const nodemailer = require('nodemailer');
 const multer = require('multer');
 const fs = require('fs');
 const path = require('path');
+const submitAdmissionToSupabase = require('./api/admission/submit');
+const adminLogin = require('./api/admin/login');
+const adminAdmissions = require('./api/admin/admissions');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -26,6 +29,12 @@ app.use(cors({
 
 // Serve static files
 app.use(express.static('.'));
+
+// Uses the same handler as the deployed serverless endpoint, so local testing
+// saves applications to Supabase too.
+app.post('/api/admission/submit', submitAdmissionToSupabase);
+app.post('/api/admin/login', adminLogin);
+app.all('/api/admin/admissions', adminAdmissions);
 
 // Configure multer for file uploads
 const uploadDir = path.join(__dirname, 'uploads');

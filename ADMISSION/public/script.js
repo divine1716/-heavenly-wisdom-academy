@@ -240,13 +240,14 @@ document.getElementById('admissionForm').addEventListener('submit', async functi
   showLoading();
   
   try {
+    const payload = new FormData(this);
+    const localPreviewPorts = ['3000', '5500'];
+    const apiBase = window.ADMISSION_API_BASE || (location.protocol === 'file:' || localPreviewPorts.includes(location.port) ? 'http://localhost:5000' : '');
+
     // Submit to API
-    const response = await fetch('/api/admission/submit', {
+    const response = await fetch(`${apiBase}/api/admission/submit`, {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(formData)
+      body: payload
     });
 
     const result = await response.json();
@@ -314,9 +315,9 @@ function showSuccess(data) {
     <div class="loading-content success-message">
       <i class="fas fa-check-circle"></i>
       <h2>Application Submitted Successfully!</h2>
-      <p><strong>Application ID:</strong> ${data.applicationId}</p>
+      <p><strong>Application ID:</strong> ${data.applicationId || data.applicationNumber}</p>
       <p><strong>Student Name:</strong> ${data.fullName}</p>
-      <p><strong>Class:</strong> ${data.class}</p>
+      <p><strong>Class:</strong> ${data.class || data.classAppliedFor}</p>
       <hr style="margin: 20px 0; border: none; border-top: 1px solid rgba(255,255,255,0.3);">
       <p>Thank you for applying to Heavenly Wisdom International Academy!</p>
       <p>We will review your application and contact you within 3-5 business days.</p>

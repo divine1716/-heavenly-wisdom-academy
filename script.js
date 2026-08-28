@@ -22,10 +22,45 @@ document.addEventListener('DOMContentLoaded', () => {
   const toggleBtn = document.querySelector('.menu-toggle');
   const navLinks = document.querySelector('.nav-links');
 
+  if (!toggleBtn || !navLinks) return;
+
   toggleBtn.addEventListener('click', () => {
     navLinks.style.display =
       navLinks.style.display === 'flex' ? 'none' : 'flex';
   });
+});
+
+// Keep the main navigation focused, while retaining secondary pages under More.
+document.addEventListener('DOMContentLoaded', () => {
+  const nav = document.querySelector('header nav');
+  const links = document.querySelector('#navLinks');
+  if (!nav || !links || links.dataset.organized) return;
+  links.dataset.organized = 'true';
+
+  const primaryPages = new Set(['index.html', 'ADMISSION/public/index.html', 'FEES/index.html', 'PORTAL/student-login.html', 'ABOUT US/index.html', 'GALLERY/index.html']);
+  const secondaryItems = [...links.children].filter((item) => !primaryPages.has(item.querySelector('a')?.getAttribute('href')));
+  if (secondaryItems.length) {
+    const more = document.createElement('li');
+    more.className = 'more-menu';
+    more.innerHTML = '<button class="more-toggle" type="button" aria-expanded="false">More <span aria-hidden="true">⌄</span></button><div class="more-dropdown"></div>';
+    const button = more.querySelector('button');
+    const dropdown = more.querySelector('.more-dropdown');
+    secondaryItems.forEach((item) => dropdown.appendChild(item.querySelector('a')));
+    button.addEventListener('click', (event) => {
+      event.stopPropagation();
+      const open = more.classList.toggle('open');
+      button.setAttribute('aria-expanded', String(open));
+    });
+    document.addEventListener('click', () => { more.classList.remove('open'); button.setAttribute('aria-expanded', 'false'); });
+    links.appendChild(more);
+  }
+
+  const themeButton = nav.querySelector('button[onclick="toggledarkmode()"]');
+  if (themeButton) {
+    themeButton.classList.add('nav-theme-toggle');
+    themeButton.setAttribute('aria-label', 'Toggle dark mode');
+    themeButton.title = 'Toggle dark mode';
+  }
 });
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -250,8 +285,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 });
 
-// Hom
-epage Contact Form Handler
+// Homepage Contact Form Handler
 document.getElementById('homeContactForm')?.addEventListener('submit', function(e) {
   e.preventDefault();
   

@@ -1,6 +1,9 @@
 # Environment variables (contains passwords and secrets)
 .env
 PORTAL/backend/.env
+backend/.env
+backend/uploads/
+uploads/
 
 # Node modules
 node_modules/

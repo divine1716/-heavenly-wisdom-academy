@@ -316,7 +316,7 @@ export const studentCredentials = {
     studentId: "HWA/JSS1/002",
     email: "gift.forcebray@student.heavenlywisdom.edu"
   },
-  "Monday Faoziya": {
+  "Monday Fauziya": {
     password: "Mon974iya25",
     class: "JSS 1",
     studentId: "HWA/JSS1/003",
