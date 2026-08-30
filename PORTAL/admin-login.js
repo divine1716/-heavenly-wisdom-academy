@@ -1,4 +1,8 @@
-const adminApiBase = window.ADMISSION_API_BASE || ((location.protocol === 'file:' || ['3000', '5500'].includes(location.port)) ? 'http://localhost:5000' : '');
+const isLocalDevelopment = ['localhost', '127.0.0.1'].includes(location.hostname);
+const adminApiBase = window.ADMISSION_API_BASE ||
+  (location.protocol === 'file:' || (isLocalDevelopment && location.port !== '5000')
+    ? 'http://localhost:5000'
+    : '');
 document.getElementById('adminLoginForm').addEventListener('submit', async (event) => {
   event.preventDefault();
   const error = document.getElementById('loginError'); error.textContent = '';

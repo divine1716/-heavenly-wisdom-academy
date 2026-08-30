@@ -21,8 +21,15 @@ const users = [];
 // Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+const allowedOrigins = new Set([
+  'https://heavenly-wisdom-academy-t283y67vh-divine-emmanuels-projects.vercel.app'
+]);
+
 app.use(cors({
-  origin: ['http://127.0.0.1:5500', 'http://localhost:5500', 'http://localhost:3000', 'https://heavenly-wisdom-academy-t283y67vh-divine-emmanuels-projects.vercel.app'],
+  origin(origin, callback) {
+    const isLocalOrigin = origin && /^http:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/.test(origin);
+    callback(null, !origin || isLocalOrigin || allowedOrigins.has(origin));
+  },
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   credentials: true
 }));
@@ -51,7 +58,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 
 // Configure nodemailer
-const transporter = nodemailer.createTransporter({
+const transporter = nodemailer.createTransport({
   service: 'gmail',
   auth: {
     user: process.env.EMAIL_USER || process.env.SMTP_USER,

@@ -82,3 +82,6 @@ To regenerate:
 
 **Setup Time**: ~5 minutes  
 **Cost**: Free (100 emails/day)
+
+
+

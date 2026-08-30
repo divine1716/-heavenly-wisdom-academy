@@ -145,10 +145,18 @@ function saveStepData(step) {
 // Populate review section
 function populateReview() {
   const reviewContent = document.getElementById('reviewContent');
+  const passportFile = document.getElementById('passportUpload').files[0];
+  const passportImage = document.getElementById('passportPreview');
+  const passportHTML = passportFile ? `
+      <div class="review-passport">
+        <div class="review-label">Passport Photograph:</div>
+        <img src="${passportImage.src}" alt="Applicant passport photograph">
+      </div>` : '';
   
   const reviewHTML = `
     <div class="review-group">
       <h3><i class="fas fa-user-graduate"></i> Student Information</h3>
+      ${passportHTML}
       <div class="review-item">
         <div class="review-label">Full Name:</div>
         <div class="review-value">${formData.fullName || 'N/A'}</div>
@@ -221,6 +229,57 @@ function populateReview() {
   `;
   
   reviewContent.innerHTML = reviewHTML;
+}
+
+// Open a printer-friendly copy of the review. The browser print dialog lets
+// applicants either print it or choose "Save as PDF".
+function printReview() {
+  populateReview();
+
+  const reviewContent = document.getElementById('reviewContent');
+  const printWindow = window.open('', '_blank', 'width=900,height=700');
+
+  if (!printWindow) {
+    showNotification('Please allow pop-ups to print or save your application as a PDF.', 'error');
+    return;
+  }
+
+  printWindow.document.write(`<!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Admission Application Review</title>
+      <style>
+        * { box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; color: #222; margin: 0; padding: 32px; }
+        .print-header { border-bottom: 3px solid #667eea; margin-bottom: 24px; padding-bottom: 14px; }
+        .print-header h1 { color: #4f46a5; font-size: 22px; margin: 0 0 8px; }
+        .print-header p { color: #666; font-size: 14px; margin: 0; }
+        .review-section { background: #fff; }
+        .review-group { break-inside: avoid; margin-bottom: 24px; }
+        .review-group h3 { border-bottom: 2px solid #ddd; color: #4f46a5; font-size: 17px; margin: 0 0 10px; padding-bottom: 8px; }
+        .review-item { border-bottom: 1px solid #e5e5e5; display: flex; gap: 16px; padding: 8px 0; }
+        .review-label { color: #555; flex: 0 0 200px; font-weight: 700; }
+        .review-value { flex: 1; overflow-wrap: anywhere; }
+        .review-passport { align-items: flex-start; border-bottom: 1px solid #e5e5e5; display: flex; gap: 16px; padding: 8px 0 14px; }
+        .review-passport img { border: 1px solid #ccc; height: 130px; object-fit: cover; width: 130px; }
+        .print-footer { border-top: 1px solid #ddd; color: #666; font-size: 12px; margin-top: 28px; padding-top: 12px; }
+        @media print { body { padding: 0; } }
+      </style>
+    </head>
+    <body>
+      <div class="print-header">
+        <h1>Heavenly Wisdom International Academy</h1>
+        <p>Admission Application Review</p>
+      </div>
+      ${reviewContent.innerHTML}
+      <div class="print-footer">Generated on ${new Date().toLocaleString()}</div>
+    </body>
+    </html>`);
+  printWindow.document.close();
+  printWindow.focus();
+  printWindow.print();
 }
 
 // Form submission
@@ -371,4 +430,5 @@ function toggleMobileMenu() {
 window.previewImage = previewImage;
 window.nextStep = nextStep;
 window.prevStep = prevStep;
+window.printReview = printReview;
 window.toggleMobileMenu = toggleMobileMenu;

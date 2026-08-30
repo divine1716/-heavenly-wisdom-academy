@@ -1,10 +1,9 @@
 // Check if user is admin
 document.addEventListener("DOMContentLoaded", () => {
-  const userInfo = JSON.parse(localStorage.getItem("userInfo") || "{}");
-  
-  if (userInfo.role !== "admin") {
-    alert("Access denied. Admin only.");
-    window.location.href = "dashboard.html";
+  const adminToken = sessionStorage.getItem("adminToken");
+
+  if (!adminToken) {
+    window.location.replace("admin-login.html");
     return;
   }
 
@@ -463,8 +462,3 @@ showTab = function(tabName) {
     loadAdmissions();
   }
 };
-
-/
-/ ===== ENHANCED ADMISSION REVIEW WITH EMAIL =====
-
-async function reviewAdmission(index,

@@ -52,24 +52,34 @@ document.addEventListener("DOMContentLoaded", () => {
           throw new Error('Authentication system not loaded');
         }
 
-        // Use local authentication for Vercel static hosting
-        const result = await window.localAuth.login(email, password);
-        
-        if (result.success) {
-          if (typeof showSuccess === 'function') {
-            showSuccess(result.message);
-          } else {
-            alert('Login successful! ' + result.message);
-          }
-          
-          // Redirect based on role
-          setTimeout(() => {
-            if (role === 'admin') {
-              window.location.href = 'admin-panel.html';
-            } else {
-              window.location.href = 'dashboard.html';
-            }
-          }, 1500);
+         // Use local authentication for Vercel static hosting
+         const result = await window.localAuth.login(email, password);
+         
+         if (result.success) {
+           if (typeof showSuccess === 'function') {
+             showSuccess(result.message);
+           } else {
+             alert('Login successful! ' + result.message);
+           }
+           
+           // Store session for dashboard compatibility
+           const sessionUser = {
+             name: result.user.name || result.user.fullName || email,
+             email: result.user.email || email,
+             role: result.user.role || role,
+             class: result.user.class || '',
+             studentId: result.user.studentId || ''
+           };
+           sessionStorage.setItem('portal_user', JSON.stringify(sessionUser));
+           
+           // Redirect based on role
+           setTimeout(() => {
+             if (role === 'admin') {
+               window.location.href = 'admin-login.html';
+             } else {
+               window.location.href = 'dashboard.html';
+             }
+           }, 1500);
         } else {
           if (typeof showError === 'function') {
             showError(result.message);

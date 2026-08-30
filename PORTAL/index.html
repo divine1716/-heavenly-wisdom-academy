@@ -201,7 +201,7 @@
           setTimeout(() => {
             switch(userRole) {
               case 'admin':
-                window.location.href = 'admin-panel.html';
+                window.location.href = 'admin-login.html';
                 break;
               case 'teacher':
                 window.location.href = 'dashboard.html?role=teacher';
@@ -273,7 +273,7 @@ Thank you!`;
       const user = JSON.parse(sessionStorage.getItem('portal_user'));
       switch(user.role) {
         case 'admin':
-          window.location.href = 'admin-panel.html';
+          window.location.href = 'admin-login.html';
           break;
         default:
           window.location.href = 'dashboard.html';
